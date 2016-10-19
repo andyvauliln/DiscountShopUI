@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('app.dashboard')
-    .controller('DashboardController', DashboardController);
+    .module('app.organizations')
+    .controller('organizationsController', organizationsController);
 
-  DashboardController.$inject = ['$q', 'dataservice', 'logger'];
+  organizationsController.$inject = ['$q', 'dataservice', 'logger'];
   /* @ngInject */
-  function DashboardController($q, dataservice, logger) {
+  function organizationsController($q, dataservice, logger) {
     var vm = this;
     vm.news = {
       title: 'DiscountShop',
@@ -15,14 +15,14 @@
     };
     vm.messageCount = 0;
     vm.people = [];
-    vm.title = 'Dashboard';
+    vm.title = 'organizations';
 
     activate();
 
     function activate() {
       var promises = [getMessageCount(), getPeople()];
       return $q.all(promises).then(function() {
-        logger.info('Activated Dashboard View');
+        logger.info('Activated organizations View');
       });
     }
 

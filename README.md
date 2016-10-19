@@ -88,7 +88,8 @@ app --> [
 ```
 
 #### core Module
-Core modules are ones that are shared throughout the entire application and may be customized for the specific application. Example might be common data services.
+Core modules are ones that are shared throughout the entire application and may be customized for the specific application. Example might 
+be common data services.
 
 This is an aggregator of modules that the application will need. The `core` module takes the blocks, common, and Angular sub-modules as dependencies.
 
