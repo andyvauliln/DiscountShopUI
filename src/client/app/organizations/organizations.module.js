@@ -3,6 +3,8 @@
 
   angular.module('app.organizations', [
     'app.core',
-    'app.widgets'
+    'app.widgets',
+    'ui.grid',
+    'ui.grid.edit'
   ]);
 })();
