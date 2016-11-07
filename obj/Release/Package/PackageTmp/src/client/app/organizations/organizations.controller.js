@@ -34,23 +34,17 @@
 
 
     activate();
- function getPeople() {
-      return dataservice.getOrganizations().then(function(data) {
-        vm.categories = data;
-        return vm.categories;
-      });
-    }
+
+    function activate() {
+    
     function getCategories(){
       
       vm.categories = null;
 
     }
-    function activate() {
-    
-    
-   
 
-      var promises = [getOrganizations(), getPeople()];
+
+      var promises = [getOrganizations()];
       return $q.all(promises).then(function () {
         logger.info('Activated organizations View');
       });

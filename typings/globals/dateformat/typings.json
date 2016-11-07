@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/1d3de94f5077de90ec0d0a765c3887bab07399bd/dateformat/dateformat.d.ts",
+    "raw": "registry:dt/dateformat#1.0.12+20160925142455",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/1d3de94f5077de90ec0d0a765c3887bab07399bd/dateformat/dateformat.d.ts"
+  }
+}
