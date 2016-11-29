@@ -1,10 +1,261 @@
-<section id="dashboard-view" class="mainbar">
+<section class="mainbar">
   <section class="matter">
-    <div class="container">
-         <div ui-grid="vm.gridOptions" ui-grid-edit class="myGrid"></div>
+    <!--Mange Panel-->
+    <div class="jumbotron well">
+      <button id='toggleFiltering' ng-click="vm.toggleFiltering()" class="btn btn-success">Toggle Filtering</button>
+      <button ng-click="vm.getOrganizations()" class="btn btn-success">Refresh</button>
+      <button ng-click="vm.mockOrganization()" class="btn btn-success">Add Organization</button>
+      <button ng-click="vm.removeOrganizations()" class="btn btn-success">Delete Selected Organization</button>
+      <button ng-click="vm.clearAllRows()" class="btn btn-success">Unselect All Rows</button>
+      <label>Total Count : {{vm.organizationGridOptions.data.length}}</label>
     </div>
+    <div class="container">
+      <!--Grid-->
+      <div id="organization-grid" ui-grid="vm.organizationGridOptions" ui-grid-resize-columns ui-grid-auto-resize ui-grid-selection
+        class="myGrid"></div>
+      <!--Discountcard-Container-->
+      <div id="organization-discountcard-container" ng-show="vm.IsShowDiscountCardContainer" class="discountcard-container row row-eq-height">
+        <div ng-repeat="discountcard in vm.currentDiscountCardArr" class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
+          <div class="grid-sub-container">
+            <button ng-show="discountcard.Id > 0" type="button" class="close" data-dismiss="alert" aria-hidden="true" data-placement="left"
+              title="Deattach Card" ng-click="vm.deattachDiscountCard(discountcard)" onmouseenter="$(this).tooltip('show')">×</button>
+            <!--Discount-Image-Container-->
+            <div class="grid-sub-container-images" ng-show = "discountcard.Id >= 0">
+
+              <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachDiscountFrontImage($files, discountcard)">
+
+                <img flow-btn ng-if="discountcard.FrontSideImg.Content !== ''" class="grid-sub-container-item" ng-src="data:image/JPEG;base64,{{discountcard.FrontSideImg.Content}}"
+                  data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
+
+                <img flow-btn ng-if="discountcard.FrontSideImg.Content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
+                  data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
+              </div>
+              <div flow-init="vm.flowConfig" flow-name="uploader.flow" flow-files-submitted="$flow.upload()" flow-single-file="true" flow-files-added="vm.attachDiscountBackImage($files, discountcard)">
+
+                <img flow-btn ng-if="discountcard.BackSideImg.Content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
+                  data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
+                <img flow-btn ng-if="discountcard.BackSideImg.Content !== ''" class="grid-sub-container-item" data-placement="left" title="Upload new Image"
+                  onmouseenter="$(this).tooltip('show')" ng-src="data:image/JPEG;base64,{{discountcard.BackSideImg.Content}}"
+                  height="180px" width="300px">
+              </div>
+              <div class="grid-sub-container-item"><label>BarCode  :</label>&nbsp&nbsp<a onbeforesave="vm.saveDiscountCard(discountcard)" href="#" editable-text="discountcard.Barcode">{{ discountcard.Barcode|| "empty" }}</a></div>
+            </div>
+              <div class="" ng-show="discountcard.Id < 0">
+                    <button ng-show="discountcard.Id < 0" ng-click="discountcard.Id = 0; editableForm.$show();" class="btn btn-success">Add One</button>
+                    <button ng-show="discountcard.Id < 0" ng-click="vm.ShowDiscountCardPopup()" class="btn btn-success">Select Existed</button>
+           </div>
+          </div>
+        </div>
+      </div>
+      <!--Coupon-Container-->
+      <div id="organization-coupon-container" ng-show="vm.IsShowCouponContainer" class="coupon-container row row-eq-height">
+        <div ng-repeat="coupon in vm.currentCouponArr" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="grid-sub-container">
+            <button ng-show="coupon.Id > 0" type="button" class="close" data-dismiss="alert" aria-hidden="true" data-placement="left"
+              title="Delete Card" ng-click="vm.deattachCoupon(coupon)" onmouseenter="$(this).tooltip('show')">×</button>
+            <!--Image-Container-->
+            <div class="grid-sub-container-images" ng-show="coupon.Id >= 0">
+              <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachCouponImage($files, coupon)">
+
+                <img flow-btn ng-if="coupon.Image.Content !== ''" class="grid-sub-container-item" ng-src="data:image/JPEG;base64,{{coupon.Image.Content}}"
+                  data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
+
+                <img flow-btn ng-if="coupon.Image.Content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
+                  data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
+              </div>
+              <div class="grid-sub-container-item"><label> Description  :</label>&nbsp&nbsp<a onbeforesave="vm.saveCoupon(coupon)" href="#" editable-text="coupon.Description">{{ coupon.Description|| "empty" }}</a></div>
+              <h2>Coupon Codes</h2>
+              <div ng-repeat="code in coupon.CouponCodes">
+                <div class="input-group">
+                  <input type="text" class="form-control" readonly="readonly" value="{{code.Code}}" ">
+                <span class="input-group-btn ">
+                    <button ng-click ="code.IsActive ? vm.deactivateCouponCodes(code) : vm.activateCouponCodes(code)"  ng-class="code.IsActive ? 'btn btn-danger' : 'btn btn-success' " type="button ">{{code.IsActive ? 'Diactivate' : 'Activate'}}</button>
+                </span>
+                
+              </div>
+            </div>
+            <div style="padding:20px;"><button class="btn btn-primary" ng-click="vm.generateCouponCode(coupon)">Generate Coupon Code</button></div>
+            
+          </div>
+           <div class="row" ng-show="coupon.Id < 0">
+                    <button ng-show="coupon.Id < 0" ng-click="coupon.Id = 0; editableForm.$show();" class="btn btn-success">Add One</button>
+                    <button ng-show="coupon.Id < 0" ng-click="vm.ShowCouponPopup()" class="btn btn-success">Select Existed</button>
+           </div>
+        </div>
+     </div>
+     </div>
+  <div id="organization-shops-container "  ng-show="vm.IsShowShopContainer " class="shop-container row row-eq-height ">
+        <div ng-repeat="(key,shop) in vm.currentShopArr " class="col-lg-4 col-md-3 col-sm-12 col-xs-12 ">
+           <div class="grid-sub-container ">
+          <button ng-show = "shop.Id> 0" type="button" class="close" data-dismiss="alert" aria-hidden="true"
+                  data-placement="left" title="Deattach Shop" ng-click="vm.deattachShop(shop)" onmouseenter="$(this).tooltip('show')">×
+                  </button>
+                  <!--Field-Container-->
+                  <div class="grid-sub-container-images" ng-show="shop.Id > 0">
+
+                    <div class="grid-sub-container-item"><label>Name  :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.Name">{{ shop.Name|| "empty" }}</a></div>
+                    <div class="grid-sub-container-item"><label>Address :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.Address">{{ shop.Address|| "empty" }}</a></div>
+                    <div class="grid-sub-container-item"><label>City  :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.City">{{ shop.City|| "empty" }}</a></div>
+                    <div class="grid-sub-container-item"><label>Phone :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.Phone">{{ shop.Phone|| "empty" }}</a></div>
+                    <div class="grid-sub-container-item"><label>Shedule :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.Shedule">{{ shop.Shedule|| "empty" }}</a></div>
+                    <div class="grid-sub-container-item"><label>Latitude :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.Latitude">{{ shop.Latitude|| "empty" }}</a></div>
+                    <div class="grid-sub-container-item"><label>Longitude :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.Longitude">{{ shop.Longitudes|| "empty" }}</a></div>
+
+                  </div>
+                  <div ng-show="shop.Id == 0">
+                    <form class="form-horizontal" role="form" editable-form name="editableForm" onbeforesave="vm.saveShop(shop)">
+
+                      <div class="form-group"> <label class="col-sm-2 control-label">Name:      </label>
+                        <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.Name">{{ shop.Name|| "empty" }}</span></div>
+                      </div>
+                      <div class="form-group"> <label class="col-sm-2 control-label">Address:   </label>
+                        <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.Address">{{ shop.Address|| "empty" }}</span></div>
+                      </div>
+                      <div class="form-group"> <label class="col-sm-2 control-label">City:      </label>
+                        <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.City">{{ shop.City|| "empty" }}</span></div>
+                      </div>
+                      <div class="form-group"> <label class="col-sm-2 control-label">Phone:     </label>
+                        <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.Phone">{{ shop.Phone|| "empty" }}</span></div>
+                      </div>
+                      <div class="form-group"> <label class="col-sm-2 control-label">Shedule:   </label>
+                        <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.Shedule">{{ shop.Shedule|| "empty" }}</span></div>
+                      </div>
+                      <div class="form-group"> <label class="col-sm-2 control-label">Latitude:  </label>
+                        <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.Latitude">{{ shop.Latitude|| "empty" }}</span></div>
+                      </div>
+                      <div class="form-group"> <label class="col-sm-2 control-label">Longitude: </label>
+                        <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.Longitude">{{ shop.Longitude|| "empty" }}</span></div>
+                      </div>
+
+
+                      <div class="buttons">
+
+                        <!-- buttons to submit / cancel form -->
+                        <span ng-show="editableForm.$visible">
+                          <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                            Save
+                          </button>
+                          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel(); shop.Id = -1">
+                            Cancel
+                          </button>
+                        </span>
+                      </div>
+                    </form>
+
+
+                  </div>
+                  <div class="">
+                    <button ng-show="shop.Id < 0" ng-click="shop.Id = 0; editableForm.$show();" class="btn btn-success">Add One</button>
+                    <button ng-show="shop.Id < 0" ng-click="vm.ShowShopPopup()" class="btn btn-success">Select Existed</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="organization-image-container" ng-show="vm.IsShowImageContainer" class="img-container row row-eq-height">
+              <div ng-repeat="(key,image) in vm.currentImageArr" class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
+                <div class="grid-sub-container">
+                  <button g-show="discountcard.Id > 0" type="button" class="close" data-dismiss="alert" aria-hidden="true" data-placement="left"
+                    title="Deattach Image" ng-click="vm.deattachImage(image)" onmouseenter="$(this).tooltip('show')">×</button>
+                  <!--Field-Container-->
+                  <div class="grid-sub-container-images" ng-show = "image.Id > 0">
+                    <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachOrganizationImage($files, image)">
+
+                      <img ng-if="image.Content !== ''" class="grid-sub-container-item" ng-src="data:image/JPEG;base64,{{image.Content}}" height="180px"
+                        width="300px">
+
+                      <img flow-btn ng-if="image.Content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg" data-placement="left"
+                        title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
   </section>
 </section>
-
-
+<style>
+  form .editable-input {
+    min-width: 160px;
+  }
+  
+  .row [class*="col-"] {
+    padding: 10px;
+  }
+  
+  .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  div[uib-datepicker-popup-wrap] {
+    position: fixed;
+    width: 490px;
+  }
+  
+  .grid-sub-container-images img {
+    cursor: pointer;
+  }
+  
+  .editable-input {
+    text-align: center;
+  }
+  
+  .grid-sub-container {
+    border-radius: 6px;
+    text-align: center;
+    height: 95%;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 2 4px -32px rgba(4, 3, 15, 0.15);
+  }
+  
+  #organization-grid {
+    margin-bottom: 20px;
+  }
+  
+  .close {
+    margin-right: -5px;
+    margin-top: -10px;
+  }
+  
+  .grid-sub-container-images {
+    margin-top: 30px;
+  }
+  
+  .text-alingc {
+    text-align: left;
+  }
+  
+  .grid-sub-container-item {
+    padding-bottom: 10px;
+  }
+  
+  #organization-grid .ui-grid-header-cell .ui-grid-cell-contents {
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+  }
+  
+  #organization-grid .ui-grid-cell {
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+  }
+  
+  .btn-vert-align {
+    vertical-align: text-top;
+  }
+  
+  .custom-cell-align {
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+  }
+  
+  #organization-grid .editable-text {
+    vertical-align: text-top !important;
+  }
 </style>

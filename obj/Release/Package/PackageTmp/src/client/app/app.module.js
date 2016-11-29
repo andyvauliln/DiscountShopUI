@@ -1,15 +1,18 @@
 (function() {
   'use strict';
 
-  angular.module('app', [
+ var app = angular.module('app', [
     'app.core',
     'app.widgets',
-    'app.admin',
+    'app.user',
     'app.dashboard',
     'app.organizations',
+    'app.coupon',
+    'app.discountcard',
     'app.layout',
-    'app.contact',
-    'ui.grid'
+    'app.shop'
   ]);
-
+app.run(function(editableOptions) {
+  editableOptions.theme = 'bs3';
+});
 })();

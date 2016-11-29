@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
   <link rel="stylesheet" href="/bower_components/angular-ui-grid/ui-grid.css" />
   <link rel="stylesheet" href="/bower_components/angular-ui-grid/ui-grid.min.css" />
+  <link rel="stylesheet" href="/bower_components/angular-xeditable/dist/css/xeditable.css" />
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -48,7 +49,6 @@
       </div>
     </div>
   </div>
-
   <!-- build:js js/lib.js -->
   <!-- bower:js -->
   <script src="/bower_components/jquery/dist/jquery.js"></script>
@@ -63,42 +63,52 @@
   <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="/bower_components/angular-ui-grid/ui-grid.js"></script>
   <script src="/bower_components/angular-ui-grid/ui-grid.min.js"></script>
+  <script src="/bower_components/flow.js/dist/flow.js"></script>
+  <script src="/bower_components/ng-flow/dist/ng-flow.js"></script>
+  <script src="/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+  <script src="/bower_components/checklist-model/checklist-model.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
   <!-- build:js js/app.js -->
   <!-- inject:js -->
   <script src="/src/client/app/app.module.js"></script>
-  <script src="/src/client/app/admin/admin.module.js"></script>
   <script src="/src/client/app/blocks/exception/exception.module.js"></script>
   <script src="/src/client/app/blocks/logger/logger.module.js"></script>
   <script src="/src/client/app/blocks/router/router.module.js"></script>
-  <script src="/src/client/app/contact/contact.module.js"></script>
   <script src="/src/client/app/core/core.module.js"></script>
+  <script src="/src/client/app/coupon/coupon.module.js"></script>
   <script src="/src/client/app/dashboard/dashboard.module.js"></script>
+  <script src="/src/client/app/discountcard/discountcard.module.js"></script>
   <script src="/src/client/app/layout/layout.module.js"></script>
   <script src="/src/client/app/organizations/organizations.module.js"></script>
+  <script src="/src/client/app/shop/shop.module.js"></script>
+  <script src="/src/client/app/user/user.module.js"></script>
   <script src="/src/client/app/widgets/widgets.module.js"></script>
-  <script src="/src/client/app/admin/admin.controller.js"></script>
-  <script src="/src/client/app/admin/admin.route.js"></script>
   <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
   <script src="/src/client/app/blocks/exception/exception.js"></script>
   <script src="/src/client/app/blocks/logger/logger.js"></script>
   <script src="/src/client/app/blocks/router/router-helper.provider.js"></script>
-  <script src="/src/client/app/contact/contact.controller.js"></script>
-  <script src="/src/client/app/contact/contact.route.js"></script>
   <script src="/src/client/app/core/config.js"></script>
   <script src="/src/client/app/core/constants.js"></script>
   <script src="/src/client/app/core/core.route.js"></script>
   <script src="/src/client/app/core/dataservice.js"></script>
+  <script src="/src/client/app/coupon/coupon.controller.js"></script>
+  <script src="/src/client/app/coupon/coupon.route.js"></script>
   <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
   <script src="/src/client/app/dashboard/dashboard.route.js"></script>
+  <script src="/src/client/app/discountcard/discountcard.controller.js"></script>
+  <script src="/src/client/app/discountcard/discountcard.route.js"></script>
   <script src="/src/client/app/layout/ht-sidebar.directive.js"></script>
   <script src="/src/client/app/layout/ht-top-nav.directive.js"></script>
   <script src="/src/client/app/layout/shell.controller.js"></script>
   <script src="/src/client/app/layout/sidebar.controller.js"></script>
   <script src="/src/client/app/organizations/organizations.controller.js"></script>
   <script src="/src/client/app/organizations/organizations.route.js"></script>
+  <script src="/src/client/app/shop/shop.controller.js"></script>
+  <script src="/src/client/app/shop/shop.route.js"></script>
+  <script src="/src/client/app/user/user.controller.js"></script>
+  <script src="/src/client/app/user/user.route.js"></script>
   <script src="/src/client/app/widgets/ht-img-person.directive.js"></script>
   <script src="/src/client/app/widgets/ht-widget-header.directive.js"></script>
   <!-- endinject -->

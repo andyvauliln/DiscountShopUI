@@ -64,7 +64,7 @@ The app has 4 feature modules and depends on a series of external modules and cu
 
 ```
 app --> [
-        app.admin --> [
+        app.user --> [
             app.core,
             app.widgets
         ],

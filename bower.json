@@ -30,7 +30,10 @@
     "toastr": "^2.1.2",
     "angular-animate": "^1.5.3",
     "angular-bootstrap": "^1.2.5",
-    "angular-ui-grid": "latest"
+    "angular-ui-grid": "latest",
+    "ng-flow":"2.7.4",
+    "angular-xeditable": "0.5.0" ,
+    "checklist-model": "0.10.0"
   
   },
   "resolutions": {

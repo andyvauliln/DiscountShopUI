@@ -1,5 +1,5 @@
 TN:
-SF:./src/client/app/admin/admin.module.js
+SF:./src/client/app/user/user.module.js
 FN:1,(anonymous_1)
 FNF:1
 FNH:1
@@ -116,14 +116,14 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:./src/client/app/admin/admin.controller.js
+SF:./src/client/app/user/user.controller.js
 FN:1,(anonymous_1)
-FN:10,AdminController
+FN:10,userController
 FN:16,activate
 FNF:3
 FNH:3
 FNDA:1,(anonymous_1)
-FNDA:3,AdminController
+FNDA:3,userController
 FNDA:3,activate
 DA:1,1
 DA:4,1
@@ -140,7 +140,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:./src/client/app/admin/admin.route.js
+SF:./src/client/app/user/user.route.js
 FN:1,(anonymous_1)
 FN:10,appRun
 FN:14,getStates

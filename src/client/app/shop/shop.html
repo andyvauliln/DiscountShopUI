@@ -1,0 +1,106 @@
+<section class="mainbar">
+  <section class="matter">
+      <!--Mange Panel-->
+    <div class="jumbotron well">
+      <button id='toggleFiltering' ng-click="vm.toggleFiltering()" class="btn btn-success">Toggle Filtering</button>
+      <button ng-click="vm.getShops()" class="btn btn-success">Refresh</button>
+      <button ng-click="vm.mockShop()" class="btn btn-success">Add Shop</button>
+      <button ng-click="vm.removeShops()" class="btn btn-success">Delete Selected Shops</button>
+    </div>
+    <div class="container">
+      <!--Grid-->
+      <div id="shop-grid"
+          ui-grid="vm.shopGridOptions" 
+          ui-grid-resize-columns 
+          ui-grid-auto-resize  
+          ui-grid-selection 
+          class="myGrid"></div>
+    </div>
+  </section>
+</section>
+
+<style>
+  form .editable-input {
+    min-width: 160px;
+  }
+  
+  .row [class*="col-"] {
+    padding: 10px;
+  }
+  
+  .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  div[uib-datepicker-popup-wrap] {
+    position: fixed;
+    width: 490px;
+  }
+  
+  .grid-sub-container-images img {
+    cursor: pointer;
+  }
+  
+  .editable-input {
+    text-align: center;
+  }
+  
+  .grid-sub-container {
+    border-radius: 6px;
+    text-align: center;
+    height: 95%;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 2 4px -32px rgba(4, 3, 15, 0.15);
+  }
+  
+  #organization-grid {
+    margin-bottom: 20px;
+  }
+  
+  .close {
+    margin-right: -5px;
+    margin-top: -10px;
+  }
+  
+  .grid-sub-container-images {
+    margin-top: 30px;
+  }
+  
+  .text-alingc {
+    text-align: left;
+  }
+  
+  .grid-sub-container-item {
+    padding-bottom: 10px;
+  }
+  
+  #organization-grid .ui-grid-header-cell .ui-grid-cell-contents {
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+  }
+  
+  #organization-grid .ui-grid-cell {
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+  }
+  
+  .btn-vert-align {
+    vertical-align: text-top;
+  }
+  
+  .custom-cell-align {
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+  }
+  
+  #organization-grid .editable-text {
+    vertical-align: text-top !important;
+  }
+</style>

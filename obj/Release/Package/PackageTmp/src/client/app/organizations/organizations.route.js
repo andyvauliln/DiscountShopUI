@@ -23,7 +23,7 @@
           title: 'organizations',
           settings: {
             nav: 1,
-            content: '<i class="fa fa-organizations"></i> organizations'
+            content: '<i class="fa fa-organizations"></i> Organizations'
           }
         }
       }

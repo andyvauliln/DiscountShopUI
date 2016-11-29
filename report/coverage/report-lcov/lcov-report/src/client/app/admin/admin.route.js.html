@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for ./src/client/app/admin/admin.route.js</title>
+    <title>Code coverage report for ./src/client/app/user/user.route.js</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../../../prettify.css">
     <link rel="stylesheet" href="../../../../base.css">
@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="header high">
-    <h1>Code coverage report for <span class="entity">./src/client/app/admin/admin.route.js</span></h1>
+    <h1>Code coverage report for <span class="entity">./src/client/app/user/user.route.js</span></h1>
     <h2>
         Statements: <span class="metric">100% <small>(7 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -21,7 +21,7 @@
         Lines: <span class="metric">100% <small>(7 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/admin/</a> &#187; admin.route.js</div>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/user/</a> &#187; user.route.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -93,7 +93,7 @@
   'use strict';
 &nbsp;
   angular
-    .module('app.admin')
+    .module('app.user')
     .run(appRun);
 &nbsp;
   appRun.$inject = ['routerHelper'];
@@ -105,16 +105,16 @@
   function getStates() {
     return [
       {
-        state: 'admin',
+        state: 'user',
         config: {
-          url: '/admin',
-          templateUrl: 'app/admin/admin.html',
-          controller: 'AdminController',
+          url: '/user',
+          templateUrl: 'app/user/user.html',
+          controller: 'userController',
           controllerAs: 'vm',
-          title: 'Admin',
+          title: 'user',
           settings: {
             nav: 2,
-            content: '&lt;i class="fa fa-lock"&gt;&lt;/i&gt; Admin'
+            content: '&lt;i class="fa fa-lock"&gt;&lt;/i&gt; user'
           }
         }
       }

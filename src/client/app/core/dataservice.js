@@ -16,6 +16,7 @@
       removeOrganizations : removeOrganizations,
       
       uploadImagesToOrganization : uploadImagesToOrganization,
+      setImagesToOrganization : setImagesToOrganization,
       attachCouponsToOrganization: attachCouponsToOrganization,
       attachDiscountCardsToOrganization : attachDiscountCardsToOrganization,
       attachShopsToOrganization : attachShopsToOrganization,
@@ -36,7 +37,7 @@
       attachCouponsToUser: attachCouponsToUser,
       attachDiscountCardsToUser : attachDiscountCardsToUser,
       deattachCouponsToUser: deattachCouponsToUser,
-      deattachDiscountCardsToUser : deattachDiscountsCardsToUser,
+      deattachDiscountCardsToUser : deattachDiscountCardsToUser,
 
       //Coupon Api
       getCoupons: getCoupons,
@@ -44,6 +45,7 @@
       updateCoupons : updateCoupons,
       removeCoupons : removeCoupons,
       uploadImageForCoupon : uploadImageForCoupon,
+      setImageForCoupon : setImageForCoupon,
       attachCouponCodes : attachCouponCodes,
       deattachCouponCodes : deattachCouponCodes,
 
@@ -53,7 +55,7 @@
       removeCouponCodes : removeCouponCodes,
       generateCouponCodes : generateCouponCodes,
       deactivateCouponCodes : deactivateCouponCodes,
-     
+      activateCouponCodes : activateCouponCodes,
 
       //DiscountCard Api
       getDiscountCards: getDiscountCards,
@@ -61,7 +63,9 @@
       updateDiscountCards : updateDiscountCards,
       removeDiscountCards : removeDiscountCards,
       uploadBackImageForDiscountCard : uploadBackImageForDiscountCard,
+      setBackImageForDiscountCard : setBackImageForDiscountCard,
       uploadFrontImageForDiscountCard : uploadFrontImageForDiscountCard,
+      setFrontImageForDiscountCard : setFrontImageForDiscountCard,
 
       //Shop Api
       getShops: getShops,
@@ -72,13 +76,14 @@
       //Category Api
       getCategories: getCategories,
       getCategoryById : getCategoryById,
-      updateCategories : updateCategores,
+      updateCategories : updateCategories,
       removeCategories : removeCategories,
      
       //Image Api
       getImages: getImages,
       getImageById : getImageById,
       uploadImages : uploadImages,
+      updateImages : updateImages,
       removeImages : removeImages,
     };
  
@@ -86,7 +91,7 @@
     
     //Organization Api
     function getOrganizations() {
-      return $http.get('https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organizations')
+      return $http.get('http://localhost:30375/api/organizations')
         .then(success)
         .catch(fail);
 
@@ -99,7 +104,7 @@
       }
     }
     function getOrganizationById(id) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id;
+       var url = 'http://localhost:30375/api/organization/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -113,7 +118,7 @@
       }
     }
     function updateOrganizations(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organizations/';
+       var url = 'http://localhost:30375/api/organizations/';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -127,7 +132,7 @@
       }
     }
     function removeOrganizations(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/remove-organizatios';
+       var url = 'http://localhost:30375/api/remove-organizatios';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -141,7 +146,7 @@
       }
     }
     function attachCouponsToOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/attach-coupons';
+       var url = 'http://localhost:30375/api/organization/' + id + '/attach-coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -155,7 +160,7 @@
       }
     }
     function attachDiscountCardsToOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/attach-discountcards';
+       var url = 'http://localhost:30375/api/organization/' + id + '/attach-discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -169,7 +174,7 @@
       }
     }
     function attachShopsToOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/attach-shops';
+       var url = 'http://localhost:30375/api/organization/' + id + '/attach-shops';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -183,7 +188,7 @@
       }
     }
     function attachCategoriesToOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/attach-categories';
+       var url = 'http://localhost:30375/api/organization/' + id + '/attach-categories';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -197,7 +202,21 @@
       }
     }
     function uploadImagesToOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/upload-images';
+       var url = 'http://localhost:30375/api/organization/' + id + '/upload-images';
+      return $http.post(url, data)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        return response.data;
+      }
+
+      function fail(e) {
+        return exception.catcher('XHR Failed for uploadImagesToOrganization')(e);
+      }
+    }
+    function setImagesToOrganization(id, data) {
+       var url = 'http://localhost:30375/api/organization/' + id + '/set-images';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -211,7 +230,7 @@
       }
     }
     function deattachCouponsFromOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/deattach-coupons';
+       var url = 'http://localhost:30375/api/organization/' + id + '/deattach-coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -225,7 +244,7 @@
       }
     }
     function deattachDiscountCardsFromOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/deattach-discountcards';
+       var url = 'http://localhost:30375/api/organization/' + id + '/deattach-discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -239,7 +258,7 @@
       }
     }
     function deattachShopsFromOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/deattach-shops';
+       var url = 'http://localhost:30375/api/organization/' + id + '/deattach-shops';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -253,7 +272,7 @@
       }
     }
     function deattachCategoriesFromOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/deattach-categores';
+       var url = 'http://localhost:30375/api/organization/' + id + '/deattach-categores';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -267,7 +286,7 @@
       }
     }
     function removeImagesFromOrganization(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/organization/' + id + '/remove-images';
+       var url = 'http://localhost:30375/api/organization/' + id + '/remove-images';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -283,7 +302,7 @@
 
     //User Api
     function getUsers() {
-      return $http.get('https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/users')
+      return $http.get('http://localhost:30375/api/users')
         .then(success)
         .catch(fail);
 
@@ -296,7 +315,7 @@
       }
     }
     function getUserById(id) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/user/' + id;
+       var url = 'http://localhost:30375/api/user/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -310,21 +329,24 @@
       }
     }
     function updateUsers(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/users';
-      return $http.post(url, data)
+      var url = 'http://localhost:30375/api/users';
+      return $http.post(url, data) 
         .then(success)
         .catch(fail);
 
       function success(response) {
+        logger.info('success update');
         return response.data;
+       
       }
 
       function fail(e) {
+        logger.error('error update');
         return exception.catcher('XHR Failed for updateUsers')(e);
       }
     }
     function removeUsers(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/remove-users';
+       var url = 'http://localhost:30375/api/remove-users';
       return $http.post(url,data)
         .then(success)
         .catch(fail);
@@ -338,7 +360,7 @@
       }
     } 
     function attachCouponsToUser(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/user/' + id + '/attach-coupons';
+       var url = 'http://localhost:30375/api/user/' + id + '/attach-coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -352,7 +374,7 @@
       }
     }
     function attachDiscountCardsToUser(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/user/' + id + '/attach-discountcards';
+       var url = 'http://localhost:30375/api/user/' + id + '/attach-discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -366,8 +388,8 @@
       }
     }
     function deattachCouponsToUser(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/user/' + id + '/deattach-coupons';
-      return $http.put(url, data)
+       var url = 'http://localhost:30375/api/user/' + id + '/deattach-coupons';
+      return $http.post(url, data)
         .then(success)
         .catch(fail);
 
@@ -380,7 +402,7 @@
       }
     }
     function deattachDiscountCardsToUser(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/user/' + id + '/deattach-discountcards';
+       var url = 'http://localhost:30375/api/user/' + id + '/deattach-discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -396,7 +418,7 @@
 
     //Coupon Api
     function getCoupons() {
-      return $http.get('https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/coupons')
+      return $http.get('http://localhost:30375/api/coupons')
         .then(success)
         .catch(fail);
 
@@ -409,7 +431,7 @@
       }
     }
     function getCouponById(id) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/coupon/' + id;
+       var url = 'http://localhost:30375/api/coupon/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -423,7 +445,7 @@
       }
     }
     function updateCoupons(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/coupons';
+       var url = 'http://localhost:30375/api/coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -437,7 +459,7 @@
       }
     }
     function removeCoupons(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/remove-coupons';
+       var url = 'http://localhost:30375/api/remove-coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -451,7 +473,7 @@
       }
     }
     function uploadImageForCoupon(id, data) {
-         var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/coupon/' + id + '/image';
+         var url = 'http://localhost:30375/api/coupon/' + id + '/image';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -464,8 +486,22 @@
         return exception.catcher('XHR Failed for uploadImageForCoupon')(e);
       }
     }
+    function setImageForCoupon(id, data) {
+         var url = 'http://localhost:30375/api/coupon/' + id + '/set-image/' + data.Id;
+      return $http.get(url)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        return response.data;
+      }
+
+      function fail(e) {
+        return exception.catcher('XHR Failed for uploadImageForCoupon')(e);
+      }
+    }
     function attachCouponCodes(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/user/' + id + '/attach-couponcodes';
+       var url = 'http://localhost:30375/api/coupon/' + id + '/attach-couponcodes';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -479,8 +515,8 @@
       }
     }
     function deattachCouponCodes(id, data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/user/' + id + '/deattach-couponcodes';
-      return $http.put(url, data)
+       var url = 'http://localhost:30375/api/user/' + id + '/deattach-couponcodes';
+      return $http.post(url, data)
         .then(success)
         .catch(fail);
 
@@ -495,7 +531,7 @@
 
     //CouponCodes Api
     function getCouponCodes() {
-      return $http.get('https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/couponcodes')
+      return $http.get('http://localhost:30375/api/couponcodes')
         .then(success)
         .catch(fail);
 
@@ -508,7 +544,7 @@
       }
     }
     function getCouponCodeById(id) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/couponcode/' + id;
+       var url = 'http://localhost:30375/api/couponcode/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -522,7 +558,7 @@
       }
     }
     function removeCouponCodes(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/remove-couponcodes';
+       var url = 'http://localhost:30375/api/remove-couponcodes';
       return $http.post(url,data)
         .then(success)
         .catch(fail);
@@ -536,7 +572,7 @@
       }
     }
     function generateCouponCodes(count) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/generate-couponcodes/' + count;
+       var url = 'http://localhost:30375/api/generate-couponcodes/' + count;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -550,7 +586,7 @@
       }
     }
     function deactivateCouponCodes(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/generate-couponcodes/' + count;
+       var url = 'http://localhost:30375/api/deactivate-couponcodes';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -563,10 +599,23 @@
         return exception.catcher('XHR Failed for deactivateCouponCodes')(e);
       }
     }
-   
+   function activateCouponCodes(data) {
+       var url = 'http://localhost:30375/api/activate-couponcodes';
+      return $http.post(url, data)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        return response.data;
+      }
+
+      function fail(e) {
+        return exception.catcher('XHR Failed for deactivateCouponCodes')(e);
+      }
+    }
    //Discount Card Api
     function getDiscountCards() {
-      return $http.get('https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/discountcards')
+      return $http.get('http://localhost:30375/api/discountcards')
         .then(success)
         .catch(fail);
 
@@ -579,7 +628,7 @@
       }
     }
     function getDiscountCardById(id) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/discountcard/' + id;
+       var url = 'http://localhost:30375/api/discountcard/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -593,7 +642,7 @@
       }
     }
     function updateDiscountCards(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/discountcards';
+       var url = 'http://localhost:30375/api/discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -607,7 +656,7 @@
       }
     }
     function removeDiscountCards(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/remove-discountcards';
+       var url = 'http://localhost:30375/api/remove-discountcards';
       return $http.post(url,data)
         .then(success)
         .catch(fail);
@@ -621,7 +670,7 @@
       }
     }
     function uploadFrontImageForDiscountCard(id, data) {
-         var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/discountcard/' + id + '/upload-frontimage';
+         var url = 'http://localhost:30375/api/discountcard/' + id + '/upload-frontimage';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -634,8 +683,22 @@
         return exception.catcher('XHR Failed for uploadFrontImageForDiscountCard')(e);
       }
     }
+    function setFrontImageForDiscountCard(id, data) {
+         var url = 'http://localhost:30375/api/discountcard/' + id + '/set-frontimage/' + data.Id;
+      return $http.get(url)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        return response.data;
+      }
+
+      function fail(e) {
+        return exception.catcher('XHR Failed for uploadFrontImageForDiscountCard')(e);
+      }
+    }
     function uploadBackImageForDiscountCard(id, data) {
-         var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/discountcard/' + id + '/upload-backimage';
+         var url = 'http://localhost:30375/api/discountcard/' + id + '/upload-backimage';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -649,9 +712,24 @@
       }
     }
 
+    function setBackImageForDiscountCard(id, data) {
+         var url = 'http://localhost:30375/api/discountcard/' + id + '/set-backimage/' + data.Id;
+      return $http.get(url)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        return response.data;
+      }
+
+      function fail(e) {
+        return exception.catcher('XHR Failed for setBackImageForDiscountCard')(e);
+      }
+    }
+
      //Shop Api
     function getShops() {
-      return $http.get('https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/shops')
+      return $http.get('http://localhost:30375/api/shops')
         .then(success)
         .catch(fail);
 
@@ -664,7 +742,7 @@
       }
     }
     function getShopById(id) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/shop/' + id;
+       var url = 'http://localhost:30375/api/shop/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -678,7 +756,7 @@
       }
     }
     function updateShops(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/shops';
+       var url = 'http://localhost:30375/api/shops';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -692,7 +770,7 @@
       }
     }
     function removeShops(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/remove-shops';
+       var url = 'http://localhost:30375/api/remove-shops';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -708,7 +786,7 @@
        
     //Category Api
     function getCategories() {
-      return $http.get('https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/categories')
+      return $http.get('http://localhost:30375/api/categories')
         .then(success)
         .catch(fail);
 
@@ -721,7 +799,7 @@
       }
     }
     function getCategoryById(id) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/category/' + id;
+       var url = 'http://localhost:30375/api/category/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -735,7 +813,7 @@
       }
     }
     function updateCategories(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/categories';
+       var url = 'http://localhost:30375/api/categories';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -749,7 +827,7 @@
       }
     }
     function removeCategories(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/remove-categories';
+       var url = 'http://localhost:30375/api/remove-categories';
       return $http.post(url,data)
         .then(success)
         .catch(fail);
@@ -766,7 +844,7 @@
    
     //Image Api
     function getImages() {
-      return $http.get('https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/images')
+      return $http.get('http://localhost:30375/api/images')
         .then(success)
         .catch(fail);
 
@@ -779,7 +857,7 @@
       }
     }
      function getImageById(id) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/image/' + id;
+       var url = 'http://localhost:30375/api/image/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -793,7 +871,7 @@
       }
     }
     function uploadImages(data) {
-       var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/images';
+       var url = 'http://localhost:30375/api/upload-images';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -806,9 +884,23 @@
         return exception.catcher('XHR Failed for uploadImages')(e);
       }
     }
-    function removeImages(id) {
-      var url = 'https://microsoft-apiapp1388a9dfa4b24c2aa3e986923ccc5d56.azurewebsites.net/api/remove-images';
-      return $http.post(url)
+    function updateImages(data) {
+       var url = 'http://localhost:30375/api/images';
+      return $http.post(url, data)
+        .then(success)
+        .catch(fail);
+
+      function success(response) {
+        return response.data;
+      }
+
+      function fail(e) {
+        return exception.catcher('XHR Failed for uploadImages')(e);
+      }
+    }
+    function removeImages(data) {
+      var url = 'http://localhost:30375/api/remove-images';
+      return $http.post(url, data)
         .then(success)
         .catch(fail);
 
