@@ -91,7 +91,7 @@
     
     //Organization Api
     function getOrganizations() {
-      return $http.get('http://localhost:30375/api/organizations')
+      return $http.get('http://disshopapp.azurewebsites.net/api/organizations')
         .then(success)
         .catch(fail);
 
@@ -104,7 +104,7 @@
       }
     }
     function getOrganizationById(id) {
-       var url = 'http://localhost:30375/api/organization/' + id;
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -118,7 +118,7 @@
       }
     }
     function updateOrganizations(data) {
-       var url = 'http://localhost:30375/api/organizations/';
+       var url = 'http://disshopapp.azurewebsites.net/api/organizations/';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -132,7 +132,7 @@
       }
     }
     function removeOrganizations(data) {
-       var url = 'http://localhost:30375/api/remove-organizatios';
+       var url = 'http://disshopapp.azurewebsites.net/api/remove-organizatios';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -146,7 +146,7 @@
       }
     }
     function attachCouponsToOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/attach-coupons';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/attach-coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -160,7 +160,7 @@
       }
     }
     function attachDiscountCardsToOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/attach-discountcards';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/attach-discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -174,7 +174,7 @@
       }
     }
     function attachShopsToOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/attach-shops';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/attach-shops';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -188,7 +188,7 @@
       }
     }
     function attachCategoriesToOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/attach-categories';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/attach-categories';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -202,7 +202,7 @@
       }
     }
     function uploadImagesToOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/upload-images';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/upload-images';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -215,8 +215,8 @@
         return exception.catcher('XHR Failed for uploadImagesToOrganization')(e);
       }
     }
-    function setImagesToOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/set-images';
+    function setImagesToOrganization(id, data) {  
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/set-images';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -230,7 +230,7 @@
       }
     }
     function deattachCouponsFromOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/deattach-coupons';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/deattach-coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -244,7 +244,7 @@
       }
     }
     function deattachDiscountCardsFromOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/deattach-discountcards';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/deattach-discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -258,7 +258,7 @@
       }
     }
     function deattachShopsFromOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/deattach-shops';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/deattach-shops';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -272,7 +272,7 @@
       }
     }
     function deattachCategoriesFromOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/deattach-categores';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/deattach-categores';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -286,7 +286,7 @@
       }
     }
     function removeImagesFromOrganization(id, data) {
-       var url = 'http://localhost:30375/api/organization/' + id + '/remove-images';
+       var url = 'http://disshopapp.azurewebsites.net/api/organization/' + id + '/remove-images';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -302,7 +302,7 @@
 
     //User Api
     function getUsers() {
-      return $http.get('http://localhost:30375/api/users')
+      return $http.get('http://disshopapp.azurewebsites.net/api/users')
         .then(success)
         .catch(fail);
 
@@ -315,7 +315,7 @@
       }
     }
     function getUserById(id) {
-       var url = 'http://localhost:30375/api/user/' + id;
+       var url = 'http://disshopapp.azurewebsites.net/api/user/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -329,7 +329,7 @@
       }
     }
     function updateUsers(data) {
-      var url = 'http://localhost:30375/api/users';
+      var url = 'http://disshopapp.azurewebsites.net/api/users';
       return $http.post(url, data) 
         .then(success)
         .catch(fail);
@@ -346,7 +346,7 @@
       }
     }
     function removeUsers(data) {
-       var url = 'http://localhost:30375/api/remove-users';
+       var url = 'http://disshopapp.azurewebsites.net/api/remove-users';
       return $http.post(url,data)
         .then(success)
         .catch(fail);
@@ -360,7 +360,7 @@
       }
     } 
     function attachCouponsToUser(id, data) {
-       var url = 'http://localhost:30375/api/user/' + id + '/attach-coupons';
+       var url = 'http://disshopapp.azurewebsites.net/api/user/' + id + '/attach-coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -374,7 +374,7 @@
       }
     }
     function attachDiscountCardsToUser(id, data) {
-       var url = 'http://localhost:30375/api/user/' + id + '/attach-discountcards';
+       var url = 'http://disshopapp.azurewebsites.net/api/user/' + id + '/attach-discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -388,7 +388,7 @@
       }
     }
     function deattachCouponsToUser(id, data) {
-       var url = 'http://localhost:30375/api/user/' + id + '/deattach-coupons';
+       var url = 'http://disshopapp.azurewebsites.net/api/user/' + id + '/deattach-coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -402,7 +402,7 @@
       }
     }
     function deattachDiscountCardsToUser(id, data) {
-       var url = 'http://localhost:30375/api/user/' + id + '/deattach-discountcards';
+       var url = 'http://disshopapp.azurewebsites.net/api/user/' + id + '/deattach-discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -418,7 +418,7 @@
 
     //Coupon Api
     function getCoupons() {
-      return $http.get('http://localhost:30375/api/coupons')
+      return $http.get('http://disshopapp.azurewebsites.net/api/coupons')
         .then(success)
         .catch(fail);
 
@@ -431,7 +431,7 @@
       }
     }
     function getCouponById(id) {
-       var url = 'http://localhost:30375/api/coupon/' + id;
+       var url = 'http://disshopapp.azurewebsites.net/api/coupon/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -445,7 +445,7 @@
       }
     }
     function updateCoupons(data) {
-       var url = 'http://localhost:30375/api/coupons';
+       var url = 'http://disshopapp.azurewebsites.net/api/coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -459,7 +459,7 @@
       }
     }
     function removeCoupons(data) {
-       var url = 'http://localhost:30375/api/remove-coupons';
+       var url = 'http://disshopapp.azurewebsites.net/api/remove-coupons';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -473,7 +473,7 @@
       }
     }
     function uploadImageForCoupon(id, data) {
-         var url = 'http://localhost:30375/api/coupon/' + id + '/image';
+         var url = 'http://disshopapp.azurewebsites.net/api/coupon/' + id + '/image';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -487,7 +487,7 @@
       }
     }
     function setImageForCoupon(id, data) {
-         var url = 'http://localhost:30375/api/coupon/' + id + '/set-image/' + data.Id;
+         var url = 'http://disshopapp.azurewebsites.net/api/coupon/' + id + '/set-image/' + data.objId;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -501,7 +501,7 @@
       }
     }
     function attachCouponCodes(id, data) {
-       var url = 'http://localhost:30375/api/coupon/' + id + '/attach-couponcodes';
+       var url = 'http://disshopapp.azurewebsites.net/api/coupon/' + id + '/attach-couponcodes';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -515,7 +515,7 @@
       }
     }
     function deattachCouponCodes(id, data) {
-       var url = 'http://localhost:30375/api/user/' + id + '/deattach-couponcodes';
+       var url = 'http://disshopapp.azurewebsites.net/api/user/' + id + '/deattach-couponcodes';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -531,7 +531,7 @@
 
     //CouponCodes Api
     function getCouponCodes() {
-      return $http.get('http://localhost:30375/api/couponcodes')
+      return $http.get('http://disshopapp.azurewebsites.net/api/couponcodes')
         .then(success)
         .catch(fail);
 
@@ -544,7 +544,7 @@
       }
     }
     function getCouponCodeById(id) {
-       var url = 'http://localhost:30375/api/couponcode/' + id;
+       var url = 'http://disshopapp.azurewebsites.net/api/couponcode/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -558,7 +558,7 @@
       }
     }
     function removeCouponCodes(data) {
-       var url = 'http://localhost:30375/api/remove-couponcodes';
+       var url = 'http://disshopapp.azurewebsites.net/api/remove-couponcodes';
       return $http.post(url,data)
         .then(success)
         .catch(fail);
@@ -572,7 +572,7 @@
       }
     }
     function generateCouponCodes(count) {
-       var url = 'http://localhost:30375/api/generate-couponcodes/' + count;
+       var url = 'http://disshopapp.azurewebsites.net/api/generate-couponcodes/' + count;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -586,7 +586,7 @@
       }
     }
     function deactivateCouponCodes(data) {
-       var url = 'http://localhost:30375/api/deactivate-couponcodes';
+       var url = 'http://disshopapp.azurewebsites.net/api/deactivate-couponcodes';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -600,7 +600,7 @@
       }
     }
    function activateCouponCodes(data) {
-       var url = 'http://localhost:30375/api/activate-couponcodes';
+       var url = 'http://disshopapp.azurewebsites.net/api/activate-couponcodes';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -615,7 +615,7 @@
     }
    //Discount Card Api
     function getDiscountCards() {
-      return $http.get('http://localhost:30375/api/discountcards')
+      return $http.get('http://disshopapp.azurewebsites.net/api/discountcards')
         .then(success)
         .catch(fail);
 
@@ -628,7 +628,7 @@
       }
     }
     function getDiscountCardById(id) {
-       var url = 'http://localhost:30375/api/discountcard/' + id;
+       var url = 'http://disshopapp.azurewebsites.net/api/discountcard/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -642,7 +642,7 @@
       }
     }
     function updateDiscountCards(data) {
-       var url = 'http://localhost:30375/api/discountcards';
+       var url = 'http://disshopapp.azurewebsites.net/api/discountcards';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -656,7 +656,7 @@
       }
     }
     function removeDiscountCards(data) {
-       var url = 'http://localhost:30375/api/remove-discountcards';
+       var url = 'http://disshopapp.azurewebsites.net/api/remove-discountcards';
       return $http.post(url,data)
         .then(success)
         .catch(fail);
@@ -670,7 +670,7 @@
       }
     }
     function uploadFrontImageForDiscountCard(id, data) {
-         var url = 'http://localhost:30375/api/discountcard/' + id + '/upload-frontimage';
+         var url = 'http://disshopapp.azurewebsites.net/api/discountcard/' + id + '/upload-frontimage';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -684,7 +684,7 @@
       }
     }
     function setFrontImageForDiscountCard(id, data) {
-         var url = 'http://localhost:30375/api/discountcard/' + id + '/set-frontimage/' + data.Id;
+         var url = 'http://disshopapp.azurewebsites.net/api/discountcard/' + id + '/set-frontimage/' + data.objId;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -698,7 +698,7 @@
       }
     }
     function uploadBackImageForDiscountCard(id, data) {
-         var url = 'http://localhost:30375/api/discountcard/' + id + '/upload-backimage';
+         var url = 'http://disshopapp.azurewebsites.net/api/discountcard/' + id + '/upload-backimage';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -713,7 +713,7 @@
     }
 
     function setBackImageForDiscountCard(id, data) {
-         var url = 'http://localhost:30375/api/discountcard/' + id + '/set-backimage/' + data.Id;
+         var url = 'http://disshopapp.azurewebsites.net/api/discountcard/' + id + '/set-backimage/' + data.objId;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -729,7 +729,7 @@
 
      //Shop Api
     function getShops() {
-      return $http.get('http://localhost:30375/api/shops')
+      return $http.get('http://disshopapp.azurewebsites.net/api/shops')
         .then(success)
         .catch(fail);
 
@@ -742,7 +742,7 @@
       }
     }
     function getShopById(id) {
-       var url = 'http://localhost:30375/api/shop/' + id;
+       var url = 'http://disshopapp.azurewebsites.net/api/shop/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -756,7 +756,7 @@
       }
     }
     function updateShops(data) {
-       var url = 'http://localhost:30375/api/shops';
+       var url = 'http://disshopapp.azurewebsites.net/api/shops';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -770,7 +770,7 @@
       }
     }
     function removeShops(data) {
-       var url = 'http://localhost:30375/api/remove-shops';
+       var url = 'http://disshopapp.azurewebsites.net/api/remove-shops';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -786,7 +786,7 @@
        
     //Category Api
     function getCategories() {
-      return $http.get('http://localhost:30375/api/categories')
+      return $http.get('http://disshopapp.azurewebsites.net/api/categories')
         .then(success)
         .catch(fail);
 
@@ -799,7 +799,7 @@
       }
     }
     function getCategoryById(id) {
-       var url = 'http://localhost:30375/api/category/' + id;
+       var url = 'http://disshopapp.azurewebsites.net/api/category/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -813,7 +813,7 @@
       }
     }
     function updateCategories(data) {
-       var url = 'http://localhost:30375/api/categories';
+       var url = 'http://disshopapp.azurewebsites.net/api/categories';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -827,7 +827,7 @@
       }
     }
     function removeCategories(data) {
-       var url = 'http://localhost:30375/api/remove-categories';
+       var url = 'http://disshopapp.azurewebsites.net/api/remove-categories';
       return $http.post(url,data)
         .then(success)
         .catch(fail);
@@ -844,7 +844,7 @@
    
     //Image Api
     function getImages() {
-      return $http.get('http://localhost:30375/api/images')
+      return $http.get('http://disshopapp.azurewebsites.net/api/images')
         .then(success)
         .catch(fail);
 
@@ -857,7 +857,7 @@
       }
     }
      function getImageById(id) {
-       var url = 'http://localhost:30375/api/image/' + id;
+       var url = 'http://disshopapp.azurewebsites.net/api/image/' + id;
       return $http.get(url)
         .then(success)
         .catch(fail);
@@ -871,7 +871,7 @@
       }
     }
     function uploadImages(data) {
-       var url = 'http://localhost:30375/api/upload-images';
+       var url = 'http://disshopapp.azurewebsites.net/api/upload-images';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -885,7 +885,7 @@
       }
     }
     function updateImages(data) {
-       var url = 'http://localhost:30375/api/images';
+       var url = 'http://disshopapp.azurewebsites.net/api/images';
       return $http.post(url, data)
         .then(success)
         .catch(fail);
@@ -899,7 +899,7 @@
       }
     }
     function removeImages(data) {
-      var url = 'http://localhost:30375/api/remove-images';
+      var url = 'http://disshopapp.azurewebsites.net/api/remove-images';
       return $http.post(url, data)
         .then(success)
         .catch(fail);

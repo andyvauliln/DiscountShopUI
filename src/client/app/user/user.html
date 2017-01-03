@@ -16,62 +16,61 @@
           ui-grid-selection 
           class="myGrid"></div>
   <!--Discountcard-Container-->
-      <div id="organization-discountcard-container" ng-show="vm.IsShowDiscountCardContainer" class="discountcard-container row row-eq-height">
-        <div ng-repeat="discountcard in vm.currentDiscountCardArr" class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
+     <div id="organization-discountcard-container" ng-show="vm.IsShowDiscountCardContainer" class="discountcard-container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div ng-repeat="(key,discountcard) in vm.currentDiscountCardArr"  ng-class="key == 0 ? 'col-lg-12' : 'col-lg-4 col-md-6 col-sm-6 col-xs-12'">
           <div class="grid-sub-container">
-            <button ng-show="discountcard.Id > 0" type="button" class="close" data-dismiss="alert" aria-hidden="true" data-placement="left"
+            <button ng-show="discountcard.objId > 0" type="button" class="close" data-dismiss="alert" aria-hidden="true" data-placement="left"
               title="Deattach Card" ng-click="vm.deattachDiscountCard(discountcard)" onmouseenter="$(this).tooltip('show')">×</button>
             <!--Discount-Image-Container-->
-            <div class="grid-sub-container-images" ng-show = "discountcard.Id >= 0">
+            <div class="grid-sub-container-images" ng-show = "discountcard.objId >= 0">
 
               <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachDiscountFrontImage($files, discountcard)">
 
-                <img flow-btn ng-if="discountcard.FrontSideImg.Content !== ''" class="grid-sub-container-item" ng-src="data:image/JPEG;base64,{{discountcard.FrontSideImg.Content}}"
+                <img flow-btn ng-if="discountcard.frontSideImg.content !== ''" class="grid-sub-container-item" ng-src="data:image/JPEG;base64,{{discountcard.frontSideImg.content}}"
                   data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
 
-                <img flow-btn ng-if="discountcard.FrontSideImg.Content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
+                <img flow-btn ng-if="discountcard.frontSideImg.content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
                   data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
               </div>
               <div flow-init="vm.flowConfig" flow-name="uploader.flow" flow-files-submitted="$flow.upload()" flow-single-file="true" flow-files-added="vm.attachDiscountBackImage($files, discountcard)">
 
-                <img flow-btn ng-if="discountcard.BackSideImg.Content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
+                <img flow-btn ng-if="discountcard.backSideImg.content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
                   data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
-                <img flow-btn ng-if="discountcard.BackSideImg.Content !== ''" class="grid-sub-container-item" data-placement="left" title="Upload new Image"
-                  onmouseenter="$(this).tooltip('show')" ng-src="data:image/JPEG;base64,{{discountcard.BackSideImg.Content}}"
+                <img flow-btn ng-if="discountcard.backSideImg.content !== ''" class="grid-sub-container-item" data-placement="left" title="Upload new Image"
+                  onmouseenter="$(this).tooltip('show')" ng-src="data:image/JPEG;base64,{{discountcard.backSideImg.content}}"
                   height="180px" width="300px">
               </div>
-              <div class="grid-sub-container-item"><label>BarCode  :</label>&nbsp&nbsp<a onbeforesave="vm.saveDiscountCard(discountcard)" href="#" editable-text="discountcard.Barcode">{{ discountcard.Barcode|| "empty" }}</a></div>
+              <div class="grid-sub-container-item"><label>BarCode  :</label>&nbsp&nbsp<a onbeforesave="vm.saveDiscountCard(discountcard)" href="#" editable-text="discountcard.Barcode">{{ discountcard.barcode|| "empty" }}</a></div>
             </div>
-              <div class="" ng-show="discountcard.Id < 0">
-                    <button ng-show="discountcard.Id < 0" ng-click="discountcard.Id = 0; editableForm.$show();" class="btn btn-success">Add One</button>
-                    <button ng-show="discountcard.Id < 0" ng-click="vm.ShowDiscountCardPopup()" class="btn btn-success">Select Existed</button>
+              <div class="" ng-show="discountcard.objId < 0">
+                    <button ng-show="discountcard.objId < 0" ng-click="discountcard.objId = 0; editableForm.$show();" class="btn btn-success">Add One</button>
            </div>
           </div>
         </div>
       </div>
       <!--Coupon-Container-->
-      <div id="organization-coupon-container" ng-show="vm.IsShowCouponContainer" class="coupon-container row row-eq-height">
-        <div ng-repeat="coupon in vm.currentCouponArr" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div id="organization-coupon-container" ng-show="vm.IsShowCouponContainer" class="coupon-container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div ng-repeat="(key,coupon) in vm.currentCouponArr"  ng-class="key == 0 ? 'col-lg-12' : 'col-lg-3 col-md-4 col-sm-6 col-xs-12'">
           <div class="grid-sub-container">
-            <button ng-show="coupon.Id > 0" type="button" class="close" data-dismiss="alert" aria-hidden="true" data-placement="left"
+            <button ng-show="coupon.objId > 0" type="button" class="close" data-dismiss="alert" aria-hidden="true" data-placement="left"
               title="Delete Card" ng-click="vm.deattachCoupon(coupon)" onmouseenter="$(this).tooltip('show')">×</button>
             <!--Image-Container-->
-            <div class="grid-sub-container-images" ng-show="coupon.Id >= 0">
-              <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachCouponImage($files, discountcard)">
+            <div class="grid-sub-container-images" ng-show="coupon.objId >= 0">
+              <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachCouponImage($files, coupon)">
 
-                <img flow-btn ng-if="coupon.Image.Content !== ''" class="grid-sub-container-item" ng-src="data:image/JPEG;base64,{{coupon.Image.Content}}"
+                <img flow-btn ng-if="coupon.image.content !== ''" class="grid-sub-container-item" ng-src="data:image/JPEG;base64,{{coupon.image.content}}"
                   data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
 
-                <img flow-btn ng-if="coupon.Image.Content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
+                <img flow-btn ng-if="coupon.image.content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
                   data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
               </div>
-              <div class="grid-sub-container-item"><label> Description  :</label>&nbsp&nbsp<a onbeforesave="vm.saveCoupon(coupon)" href="#" editable-text="coupon.Description">{{ coupon.Description|| "empty" }}</a></div>
+              <div class="grid-sub-container-item"><label> Description  :</label>&nbsp&nbsp<a onbeforesave="vm.saveCoupon(coupon)" href="#" editable-text="coupon.objDescription">{{ coupon.objDescription|| "empty" }}</a></div>
               <h2>Coupon Codes</h2>
-              <div ng-repeat="code in coupon.CouponCodes">
+              <div ng-repeat="code in coupon.couponCodes">
                 <div class="input-group">
-                  <input type="text" class="form-control" readonly="readonly" value="{{code.Code}}" ">
+                  <input type="text" class="form-control" readonly="readonly" value="{{code.code}}">
                 <span class="input-group-btn ">
-                    <button ng-click ="code.IsActive ? vm.deactivateCouponCodes(code) : vm.activateCouponCodes(code)"  ng-class="code.IsActive ? 'btn btn-danger' : 'btn btn-success' " type="button ">{{code.IsActive ? 'Diactivate' : 'Activate'}}</button>
+                    <button ng-click ="code.isActive ? vm.deactivateCouponCodes(code) : vm.activateCouponCodes(code)"  ng-class="code.isActive ? 'btn btn-danger' : 'btn btn-success' " type="button ">{{code.isActive ? 'Diactivate' : 'Activate'}}</button>
                 </span>
                 
               </div>
@@ -79,9 +78,8 @@
             <div style="padding:20px;"><button class="btn btn-primary" ng-click="vm.generateCouponCode(coupon)">Generate Coupon Code</button></div>
             
           </div>
-           <div class="row" ng-show="coupon.Id < 0">
-                    <button ng-show="coupon.Id < 0" ng-click="coupon.Id = 0; editableForm.$show();" class="btn btn-success">Add One</button>
-                    <button ng-show="coupon.Id < 0" ng-click="vm.ShowCouponPopup()" class="btn btn-success">Select Existed</button>
+           <div class="row" ng-show="coupon.objId < 0">
+                    <button ng-show="coupon.objId < 0" ng-click="coupon.objId = 0; editableForm.$show();" class="btn btn-success">Add One</button>
            </div>
         </div>
      </div>

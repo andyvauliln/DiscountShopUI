@@ -118,7 +118,7 @@
     };
 vm.couponId = 1;
     vm.flowConfig = {
-      target: 'http://localhost:30375/api/discountcard/'+ 1 +'/upload-backimage',
+      target: 'http://disshopapp.azurewebsites.net/api/discountcard/'+ 1 +'/upload-backimage',
       testChunks: false,
       singleFile: true,
       chunkSize: 9007199254740992,
@@ -127,7 +127,7 @@ vm.couponId = 1;
       // }
     };
     vm.flowConfig1 = {
-      target:'http://localhost:30375/api/discountcard/'+ 1 +'/image',
+      target:'http://disshopapp.azurewebsites.net/api/discountcard/'+ 1 +'/image',
       testChunks: false,
       singleFile: true,
       chunkSize: 9007199254740992,
@@ -215,14 +215,14 @@ vm.couponId = 1;
      
     function attachDiscountFrontImage(file, discountCard) {
      // vm.couponId = discountCard.Id ;
-     //vm.flowConfig.target = 'http://localhost:30375/api/discountcard/' + discountCard.Id + '/upload-frontimage',
+     //vm.flowConfig.target = 'http://disshopapp.azurewebsites.net/api/discountcard/' + discountCard.Id + '/upload-frontimage',
      vm.flowConfig.target = 
       console.log(file);
 
     }
 
     function attachDiscountBackImage(file, coupon) {
-      vm.flowConfig.target = 'http://localhost:30375/api/discountcard/' + discountCard.Id + '/upload-backimage',
+      vm.flowConfig.target = 'http://disshopapp.azurewebsites.net/api/discountcard/' + discountCard.Id + '/upload-backimage',
      
       console.log(file);
 
@@ -251,7 +251,7 @@ vm.couponId = 1;
       });
     }
     function attachCouponImage(file, coupon) {
-      //vm.flowConfig.target = 'http://localhost:30375/api/coupon/'+ coupon.Id +'/image',
+      //vm.flowConfig.target = 'http://disshopapp.azurewebsites.net/api/coupon/'+ coupon.Id +'/image',
      
 
         console.log(file);
