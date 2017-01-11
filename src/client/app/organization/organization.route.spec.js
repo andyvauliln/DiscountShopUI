@@ -1,10 +1,10 @@
 /* jshint -W117, -W030 */
 describe('organizations routes', function() {
   describe('state', function() {
-    var view = 'app/organizations/organizations.html';
+    var view = 'app/organization/organization.html';
 
     beforeEach(function() {
-      module('app.organizations', bard.fakeToastr);
+      module('app.organization', bard.fakeToastr);
       bard.inject('$httpBackend', '$location', '$rootScope', '$state', '$templateCache');
     });
 

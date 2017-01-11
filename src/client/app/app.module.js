@@ -6,7 +6,7 @@
     'app.widgets',
     'app.user',
     'app.dashboard',
-    'app.organizations',
+    'app.organization',
     'app.coupon',
     'app.discountcard',
     'app.layout',

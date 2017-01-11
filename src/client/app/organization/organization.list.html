@@ -1,0 +1,19 @@
+<div >
+    {{organization.id}}   
+</div>
+
+<table st-table="organizations" st-select-mode="multiple" class="table table-striped">
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="organization in vm.organizations">
+        <td cs-select="row"></td>
+		<td>{{organization.name}}</td>
+		<td>{{organization.description}}</td>
+	</tr>
+	</tbody>
+</table>

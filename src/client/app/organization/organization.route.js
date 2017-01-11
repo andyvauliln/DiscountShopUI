@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.organizations')
+    .module('app.organization')
     .run(appRun);
 
   appRun.$inject = ['routerHelper'];
@@ -17,8 +17,8 @@
         state: 'organizations',
         config: {
           url: '/',
-          templateUrl: 'app/organizations/organizations.html',
-          controller: 'organizationsController',
+          templateUrl: 'app/organization/organization.html',
+          controller: 'organizationController',
           controllerAs: 'vm',
           title: 'organizations',
           settings: {

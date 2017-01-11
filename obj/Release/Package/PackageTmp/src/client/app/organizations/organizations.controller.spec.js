@@ -4,13 +4,13 @@ describe('organizationsController', function() {
   var people = mockData.getMockPeople();
 
   beforeEach(function() {
-    bard.appModule('app.organizations');
+    bard.appModule('app.organization');
     bard.inject('$controller', '$log', '$q', '$rootScope', 'dataservice');
   });
 
   beforeEach(function() {
     sinon.stub(dataservice, 'getPeople').returns($q.when(people));
-    controller = $controller('organizationsController');
+    controller = $controller('organizationController');
     $rootScope.$apply();
   });
 

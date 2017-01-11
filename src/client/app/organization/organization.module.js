@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('app.organizations', [
+  angular.module('app.organization', [
     'app.core',
     'app.widgets',
     "ui.bootstrap",
@@ -13,6 +13,7 @@
     'ui.grid.resizeColumns',
     'ui.grid.selection',
     'flow',
-    'xeditable'
+    'xeditable',
+    'smart-table'
   ]);
 })();
