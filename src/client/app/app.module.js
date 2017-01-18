@@ -4,15 +4,8 @@
  var app = angular.module('app', [
     'app.core',
     'app.widgets',
-    'app.user',
     'app.dashboard',
-    'app.organization',
-    'app.coupon',
-    'app.discountcard',
-    'app.layout',
-    'app.shop'
+    'app.user',
+    'app.organization'
   ]);
-app.run(function(editableOptions) {
-  editableOptions.theme = 'bs3';
-});
 })();

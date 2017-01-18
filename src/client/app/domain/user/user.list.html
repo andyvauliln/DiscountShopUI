@@ -1,0 +1,25 @@
+<div >
+    {{organization.id}}   
+</div>
+
+<table st-table="organizations" st-select-mode="multiple" class="table table-striped">
+	<thead>
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="organization in vm.organizations">
+        <td cs-select="row"></td>
+		<td>{{organization.name}}</td>
+		<td>{{organization.description}}</td>
+        <td><button type="button" ng-click="editOrganization(organization)" class="btn btn-md btn-danger"></button>Edit</td>
+        <td><button type="button" ng-click="showShops(organization)" class="btn btn-md btn-danger">Shops</button></td>
+        <td><button type="button" ng-click="showCoupons(organization)" class="btn btn-md btn-danger">Discount Cards</button></td>
+        <td><button type="button" ng-click="showDiscountCard(organization)" class="btn btn-md btn-danger"></button>Coupons</td>
+        <td><button type="button" ng-click="showDiscountCard(organization)" class="btn btn-md btn-danger"></button>Image</td>
+	</tr>
+	</tbody>
+</table>
+

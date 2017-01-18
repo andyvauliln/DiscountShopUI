@@ -22,8 +22,6 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
-  <link rel="stylesheet" href="/bower_components/angular-ui-grid/ui-grid.css" />
-  <link rel="stylesheet" href="/bower_components/angular-ui-grid/ui-grid.min.css" />
   <link rel="stylesheet" href="/bower_components/angular-xeditable/dist/css/xeditable.css" />
   <!-- endbower -->
   <!-- endbuild -->
@@ -61,12 +59,7 @@
   <script src="/bower_components/toastr/toastr.js"></script>
   <script src="/bower_components/angular-animate/angular-animate.js"></script>
   <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-  <script src="/bower_components/angular-ui-grid/ui-grid.js"></script>
-  <script src="/bower_components/angular-ui-grid/ui-grid.min.js"></script>
-  <script src="/bower_components/flow.js/dist/flow.js"></script>
-  <script src="/bower_components/ng-flow/dist/ng-flow.js"></script>
   <script src="/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-  <script src="/bower_components/checklist-model/checklist-model.js"></script>
   <script src="/bower_components/angular-smart-table/dist/smart-table.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
@@ -78,13 +71,10 @@
   <script src="/src/client/app/blocks/logger/logger.module.js"></script>
   <script src="/src/client/app/blocks/router/router.module.js"></script>
   <script src="/src/client/app/core/core.module.js"></script>
-  <script src="/src/client/app/coupon/coupon.module.js"></script>
   <script src="/src/client/app/dashboard/dashboard.module.js"></script>
-  <script src="/src/client/app/discountcard/discountcard.module.js"></script>
+  <script src="/src/client/app/domain/organization/organization.module.js"></script>
+  <script src="/src/client/app/domain/user/user.module.js"></script>
   <script src="/src/client/app/layout/layout.module.js"></script>
-  <script src="/src/client/app/organization/organization.module.js"></script>
-  <script src="/src/client/app/shop/shop.module.js"></script>
-  <script src="/src/client/app/user/user.module.js"></script>
   <script src="/src/client/app/widgets/widgets.module.js"></script>
   <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
   <script src="/src/client/app/blocks/exception/exception.js"></script>
@@ -95,27 +85,34 @@
   <script src="/src/client/app/core/core.api.service.js"></script>
   <script src="/src/client/app/core/core.route.js"></script>
   <script src="/src/client/app/core/dataservice.js"></script>
-  <script src="/src/client/app/coupon/coupon.controller.js"></script>
-  <script src="/src/client/app/coupon/coupon.route.js"></script>
   <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
   <script src="/src/client/app/dashboard/dashboard.route.js"></script>
-  <script src="/src/client/app/discountcard/discountcard.controller.js"></script>
-  <script src="/src/client/app/discountcard/discountcard.route.js"></script>
+  <script src="/src/client/app/domain/category/category.model.js"></script>
+  <script src="/src/client/app/domain/category/category.service.js"></script>
+  <script src="/src/client/app/domain/coupon-code/couponcode.model.js"></script>
+  <script src="/src/client/app/domain/coupon-code/couponcode.service.js"></script>
+  <script src="/src/client/app/domain/coupon/coupon.model.js"></script>
+  <script src="/src/client/app/domain/coupon/coupon.service.js"></script>
+  <script src="/src/client/app/domain/discountcard/discountcard.model.js"></script>
+  <script src="/src/client/app/domain/discountcard/discountcard.service.js"></script>
+  <script src="/src/client/app/domain/image/image.model.js"></script>
+  <script src="/src/client/app/domain/image/image.service.js"></script>
+  <script src="/src/client/app/domain/organization/organization.controller.js"></script>
+  <script src="/src/client/app/domain/organization/organization.model.js"></script>
+  <script src="/src/client/app/domain/organization/organization.route.js"></script>
+  <script src="/src/client/app/domain/organization/organization.service.js"></script>
+  <script src="/src/client/app/domain/shop/shop.model.js"></script>
+  <script src="/src/client/app/domain/shop/shop.service.js"></script>
+  <script src="/src/client/app/domain/user/user.controller.js"></script>
+  <script src="/src/client/app/domain/user/user.model.js"></script>
+  <script src="/src/client/app/domain/user/user.route.js"></script>
+  <script src="/src/client/app/domain/user/user.service.js"></script>
   <script src="/src/client/app/layout/ht-sidebar.directive.js"></script>
   <script src="/src/client/app/layout/ht-top-nav.directive.js"></script>
   <script src="/src/client/app/layout/shell.controller.js"></script>
   <script src="/src/client/app/layout/sidebar.controller.js"></script>
   <script src="/src/client/app/layout/smart-table-scroll.directive.js"></script>
   <script src="/src/client/app/layout/smart-table-select.directive.js"></script>
-  <script src="/src/client/app/organization/organization.controller.js"></script>
-  <script src="/src/client/app/organization/organization.model.js"></script>
-  <script src="/src/client/app/organization/organization.route.js"></script>
-  <script src="/src/client/app/organization/organization.service.js"></script>
-  <script src="/src/client/app/shop/shop.controller.js"></script>
-  <script src="/src/client/app/shop/shop.route.js"></script>
-  <script src="/src/client/app/user/user.controller.js"></script>
-  <script src="/src/client/app/user/user.route.js"></script>
-  <script src="/src/client/app/widgets/ht-img-person.directive.js"></script>
   <script src="/src/client/app/widgets/ht-widget-header.directive.js"></script>
   <!-- endinject -->
 
