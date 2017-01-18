@@ -17,6 +17,7 @@
             
             this.id = (organization && organization.objId) ? organization.objId : '';
             this.name = (organization && organization.name) ? organization.name : '';
+            this.siteUrl = (organization && organization.siteUrl) ? organization.siteUrl : '';
             this.description = (organization && organization.objDescription) ? organization.objDescription : '';
             this.keyWords = (organization && organization.keyWords) ? organization.keyWords : '';
             this.dateInNew = (organization && organization.newDate) ? organization.dateInNew : null;
