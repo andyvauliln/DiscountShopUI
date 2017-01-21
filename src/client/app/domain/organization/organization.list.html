@@ -5,6 +5,7 @@
 <table st-table="organizations" st-select-mode="multiple" class="table table-striped">
 	<thead>
 	<tr>
+		<th>#</th>
 		<th>Name</th>
 		<th>Description</th>
 	</tr>
@@ -14,11 +15,11 @@
         <td cs-select="row"></td>
 		<td>{{organization.name}}</td>
 		<td>{{organization.description}}</td>
-        <td><button type="button" ng-click="editOrganization(organization)" class="btn btn-md btn-danger"></button>Edit</td>
-        <td><button type="button" ng-click="showShops(organization)" class="btn btn-md btn-danger">Shops</button></td>
-        <td><button type="button" ng-click="showCoupons(organization)" class="btn btn-md btn-danger">Discount Cards</button></td>
-        <td><button type="button" ng-click="showDiscountCard(organization)" class="btn btn-md btn-danger"></button>Coupons</td>
-        <td><button type="button" ng-click="showDiscountCard(organization)" class="btn btn-md btn-danger"></button>Image</td>
+        <td><button type="button" ng-click="vm.editOrganization(organization)" class="btn btn-md btn-info">Edit</button></td>
+        <td><button type="button" ng-click="vm.showShops(organization)" class="btn btn-md btn-primary">Shops</button></td>
+        <td><button type="button" ng-click="vm.showCoupons(organization)" class="btn btn-md btn-primary">Coupons</button></td>
+        <td><button type="button" ng-click="vm.showDiscountCards(organization)" class="btn btn-md btn-primary">Discount Cards</button></td>
+        <td><button type="button" ng-click="vm.showImages(organization)" class="btn btn-md btn-primary">Image</button></td>
 	</tr>
 	</tbody>
 </table>

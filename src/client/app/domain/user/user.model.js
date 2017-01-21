@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('userModel', userModelFactory);
 
-    userModelFactory.$inject = ['appConfig', 'discountCardModel', 'couponModel'];
+    userModelFactory.$inject = ['appConfig', 'discountModel', 'couponModel'];
 
-    function userModelFactory(appConfig, discountCardModel, couponModel) {
+    function userModelFactory(appConfig, discountModel, couponModel) {
 
         /**
         *   Domain model of an user used for Creating new users
@@ -23,7 +23,7 @@
             this.discountCardsMaxCount = (user && user.discountCardsMaxCount) ? user.discountCardsMaxCount : null;
             this.couponsMaxCount = (user && user.couponsMaxCount) ? user.couponsMaxCount : null;
             
-            this.discountCards = (user && user.discountCards) ? user.discountCards.map(function(discountCard){ return new discountCardModel(discountCard)})  : [];
+            this.discountCards = (user && user.discountCards) ? user.discountCards.map(function(discountCard){ return new discountModel(discountCard)})  : [];
             this.coupons = (user && user.coupons) ? user.coupons.map(function(coupon){ return new couponModel(coupon)})  : [];
         }
 

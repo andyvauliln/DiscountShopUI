@@ -5,17 +5,17 @@
       Organizations Table
     </div>
     <div class="container" ng-include="'app/domain/organization/organization.list.html'"> </div>
-    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#shops">Shops</a></li>
-      <li><a data-toggle="tab" href="#cards">Discount Cards</a></li>
-      <li><a data-toggle="tab" href="#coupons">Coupons</a></li>
-      <li><a data-toggle="tab" href="#images">Image</a></li>
+    <ul class="nav nav-tabs"  ng-show="vm.currentOrganization">
+      <li class="active"><a data-toggle="tab" href="#">Shops</a></li>
+      <li><a data-toggle="tab" href="#">Discount Cards</a></li>
+      <li><a data-toggle="tab" href="#">Coupons</a></li>
+      <li><a data-toggle="tab" href="#">Image</a></li>
     </ul>
     <div class="tab-content">
       <div id="shops" ng-include="'app/domain/shop/shop.list.html'" class="tab-pane fade in active"></div>
       <div id="cards" ng-include="'app/domain/discountcard/discountcard.list.html'" class="tab-pane fade"></div>
       <div id="coupons" ng-include="'app/domain/coupon/coupon.list.html'" class="tab-pane fade"></div>
-      <div id="images" ng-include="'app/domain/image/discountcard.list.html'" class="tab-pane fade"></div>
+      <div id="images" ng-include="'app/domain/image/image.list.html'" class="tab-pane fade"></div>
     </div>
   </section>
 </section>

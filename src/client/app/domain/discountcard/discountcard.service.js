@@ -4,17 +4,17 @@
         .module('app.core')
         .service('discountcardService', discountcardService);
 
-    discountcardService.$inject = ['$http', '$q',  'discountcardModel',  'API', 'appConfig'];
+    discountcardService.$inject = ['$http', '$q',  'discountModel',  'API', 'appConfig'];
 
     /**
     *   Service responsible for all actions on discountcards (API calls, caching, events)
     *   @param {$http} $http - Angular's $http service
     *   @param {$q} $q - Angular's $q service
-    *   @param {discountcardModel} discountcardModel - discountcard domain model
+    *   @param {discountModel} discountModel - discountcard domain model
     *   @param {API} API - cFactory API wrapper service
     *   @param {Object} 'config' - Application configuration
     */
-    function discountcardService($http, $q, discountcardModel, API, appConfig) {
+    function discountcardService($http, $q, discountModel, API, appConfig) {
 
         var service = this;
 
@@ -38,7 +38,7 @@
 
         /**
         *   Calls API to get all discountcards 
-        *   @returns {Promise|discountcardModel[]} - When promise is resolved returns an array of discountcards
+        *   @returns {Promise|discountModel[]} - When promise is resolved returns an array of discountcards
         */
         function getAll() {
 
@@ -53,7 +53,7 @@
                 if (response.data) {
 
                     return  response.data.discountcards.map(function(discountcard) {
-                        return new discountcardModel(discountcard);
+                        return new discountModel(discountcard);
                     });
                 }
             });

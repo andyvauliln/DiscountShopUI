@@ -11,6 +11,19 @@
     var vm = this;
     //Organization
     vm.organizations = [];
+    vm.editOrganization = editOrganization;
+    vm.currentOrganization = null;
+    //Shops
+    vm.showShops = showShops;
+    vm.deattachShop = deattachShop;
+    vm.saveShop = saveShop;
+    //DiscountCards
+    vm.showDiscountCard = showDiscountCards;
+    //Coupons
+    vm.showCoupons = showCoupons;
+
+    //Images
+    vm.showImages = showImages;
     //Categories 
     vm.categories = [];
   
@@ -26,11 +39,32 @@
     //Organization
     function getOrganizations() {
 
-    organizationService.getAll().then(function(data){
+      organizationService.getAll().then(function (data) {
 
-      vm.organizations = data;
+        vm.organizations = data;
 
-    })
-  }
+      })
+    }
+    function editOrganization(org) {
+      vm.currentOrganization = org;
+    }
+    function showCoupons(org) {
+      vm.currentOrganization = org;
+    }
+    function showDiscountCards(org) {
+      vm.currentOrganization = org;
+    }
+    function showImages(org) {
+      vm.currentOrganization = org;
+    }
+    function showShops(org) {
+      vm.currentOrganization = org;
+    }
+    function saveShop() {
+      
+    }
+    function deattachShop() {
+
+    }
 }
 })();

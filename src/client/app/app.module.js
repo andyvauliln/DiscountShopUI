@@ -6,6 +6,7 @@
     'app.widgets',
     'app.dashboard',
     'app.user',
-    'app.organization'
+    'app.organization',
+    'app.layout'
   ]);
 })();
