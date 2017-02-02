@@ -52,26 +52,3 @@
 </div>
 </form>
 </div>
-<!--<div class="grid-sub-container-images" ng-show="coupon.objId >= 0">
-              <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachCouponImage($files, coupon)">
-
-                <img flow-btn ng-if="coupon.image.content !== ''" class="grid-sub-container-item" ng-src="data:image/JPEG;base64,{{coupon.image.content}}"
-                  data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
-
-                <img flow-btn ng-if="coupon.image.content === ''" class="grid-sub-container-item" ng-src="/images/No-image-available.jpg"
-                  data-placement="left" title="Upload new Image" onmouseenter="$(this).tooltip('show')" height="180px" width="300px">
-              </div>
-              <div class="grid-sub-container-item"><label> Description  :</label>&nbsp&nbsp<a onbeforesave="vm.saveCoupon(coupon)" href="#" editable-text="coupon.objDescription">{{ coupon.objDescription|| "empty" }}</a></div>
-              <h2>Coupon Codes</h2>
-              <div ng-repeat="code in coupon.couponCodes">
-                <div class="input-group">
-                  <input type="text" class="form-control" readonly="readonly" value="{{code.code}}" ">
-                <span class="input-group-btn ">
-                    <button ng-click ="code.isActive ? vm.deactivateCouponCodes(code) : vm.activateCouponCodes(code)"  ng-class="code.isActive ? 'btn btn-danger' : 'btn btn-success' " type="button ">{{code.isActive ? 'Diactivate' : 'Activate'}}</button>
-                </span>
-                
-              </div>
-            </div>
-            <div style="padding:20px;"><button class="btn btn-primary" ng-click="vm.generateCouponCode(coupon)">Generate Coupon Code</button></div>
-            
-          </div>-->
