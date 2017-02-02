@@ -5,14 +5,15 @@
     .module('app.organization')
     .controller('organizationController', organizationController);
 
-  organizationController.$inject = ['$q', 'logger','organizationService'];
+  organizationController.$inject = ['$q', 'logger','organizationService', 'appConfig'];
   /* @ngInject */
-  function organizationController($q, logger, organizationService) {
+  function organizationController($q, logger, organizationService, appConfig) {
     var vm = this;
     //Organization
     vm.organizations = [];
     vm.editOrganization = editOrganization;
     vm.currentOrganization = null;
+    vm.appConfig = appConfig;
     //Shops
     vm.showShops = showShops;
     vm.deattachShop = deattachShop;
@@ -26,7 +27,15 @@
     vm.showImages = showImages;
     //Categories 
     vm.categories = [];
-  
+    
+    vm.toggleTab = toggleTab;
+        vm.flowConfig = {
+      target: '',
+      testChunks: false,
+      singleFile: true,
+      chunkSize: 9007199254740992,
+    };
+
     activate();
     function activate() {
       logger.info('Activated Organization View');
@@ -44,6 +53,13 @@
         vm.organizations = data;
 
       })
+    }
+    function toggleTab(tab) {
+      
+      $('.nav-tabs a[name="' + tab + '"]').tab('show');
+      $('.tab-content div').removeClass("in active");
+
+      $('.tab-content div[id="' + tab + '"]').addClass('in active');
     }
     function editOrganization(org) {
       vm.currentOrganization = org;

@@ -6,6 +6,7 @@
     'app.widgets',
     "ui.bootstrap",
     'xeditable',
-    'smart-table'
+    'smart-table',
+    'flow'
   ]);
 })();

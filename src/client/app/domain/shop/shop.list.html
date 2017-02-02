@@ -1,62 +1,57 @@
-<div ng-repeat="shop in vm.currentOrganization.shops " ng-class="key == 0 ? 'col-lg-12' : 'col-lg-3 col-md-4 col-sm-6 col-xs-12'">
-    <div class="grid-sub-container ">
-        <button ng-show="shop.id > 0" type="button" class="close" data-dismiss="alert" aria-hidden="true" data-placement="left"
-            title="Deattach Shop" ng-click="vm.deattachShop(shop)" onmouseenter="$(this).tooltip('show')">×
-</button>
-<!--Field-Container-->
-<div class="grid-sub-container-images" ng-show="shop.id > 0">
+<div ng-repeat="shop in vm.currentOrganization.shops " class="col-lg-3 col-md-4 col-sm-6 col-xs-12">      
+ <form class="jumbotron well" editable-form name="editableForm" onbeforesave="vm.saveShop(shop)">
 
-    <div class="grid-sub-container-item"><label>Name  :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.name">{{ shop.name|| "empty" }}</a>
-</div>
-<div class="grid-sub-container-item"><label>Address :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.address">{{ shop.address|| "empty" }}</a>
-</div>
-<div class="grid-sub-container-item"><label>City  :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.city">{{ shop.city|| "empty" }}</a>
-</div>
-<div class="grid-sub-container-item"><label>Phone :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.phone">{{ shop.phone|| "empty" }}</a>
-</div>
-<div class="grid-sub-container-item"><label>Shedule :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.shedule">{{ shop.shedule|| "empty" }}</a>
-</div>
-<div class="grid-sub-container-item"><label>Latitude :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.latitude">{{ shop.latitude|| "empty" }}</a>
-</div>
-<div class="grid-sub-container-item"><label>Longitude :</label>&nbsp&nbsp<a onbeforesave="vm.saveShop(shop)" href="#" editable-text="shop.longitude">{{ shop.longitude|| "empty" }}</a>
-</div>
-</div>
-<div ng-show="shop.objId == 0">
-    <form class="form-horizontal" role="form" editable-form name="editableForm" onbeforesave="vm.saveShop(shop)">
-<div class="form-group"> <label class="col-sm-2 control-label">Name:      </label>
-    <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.name">{{ shop.name|| "empty" }}</span></div>
-</div>
-<div class="form-group"> <label class="col-sm-2 control-label">Address:   </label>
-    <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.address">{{ shop.address|| "empty" }}</span></div>
-</div>
-<div class="form-group"> <label class="col-sm-2 control-label">City:      </label>
-    <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.city">{{ shop.city|| "empty" }}</span></div>
-</div>
-<div class="form-group"> <label class="col-sm-2 control-label">Phone:     </label>
-    <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.phone">{{ shop.phone|| "empty" }}</span></div>
-</div>
-<div class="form-group"> <label class="col-sm-2 control-label">Shedule:   </label>
-    <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.shedule">{{ shop.shedule|| "empty" }}</span></div>
-</div>
-<div class="form-group"> <label class="col-sm-2 control-label">Latitude:  </label>
-    <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.latitude">{{ shop.latitude|| "empty" }}</span></div>
-</div>
-<div class="form-group"> <label class="col-sm-2 control-label">Longitude: </label>
-    <div class="col-sm-4"><span e-name="name" e-required editable-text="shop.longitude">{{ shop.longitude|| "empty" }}</span></div>
-</div>
-<div class="buttons">
+                      <div> 
+                          <span class="title">Name: </span>
+                         <span e-required editable-text="shop.name">{{ shop.name|| "empty" }}</span>
+                      </div>
+                      <div> 
+                          <span class="title"> City : </span>
+                         <span  e-required editable-text="shop.city">{{ shop.city|| "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Address: </span>
+                         <span  e-required editable-text="shop.address">{{ shop.address|| "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Phone: </span>
+                         <span e-required editable-text="shop.phone">{{ shop.phone|| "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Shedule: </span>
+                         <span  e-required editable-text="shop.shedule">{{ shop.shedule|| "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Latitude: </span>
+                         <span  e-required editable-text="shop.latitude">{{ shop.latitude|| "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Longitude:  </span>
+                         <span  e-required editable-text="shop.longitude">{{ shop.longitude|| "empty" }}</span>
+                      </div>
+                   
 
+<div class="buttons margin-0-20">
+    <!-- button to show form -->
+    <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        Edit
+      </button>
+
+      <button type="button" class="btn btn-default" ng-click="vm.deattachShop(shop)" ng-show="!editableForm.$visible">
+        Delete
+      </button>
     <!-- buttons to submit / cancel form -->
     <span ng-show="editableForm.$visible">
-                          <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-                            Save
-                          </button>
-                          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel(); shop.id = -1">
-                            Cancel
-                          </button>
-                        </span>
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          Cancel
+        </button>
+      </span>
 </div>
+
+
 </form>
 </div>
-</div>
-</div>
+

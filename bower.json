@@ -31,7 +31,8 @@
     "angular-animate": "latest",
     "angular-bootstrap": "^1.2.5",
     "angular-xeditable": "0.5.0" ,
-    "angular-smart-table":"*"
+    "angular-smart-table":"*",
+    "ng-flow": "latest"
   },
   "resolutions": {
     "angular": "1.5.3"

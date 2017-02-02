@@ -6,10 +6,10 @@
     </div>
     <div class="container" ng-include="'app/domain/organization/organization.list.html'"> </div>
     <ul class="nav nav-tabs"  ng-show="vm.currentOrganization">
-      <li class="active"><a data-toggle="tab" href="#">Shops</a></li>
-      <li><a data-toggle="tab" href="#">Discount Cards</a></li>
-      <li><a data-toggle="tab" href="#">Coupons</a></li>
-      <li><a data-toggle="tab" href="#">Image</a></li>
+      <li class="active"><a name="shops" ng-click="vm.toggleTab('shops')" data-toggle="tab" href="#">Shops</a></li>
+      <li>               <a name="cards" ng-click="vm.toggleTab('cards')" data-toggle="tab"  href="#">Discount Cards</a></li>
+      <li>               <a name="coupons" ng-click="vm.toggleTab('coupons')" data-toggle="tab" href="#">Coupons</a></li>
+      <li>               <a name="images" ng-click="vm.toggleTab('images')" data-toggle="tab" href="#">Image</a></li>
     </ul>
     <div class="tab-content">
       <div id="shops" ng-include="'app/domain/shop/shop.list.html'" class="tab-pane fade in active"></div>

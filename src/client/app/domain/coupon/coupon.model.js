@@ -18,7 +18,8 @@
             this.id = (coupon && coupon.objId) ? coupon.objId : '';
             this.description = (coupon && coupon.objDescription) ? coupon.objDescription : '';
             this.image = (coupon && coupon.image) ? new imageModel(coupon.image) : null;
-            this.couponCodes = (coupon && coupon.couponCodes) ? coupon.couponCodes.map(function(couponCodes){ new couponCodeModel(couponCodes)}) : [];
+            this.couponCodes = (coupon && coupon.couponCodes) ? coupon.couponCodes.map(function(code){  return new couponCodeModel(code)}) : [];
+            
         }
 
         return couponModel;

@@ -8,6 +8,7 @@
     .constant('moment', moment)
     .constant('appConfig', {
       API_HOST: 'http://disshopapp.azurewebsites.net/api/',
+      IMAGE_URL: 'http://disshopapp.azurewebsites.net/Content/Images/',
       API_GET_ORGANIZATION_ROUTE: '/organizations/',
       API_GET_CATEGORY_ROUTE: '/categories/',
       API_GET_IMAGE_ROUTE: '/images/',
