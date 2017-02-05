@@ -16,6 +16,7 @@
         function discountModel(discountcard) {
            
             this.id = (discountcard && discountcard.objId) ? discountcard.objId : '';
+            this.discription = (discountcard && discountcard.odjDescription) ? discountcard.odjDescription : '';
             this.frontSideImg = (discountcard && discountcard.frontSideImg) ? new imageModel(discountcard.frontSideImg) : null;
             this.backSideImg = (discountcard && discountcard.backSideImg) ? new imageModel(discountcard.backSideImg) : null;
             this.barcode = (discountcard && discountcard.barcode) ? discountcard.barcode : '';

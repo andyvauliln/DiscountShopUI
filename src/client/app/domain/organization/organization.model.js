@@ -20,10 +20,8 @@
             this.siteUrl = (organization && organization.siteUrl) ? organization.siteUrl : '';
             this.description = (organization && organization.objDescription) ? organization.objDescription : '';
             this.keyWords = (organization && organization.keyWords) ? organization.keyWords : '';
-            this.dateInNew = (organization && organization.newDate) ? organization.dateInNew : null;
-            this.dateInTop = (organization && organization.topDate) ? organization.dateInTop : null;
-            this.dateInSale = (organization && organization.saleDate) ? organization.dateInSale : '';
-            
+            this.dateInNew = (organization && organization.dateInNew) ? organization.dateInNew : null;
+
             this.categories = (organization && organization.categories) ?  organization.categories.map(function(category){ return new categoryModel(category)}) : [];
             this.shops = (organization && organization.shops) ? organization.shops.map(function(shop){ return new shopModel(shop)})  : [];
             this.images = (organization && organization.images) ? organization.images.map(function(image){ return new imageModel(image)})  : [];

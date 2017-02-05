@@ -19,7 +19,7 @@
             this.description = (coupon && coupon.objDescription) ? coupon.objDescription : '';
             this.image = (coupon && coupon.image) ? new imageModel(coupon.image) : null;
             this.couponCodes = (coupon && coupon.couponCodes) ? coupon.couponCodes.map(function(code){  return new couponCodeModel(code)}) : [];
-            
+            this.percentage = (coupon && coupon.percentage) ? coupon.percentage : '';
         }
 
         return couponModel;

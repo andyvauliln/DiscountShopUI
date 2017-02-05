@@ -15,16 +15,16 @@
     vm.currentOrganization = null;
     vm.appConfig = appConfig;
     //Shops
-    vm.showShops = showShops;
+
     vm.deattachShop = deattachShop;
     vm.saveShop = saveShop;
     //DiscountCards
-    vm.showDiscountCard = showDiscountCards;
+
     //Coupons
-    vm.showCoupons = showCoupons;
+
 
     //Images
-    vm.showImages = showImages;
+    vm.showOrgDiteils = showOrgDiteils;
     //Categories 
     vm.categories = [];
     
@@ -64,17 +64,12 @@
     function editOrganization(org) {
       vm.currentOrganization = org;
     }
-    function showCoupons(org) {
+   
+    function showOrgDiteils(org, tab) {
       vm.currentOrganization = org;
-    }
-    function showDiscountCards(org) {
-      vm.currentOrganization = org;
-    }
-    function showImages(org) {
-      vm.currentOrganization = org;
-    }
-    function showShops(org) {
-      vm.currentOrganization = org;
+      if(tab){
+        toggleTab(tab)
+      }
     }
     function saveShop() {
       
