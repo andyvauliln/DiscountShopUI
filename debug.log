@@ -1,3 +1,10 @@
 [0201/044841.467:ERROR:exception_handler_server.cc(524)] ConnectNamedPipe: The pipe is being closed. (0xE8)
 [0203/145929:ERROR:tcp_listen_socket.cc(76)] Could not bind socket to 127.0.0.1:6004
 [0203/145929:ERROR:node_debugger.cc(86)] Cannot start debugger server
+[0224/001909.680:ERROR:exception_handler_server.cc(524)] ConnectNamedPipe: The pipe is being closed. (0xE8)
+[0226/185654.492:ERROR:exception_handler_server.cc(524)] ConnectNamedPipe: The pipe is being closed. (0xE8)
+[0226/185848.802:ERROR:exception_handler_server.cc(524)] ConnectNamedPipe: The pipe is being closed. (0xE8)
+[0227/145726:ERROR:tcp_listen_socket.cc(76)] Could not bind socket to 127.0.0.1:6004
+[0227/145726:ERROR:node_debugger.cc(86)] Cannot start debugger server
+[0310/092015:ERROR:tcp_listen_socket.cc(76)] Could not bind socket to 127.0.0.1:6004
+[0310/092015:ERROR:node_debugger.cc(86)] Cannot start debugger server

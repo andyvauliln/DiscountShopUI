@@ -2,97 +2,92 @@
 
     angular
         .module('app.core')
-        .service('shopService', shopService);
+        .service('shareService', shareService);
 
-    shopService.$inject = ['$http', '$q',  'shopModel',  'API', 'appConfig', 'logger'];
+    shareService.$inject = ['$http', '$q', 'API', 'appConfig'];
 
     /**
-    *   Service responsible for all actions on shops (API calls, caching, events)
+    *   Service responsible for all actions on shares (API calls, caching, events)
     *   @param {$http} $http - Angular's $http service
     *   @param {$q} $q - Angular's $q service
-    *   @param {shopModel} shopModel - shop domain model
+    *   @param {shareModel} shareModel - share domain model
     *   @param {API} API - cFactory API wrapper service
     *   @param {Object} 'config' - Application configuration
     */
-    function shopService($http, $q, shopModel, API, appConfig, logger) {
+    function shareService($http, $q, API, appConfig) {
 
         var service = this;
 
         // public methods
         service.getAll = getAll;
-        service.getById = getById;
-        service.remove = remove;
-        service.addOrUpdate = addOrUpdate;
+        
 
         activate();
 
         /////////////////////////////
 
         /**
-        *   shopService activator function, called only once, when the service is instantiated
+        *   shareService activator function, called only once, when the service is instantiated
         */
         function activate() {
-
-
         }
 
         /////////////////////////////
 
         /**
-        *   Calls API to get all shops 
-        *   @returns {Promise|shopModel[]} - When promise is resolved returns an array of shops
+        *   Calls API to get all shares 
+        *   @returns {Promise|shareModel[]} - When promise is resolved returns an array of shares
         */
         function getAll() {
 
            
             return API.http({
                 method: appConfig.methods.GET,
-                url: appConfig.API_SHOP_ROUTE,
+                url: appConfig.API_GET_SHARE_ROUTE,
                 params: {}
             })
             .then(function(response) {
 
                 if (response.data) {
 
-                    return  response.data.shops.map(function(shop) {
-                        return new shopModel(shop);
+                    return  response.data.shares.map(function(share) {
+                        return new shareModel(share);
                     });
                 }
             });
         }
-
         /**
-        *   Calls API to get  shops
-        *   @returns {Promise|shopModel} - When promise is resolved returns shop
+        *   Calls API to get  shares
+        *   @returns {Promise|shareModel} - When promise is resolved returns share
         */
         function getById(id) {
 
             return API.http({
                 method: appConfig.methods.GET,
-                url: appConfig.API_SHOP_ROUTE + id,
+                url: appConfig.API_SHARE_ROUTE + id,
                 params: {}
             })
             .then(function(response) {
 
                 if (response.data) {
 
-                  return new shopModel(response.data);
+                  return new shareModel(response.data);
                 }
             });
         }
         /*
-        *   Calls API to delete  shop
+        *   Calls API to delete  share
         */
         function remove(id) {
 
             return API.http({
                 method: appConfig.methods.DELETE,
-                url: appConfig.API_SHOP_ROUTE + id,
+                url: appConfig.API_SHARE_ROUTE + id,
                 params: {}
             })
             .then(function(response) {
 
-               logger.info('shop deleted');
+               logger.info('share deleted');
             });
         }
 
@@ -100,18 +95,21 @@
 
             return API.http({
                 method: appConfig.methods.POST,
-                url: appConfig.API_SHOP_ROUTE,
-                data: item
+                url: appConfig.API_SHARE_ROUTE,
+                params: item
             })
             .then(function(response) {
 
-               logger.info('shop was added/updated successful');
+               logger.info('share was added/updated successful');
                if (response.data) {
 
-                  return new shopModel(response.data);
+                  return new shareModel(response.data);
                 }
             });
         }
+                
+        
+
     }
 
 }());

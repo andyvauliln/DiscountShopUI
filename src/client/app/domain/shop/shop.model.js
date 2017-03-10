@@ -15,7 +15,7 @@
         */
         function shopModel(shop) {
             
-            this.id = (shop && shop.objId) ? shop.objId : '';
+            this.objId = (shop && shop.objId) ? shop.objId : 0;
             this.name = (shop && shop.name) ? shop.name : '';
             this.address = (shop && shop.address) ? shop.address : '';
             this.city = (shop && shop.city) ? shop.city : '';

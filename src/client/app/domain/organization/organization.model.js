@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('organizationModel', organizationModelFactory);
 
-    organizationModelFactory.$inject = ['appConfig', 'couponModel','categoryModel', 'shopModel', 'imageModel', 'discountModel'];
+    organizationModelFactory.$inject = ['appConfig','categoryModel', 'shopModel', 'imageModel', 'shareModel'];
 
-    function organizationModelFactory(appConfig, couponModel, categoryModel, shopModel, imageModel, discountModel) {
+    function organizationModelFactory(appConfig, categoryModel, shopModel, imageModel, shareModel) {
 
         /**
         *   Domain model of an organization used for Creating new organizations
@@ -15,18 +15,21 @@
         */
         function organizationModel(organization) {
             
-            this.id = (organization && organization.objId) ? organization.objId : '';
+            this.objId = (organization && organization.objId) ? organization.objId : 0;
             this.name = (organization && organization.name) ? organization.name : '';
             this.siteUrl = (organization && organization.siteUrl) ? organization.siteUrl : '';
-            this.description = (organization && organization.objDescription) ? organization.objDescription : '';
+            this.objDescription = (organization && organization.objDescription) ? organization.objDescription : '';
             this.keyWords = (organization && organization.keyWords) ? organization.keyWords : '';
             this.dateInNew = (organization && organization.dateInNew) ? organization.dateInNew : null;
+            this.downloadCount = (organization && organization.downloadCount) ? organization.downloadCount : null;
 
             this.categories = (organization && organization.categories) ?  organization.categories.map(function(category){ return new categoryModel(category)}) : [];
             this.shops = (organization && organization.shops) ? organization.shops.map(function(shop){ return new shopModel(shop)})  : [];
             this.images = (organization && organization.images) ? organization.images.map(function(image){ return new imageModel(image)})  : [];
-            this.discountCards = (organization && organization.discountCards) ? organization.discountCards.map(function(discountCard){ return new discountModel(discountCard)})  : [];
-            this.coupons = (organization && organization.coupons) ? organization.coupons.map(function(coupon){ return new couponModel(coupon)})  : [];
+            this.shares = (organization && organization.shares) ? organization.shares.map(function(image){ return new imageModel(image)})  : [];
+            this.categoryIds = (organization && organization.categories) ?  organization.categories.map(function(category){ return category.objId}) : [];
+            //this.discountCards = (organization && organization.discountCards) ? organization.discountCards.map(function(discountCard){ return new shareModel(discountCard)})  : [];
+           // this.coupons = (organization && organization.coupons) ? organization.coupons.map(function(coupon){ return new shareModel(coupon)})  : [];
         }
 
         return organizationModel;

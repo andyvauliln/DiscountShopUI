@@ -45,7 +45,7 @@
            
             return API.http({
                 method: appConfig.methods.GET,
-                url: appConfig.API_GET_USER_ROUTE,
+                url: appConfig.API_USER_ROUTE,
                 params: {}
             })
             .then(function(response) {
@@ -57,6 +57,91 @@
                     });
                 }
             });
+        }
+        /**
+        *   Calls API to get  users
+        *   @returns {Promise|userModel} - When promise is resolved returns user
+        */
+        function getById(id) {
+
+            return API.http({
+                method: appConfig.methods.GET,
+                url: appConfig.API_USER_ROUTE + id,
+                params: {}
+            })
+            .then(function(response) {
+
+                if (response.data) {
+
+                  return new userModel(response.data);
+                }
+            });
+        }
+        /*
+        *   Calls API to delete  user
+        */
+        function remove(id) {
+
+            return API.http({
+                method: appConfig.methods.DELETE,
+                url: appConfig.API_USER_ROUTE + id,
+                params: {}
+            })
+            .then(function(response) {
+
+               logger.info('user deleted');
+            });
+        }
+
+         function addOrUpdate(item) {
+
+            return API.http({
+                method: appConfig.methods.POST,
+                url: appConfig.API_USER_ROUTE,
+                params: item
+            })
+            .then(function(response) {
+
+               logger.info('user was added/updated successful');
+               if (response.data) {
+
+                  return new userModel(response.data);
+                }
+            });
+        }
+
+////////////////////////////////////////////////////////////////////
+        function attachShare(orgId,shareId) {
+
+            return API.http({
+                method: appConfig.methods.GET,
+                url: appConfig.API_USER_ROUTE + orgId + appConfig.API_ATTACH_SHARE_TO_USER_ROUTE + shareId,
+                params: {}
+            })
+            .then(function(response) {
+
+                if (response.data) {
+                     logger.info('Item was add successful');
+                  return new userModel(response.data);
+                }
+            });
+        }
+        function deattachShare(orgId,shareId) {
+
+            return API.http({
+                method: appConfig.methods.GET,
+                url: appConfig.API_USER_ROUTE + orgId + appConfig.API_DEATTACH_SHARE_FROM_USER_ROUTE + shareId,
+                params: {}
+            })
+            .then(function(response) {
+
+                if (response.data) {
+                     logger.info('Item was deattach successful');
+                  return new userModel(response.data);
+                }
+            });
+
+            
         }
     }
 

@@ -14,8 +14,7 @@
 
   var config = {
     appErrorPrefix: '[DiscountShop Error] ',
-    appTitle: 'DiscountShop', 
-    apiHost: 'https://shopapi9afc6517b4fd4d968dae733a02330c8f.azurewebsites.net'
+    appTitle: 'DiscountShop'  
   };
 
   core.value('config', config);

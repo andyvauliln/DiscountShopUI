@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('userModel', userModelFactory);
 
-    userModelFactory.$inject = ['appConfig', 'discountModel', 'couponModel'];
+    userModelFactory.$inject = ['appConfig', 'shareModel'];
 
-    function userModelFactory(appConfig, discountModel, couponModel) {
+    function userModelFactory(appConfig, shareModel) {
 
         /**
         *   Domain model of an user used for Creating new users
@@ -15,16 +15,17 @@
         */
         function userModel(user) {
             
-            this.id = (user && user.objId) ? user.objId : '';
+            this.objId = (user && user.objId) ? user.objId : 0;
             this.email = (user && user.email) ? user.email : '';
             this.password = (user && user.password) ? user.password : '';
             this.firstName = (user && user.firstName) ? user.firstName : '';
             this.lastName = (user && user.lastName) ? user.lastName : '';
             this.discountCardsMaxCount = (user && user.discountCardsMaxCount) ? user.discountCardsMaxCount : null;
             this.couponsMaxCount = (user && user.couponsMaxCount) ? user.couponsMaxCount : null;
+            this.points = (user && user.points) ? user.points : null;
             
-            this.discountCards = (user && user.discountCards) ? user.discountCards.map(function(discountCard){ return new discountModel(discountCard)})  : [];
-            this.coupons = (user && user.coupons) ? user.coupons.map(function(coupon){ return new couponModel(coupon)})  : [];
+            //this.discountCards = (user && user.discountCards) ? user.discountCards.map(function(discountCard){ return new shareModel(discountCard)})  : [];
+            //this.coupons = (user && user.coupons) ? user.coupons.map(function(coupon){ return new shareModel(coupon)})  : [];
         }
 
         return userModel;

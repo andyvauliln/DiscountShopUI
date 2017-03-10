@@ -7,6 +7,8 @@
     'app.dashboard',
     'app.user',
     'app.organization',
-    'app.layout'
+    'app.layout', 
+    'angularModalService',
+    'checklist-model'
   ]);
 })();

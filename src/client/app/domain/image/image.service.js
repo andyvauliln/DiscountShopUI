@@ -4,7 +4,7 @@
         .module('app.core')
         .service('imageService', imageService);
 
-    imageService.$inject = ['$http', '$q',  'imageModel',  'API', 'appConfig'];
+    imageService.$inject = ['$http', '$q',  'imageModel',  'API', 'appConfig', 'logger'];
 
     /**
     *   Service responsible for all actions on images (API calls, caching, events)
@@ -14,12 +14,15 @@
     *   @param {API} API - cFactory API wrapper service
     *   @param {Object} 'config' - Application configuration
     */
-    function imageService($http, $q, imageModel, API, appConfig) {
+    function imageService($http, $q, imageModel, API, appConfig, logger) {
 
         var service = this;
 
         // public methods
         service.getAll = getAll;
+        service.getById = getById;
+        service.remove = remove;
+        service.addOrUpdate = addOrUpdate;
         
 
         activate();
@@ -45,7 +48,7 @@
            
             return API.http({
                 method: appConfig.methods.GET,
-                url: appConfig.API_GET_IMAGE_ROUTE,
+                url: appConfig.API_IMAGE_ROUTE,
                 params: {}
             })
             .then(function(response) {
@@ -58,6 +61,58 @@
                 }
             });
         }
+        /**
+        *   Calls API to get  images
+        *   @returns {Promise|imageModel} - When promise is resolved returns image
+        */
+        function getById(id) {
+
+            return API.http({
+                method: appConfig.methods.GET,
+                url: appConfig.API_IMAGE_ROUTE2 + id,
+                params: {}
+            })
+            .then(function(response) {
+
+                if (response.data) {
+
+                  return new imageModel(response.data);
+                }
+            });
+        }
+        /*
+        *   Calls API to delete  image
+        */
+        function remove(id) {
+
+            return API.http({
+                method: appConfig.methods.DELETE,
+                url: appConfig.API_IMAGE_ROUTE2 + id,
+                params: {}
+            })
+            .then(function(response) {
+
+               logger.info('image deleted');
+            });
+        }
+
+         function addOrUpdate(item) {
+
+            return API.http({
+                method: appConfig.methods.POST,
+                url: appConfig.API_IMAGE_ROUTE2,
+                data: item
+            })
+            .then(function(response) {
+
+               logger.info('image was added/updated successful');
+               if (response.data) {
+
+                  return new imageModel(response.data);
+                }
+            });
+        }
+        ///////////////////////////////////////////////
     }
 
 }());

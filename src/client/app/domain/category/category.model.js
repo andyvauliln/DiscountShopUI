@@ -15,8 +15,8 @@
         */
         function categoryModel(category) {
             
-            this.id = (category && category.objId) ? category.objId : '';
-            this.description = (category && category.objDescription) ? category.objDescription : '';
+            this.objId = (category && category.objId) ? category.objId : 0;
+            this.objDescription = (category && category.objDescription) ? category.objDescription : '';
             this.name = (category && category.name) ? category.name: '';
         }
 

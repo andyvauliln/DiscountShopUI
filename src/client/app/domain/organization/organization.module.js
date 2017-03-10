@@ -7,6 +7,7 @@
     "ui.bootstrap",
     'xeditable',
     'smart-table',
-    'flow'
+    'flow',
+    'ui.bootstrap.modal'
   ]);
 })();

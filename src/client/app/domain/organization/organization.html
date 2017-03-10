@@ -2,20 +2,31 @@
   <section class="matter">
     <!--Mange Panel-->
     <div class="jumbotron well">
-      Organizations Table
+      Organizations Table 
+      <button type="button" ng-click="vm.manageCategories();"  class="btn btn-md btn-info">Manage Categories</button>
+      <button type="button" ng-click="vm.filterByCategory();"  class="btn btn-md btn-info">Filter by Category</button>
+      <button type="button" ng-click="vm.addOrganization();"  class="btn btn-md btn-info">Add Organization</button>
     </div>
     <div class="container" ng-include="'app/domain/organization/organization.list.html'"> </div>
     <ul class="nav nav-tabs"  ng-show="vm.currentOrganization">
-      <li class="active"><a name="shops" ng-click="vm.toggleTab('shops')" data-toggle="tab" href="#">Shops</a></li>
-      <li>               <a name="cards" ng-click="vm.toggleTab('cards')" data-toggle="tab"  href="#">Discount Cards</a></li>
-      <li>               <a name="coupons" ng-click="vm.toggleTab('coupons')" data-toggle="tab" href="#">Coupons</a></li>
-      <li>               <a name="images" ng-click="vm.toggleTab('images')" data-toggle="tab" href="#">Image</a></li>
+      <li class="active"><a name="shop" ng-click="vm.toggleTab(vm.appConfig.SHOP_STR)" data-toggle="tab" href="#">Shops</a></li>
+      <li>               <a name="dcard" ng-click="vm.toggleTab(vm.appConfig.DCARD_STR)" data-toggle="tab"  href="#">Discount Cards</a></li>
+      <li>               <a name="coupon" ng-click="vm.toggleTab(vm.appConfig.COUPON_STR)" data-toggle="tab" href="#">Coupons</a></li>
+      <li>               <a name="certificate" ng-click="vm.toggleTab(vm.appConfig.CERTIFICATE_STR)" data-toggle="tab" href="#">Certificats</a></li>
+      <li>               <a name="specialOffer" ng-click="vm.toggleTab(vm.appConfig.SPECIALOFFER_STR)" data-toggle="tab" href="#">Special Offers</a></li>
+      <li>               <a name="image" ng-click="vm.toggleTab(vm.appConfig.IMAGE_STR)" data-toggle="tab" href="#">Images</a></li>
     </ul>
     <div class="tab-content">
-      <div id="shops" ng-include="'app/domain/shop/shop.list.html'" class="tab-pane fade in active"></div>
-      <div id="cards" ng-include="'app/domain/discountcard/discountcard.list.html'" class="tab-pane fade"></div>
-      <div id="coupons" ng-include="'app/domain/coupon/coupon.list.html'" class="tab-pane fade"></div>
-      <div id="images" ng-include="'app/domain/image/image.list.html'" class="tab-pane fade"></div>
+      <div id="shop" ng-include="'app/domain/shop/shop.list.html'" class="tab-pane fade in active"></div>
+      <div id="dcard" ng-include="'app/domain/share/dcard.list.html'" class="tab-pane fade"></div>
+      <div id="coupon" ng-include="'app/domain/share/coupon.list.html'" class="tab-pane fade"></div>
+      <div id="certificate" ng-include="'app/domain/share/certificate.list.html'" class="tab-pane fade"></div>
+      <div id="specialOffer" ng-include="'app/domain/share/specialOffer.list.html'" class="tab-pane fade"></div>
+      <div id="image" ng-include="'app/domain/image/image.list.html'" class="tab-pane fade"></div>
     </div>
-  </section>
-</section>
+    <style> 
+.editable-checklist label {
+  display: block;
+}
+</style>
+

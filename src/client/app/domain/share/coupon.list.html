@@ -1,0 +1,48 @@
+
+ <button type="button" ng-click="vm.addShare(1);"  class="btn btn-md btn-info">Add Coupon</button>
+<div ng-repeat="share in vm.currentOrganization.shares | filter:{ type: 1 } " class="col-lg-3 col-md-4 col-sm-6 col-xs-12">      
+ <form class="jumbotron well" editable-form name="couponForm" onaftersave="vm.saveShare(share)">
+
+                      <div> 
+                          <span class="title">Is Active: </span>
+                         <span e-required editable-text="share.isActice">{{ share.isActice|| "empty" }}</span>
+                      </div>
+                      <div> 
+                          <span class="title"> Barcode : </span>
+                         <span  e-required editable-text="share.barcode">{{ share.barcode|| "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Description: </span>
+                         <span  e-required editable-text="share.objDescription">{{ share.objDescription|| "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Percentage: </span>
+                         <span e-required editable-text="share.percentage">{{ share.percentage|| "empty" }}</span>
+                      </div>
+                        
+                    <img  ng-src="vm.appConfig.IMAGE_URL + share.images[0].name" height="180px" width="300px"></img>
+                   
+
+<div class="buttons margin-0-20">
+    <!-- button to show form -->
+    <button type="button" class="btn btn-default" ng-click="couponForm.$show()" ng-show="!couponForm.$visible">
+        Edit
+      </button>
+
+      <button type="button" class="btn btn-default" ng-click="vm.deattachShop(shop)" ng-show="!couponForm.$visible">
+        Delete
+      </button>
+    <!-- buttons to submit / cancel form -->
+    <span ng-show="couponForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="couponForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="couponForm.$waiting" ng-click="couponForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+</div>
+
+</form>
+</div>
+

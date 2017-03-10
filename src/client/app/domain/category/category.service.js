@@ -30,8 +30,6 @@
         *   categoryService activator function, called only once, when the service is instantiated
         */
         function activate() {
-
-
         }
 
         /////////////////////////////
@@ -41,20 +39,71 @@
         *   @returns {Promise|categoryModel[]} - When promise is resolved returns an array of categorys
         */
         function getAll() {
-
            
             return API.http({
                 method: appConfig.methods.GET,
-                url: appConfig.API_GET_CATEGORY_ROUTE,
+                url: appConfig.API_CATEGORY_ROUTE,
                 params: {}
             })
             .then(function(response) {
 
                 if (response.data) {
 
-                    return  response.data.categorys.map(function(category) {
+                    return  response.data.categories.map(function(category) {
                         return new categoryModel(category);
                     });
+                }
+            });
+        }
+
+        /**
+        *   Calls API to get  categorys
+        *   @returns {Promise|categoryModel} - When promise is resolved returns category
+        */
+        function getById(id) {
+
+            return API.http({
+                method: appConfig.methods.GET,
+                url: appConfig.API_CATEGORY_ROUTE + id,
+                params: {}
+            })
+            .then(function(response) {
+
+                if (response.data) {
+
+                  return new categoryModel(response.data);
+                }
+            });
+        }
+        /*
+        *   Calls API to delete  category
+        */
+        function remove(id) {
+
+            return API.http({
+                method: appConfig.methods.DELETE,
+                url: appConfig.API_CATEGORY_ROUTE + id,
+                params: {}
+            })
+            .then(function(response) {
+
+               logger.info('category deleted');
+            });
+        }
+
+         function addOrUpdate(item) {
+
+            return API.http({
+                method: appConfig.methods.POST,
+                url: appConfig.API_CATEGORY_ROUTE,
+                data: item
+            })
+            .then(function(response) {
+
+               logger.info('category was added/updated successful');
+               if (response.data) {
+
+                  return new categoryModel(response.data);
                 }
             });
         }

@@ -15,9 +15,10 @@
         */
         function imageModel(image) {
             
-            this.id = (image && image.objId) ? image.objId : '';
+            this.objId = (image && image.objId) ? image.objId : 0;
             this.name = (image && image.name) ? image.name : '';
             this.content = (image && image.content) ? image.content : '';
+            this.prefix = (image && image.prefix) ? image.prefix : '';
             this.contentType = (image && image.contentType) ? image.contentType : '';
         }
 
