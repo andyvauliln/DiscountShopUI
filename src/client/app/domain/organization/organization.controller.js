@@ -5,9 +5,9 @@
     .module('app.organization')
     .controller('organizationController', organizationController);
 
-  organizationController.$inject = ['$scope', '$q', 'logger', 'dataservice', 'appConfig', 'ModalService', 'organizationModel', 'shopModel', 'imageModel'];
+  organizationController.$inject = ['$scope', '$q', 'logger', 'dataservice', 'appConfig', 'ModalService', 'organizationModel', 'shopModel', 'imageModel', 'shareModel'];
   /* @ngInject */
-  function organizationController($scope, $q, logger, dataservice, appConfig, ModalService, organizationModel, shopModel, imageModel) {
+  function organizationController($scope, $q, logger, dataservice, appConfig, ModalService, organizationModel, shopModel, imageModel, shareModel) {
     var vm = this;
     //Organization
     vm.organizations = [];
@@ -16,7 +16,7 @@
     vm.appConfig = appConfig;
     //Shops
 
- 
+
     //DiscountCards
 
     //Coupons
@@ -77,16 +77,16 @@
 
     };
 
-    vm.attachOrganizationImage = function(files) {
+    vm.attachOrganizationImage = function (files) {
       angular.forEach(files, function (flowFile, i) {
         var fileReader = new FileReader();
         fileReader.onload = function (event) {
           var image = new imageModel(null);
           image.content = event.target.result.substr(event.target.result.indexOf('base64') + 7);
-          dataservice.imageService.addOrUpdate(image).then(function(result){
+          dataservice.imageService.addOrUpdate(image).then(function (result) {
 
             dataservice.organizationService.attachImage(vm.currentOrganization.objId, result.objId);
-            
+
           });
         };
         fileReader.readAsDataURL(flowFile.file);
@@ -107,14 +107,14 @@
 
     vm.saveOrganization = function (organization) {
 
-    return dataservice.organizationService.addOrUpdate(organization).then(function(result){
+      return dataservice.organizationService.addOrUpdate(organization).then(function (result) {
 
         vm.currentOrganization = result;
         return result;
-     });
+      });
 
     }
-    vm.addOrganization = function(){
+    vm.addOrganization = function () {
 
       vm.organizations.unshift(new organizationModel(null));
     }
@@ -130,7 +130,7 @@
     }
     function getCategories() {
 
-       dataservice.categoryService.getAll().then(function (data) {
+      dataservice.categoryService.getAll().then(function (data) {
 
         vm.categories = data;
 
@@ -138,9 +138,9 @@
     }
     vm.attachCategory = function (categoryIds) {
 
-      if(vm.currentOrganization.objId == 0){
+      if (vm.currentOrganization.objId == 0) {
 
-        vm.saveOrganization(vm.currentOrganization).then(function(){
+        vm.saveOrganization(vm.currentOrganization).then(function () {
 
           vm.attachCategory(categoryIds);
           vm.currentOrganization.categoryIds = categoryIds;
@@ -165,19 +165,91 @@
           }
 
         });
-
       }
-     
+    }
+
+    vm.addShare = function (type) {
+
+      var share = new shareModel(null)
+      share.type = type;
+      vm.currentOrganization.shares.unshift(share);
+    }
+    vm.saveShare = function (share) {
+
+      if (share.objId > 0) {
+
+        return dataservice.shareService.addOrUpdate(share);
+
+      } else {
+
+        return dataservice.shareService.addOrUpdate(share).then(function (result) {
+          return dataservice.organizationService.attachShare(vm.currentOrganization.objId, result.objId).then(function (res) {
+            vm.currentOrganization = res;
+            return result;
+          });
+
+        })
+      }
+    }
+    vm.getImageUrl = function(item){
+
+      if(item.images.length > 0){
+
+          return vm.appConfig.IMAGE_URL + item.images[0].name;
+      }
+      return '#'
+    }
+
+    vm.attachImageToCoupon = function (files, share) {
+      if (share.objId == 0) {
+
+        vm.saveShare(share).then(function (newShare) {
+
+          vm.addImage(files[0]).then(function (newImage) {
+
+            dataservice.shareService.setImage(newShare.objId, newImage.objId)
+          })
+        })
+      } else {
+
+        vm.addImage(files[0]).then(function (newImage) {
+
+          dataservice.shareService.setImage(share.objId, newImage.objId)
+        })
+      }
+    }
+    vm.deattachShare = function(share){
+
+      var index = vm.currentOrganization.shares.indexOf(share);
+      vm.currentOrganization.shares.splice(index, 1);   
+      dataservice.organizationService.deattachShare(vm.currentOrganization.objId,share.objId);
 
     }
 
-    vm.deleteOrganization = function(organization){
+    vm.addImage = function (flowFile) {
 
-      dataservice.organizationService.remove(organization.objId).then(function(){
+      var deferred = $q.defer();
+      var fileReader = new FileReader();
+      fileReader.onload = function (event) {
+        var image = new imageModel(null);
+        image.content = event.target.result.substr(event.target.result.indexOf('base64') + 7);
+        dataservice.imageService.addOrUpdate(image).then(function(res){
+           deferred.resolve(res)
+        });
+       
+      };
+      fileReader.readAsDataURL(flowFile.file);
+      return deferred.promise;
+    }
 
-         getOrganizations();
+    vm.deleteOrganization = function (organization) {
+
+
+      var index = vm.organizations.indexOf(organization);
+      vm.organizations.splice(index, 1); 
+      dataservice.organizationService.remove(organization.objId).then(function () {
       });
-      
+
     }
 
 
@@ -202,34 +274,36 @@
     }
     vm.saveShop = function (shop) {
 
-      if(shop.objId > 0){
+      if (shop.objId > 0) {
 
         dataservice.shopService.addOrUpdate(shop);
 
       } else {
 
-          dataservice.shopService.addOrUpdate(shop).then(function(result){
-            dataservice.organizationService.attachShop(vm.currentOrganization.objId, result.objId);
+        dataservice.shopService.addOrUpdate(shop).then(function (result) {
+          dataservice.organizationService.attachShop(vm.currentOrganization.objId, result.objId);
 
-          })
+        })
       }
-     
+
     }
     vm.addShop = function () {
 
       vm.currentOrganization.shops.unshift(new shopModel(null));
     }
-    vm.deattachShop = function(shop) {
+    vm.deattachShop = function (shop) {
 
-      vm.organizationService.deattachShop(vm.currentOrganization,shop.id)
+      var index = vm.currentOrganization.shops.indexOf(shop);
+      vm.currentOrganization.shares.splice(index, 1); 
+      dataservice.organizationService.deattachShop(vm.currentOrganization.objId, shop.objId)
     }
-    vm.addShop = function () {
 
-      
-    }
-    vm.deattachShop = function(shop) {
+    vm.deattachImage = function (image) {
 
-      vm.organizationService.deattachShop(vm.currentOrganization,shop.id)
+      var index = vm.currentOrganization.images.indexOf(image);
+      vm.currentOrganization.images.splice(index, 1); 
+      dataservice.organizationService.deattachImage(vm.currentOrganization.objId, image.objId)
     }
+
   }
 })();

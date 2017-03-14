@@ -4,7 +4,7 @@
         .module('app.core')
         .service('shareService', shareService);
 
-    shareService.$inject = ['$http', '$q', 'API', 'appConfig'];
+    shareService.$inject = ['$http', '$q', 'API', 'appConfig', 'logger', 'shareModel'];
 
     /**
     *   Service responsible for all actions on shares (API calls, caching, events)
@@ -14,12 +14,16 @@
     *   @param {API} API - cFactory API wrapper service
     *   @param {Object} 'config' - Application configuration
     */
-    function shareService($http, $q, API, appConfig) {
+    function shareService($http, $q, API, appConfig, logger, shareModel) {
 
         var service = this;
 
         // public methods
         service.getAll = getAll;
+        service.getById = getById;
+        service.remove = remove;
+        service.addOrUpdate = addOrUpdate;
+        service.setImage = setImage;
         
 
         activate();
@@ -96,12 +100,32 @@
             return API.http({
                 method: appConfig.methods.POST,
                 url: appConfig.API_SHARE_ROUTE,
-                params: item
+                data: item
             })
             .then(function(response) {
 
                logger.info('share was added/updated successful');
                if (response.data) {
+
+                  return new shareModel(response.data);
+                }
+            });
+        }
+
+         /**
+        *   Calls API to get  shares
+        *   @returns {Promise|shareModel} - When promise is resolved returns share
+        */
+        function setImage(shareId, imageId) {
+
+            return API.http({
+                method: appConfig.methods.GET,
+                url: appConfig.API_SHARE_ROUTE + shareId + appConfig.API_SETIMEGE_ROUTE + imageId,
+                params: {}
+            })
+            .then(function(response) {
+
+                if (response.data) {
 
                   return new shareModel(response.data);
                 }

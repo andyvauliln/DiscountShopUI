@@ -26,7 +26,7 @@
             this.categories = (organization && organization.categories) ?  organization.categories.map(function(category){ return new categoryModel(category)}) : [];
             this.shops = (organization && organization.shops) ? organization.shops.map(function(shop){ return new shopModel(shop)})  : [];
             this.images = (organization && organization.images) ? organization.images.map(function(image){ return new imageModel(image)})  : [];
-            this.shares = (organization && organization.shares) ? organization.shares.map(function(image){ return new imageModel(image)})  : [];
+            this.shares = (organization && organization.shareItems) ? organization.shareItems.map(function(image){ return new shareModel(image)})  : [];
             this.categoryIds = (organization && organization.categories) ?  organization.categories.map(function(category){ return category.objId}) : [];
             //this.discountCards = (organization && organization.discountCards) ? organization.discountCards.map(function(discountCard){ return new shareModel(discountCard)})  : [];
            // this.coupons = (organization && organization.coupons) ? organization.coupons.map(function(coupon){ return new shareModel(coupon)})  : [];

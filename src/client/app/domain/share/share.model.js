@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('shareModel', shareModelFactory);
 
-    shareModelFactory.$inject = ['appConfig'];
+    shareModelFactory.$inject = ['appConfig', 'imageModel'];
 
-    function shareModelFactory(appConfig) {
+    function shareModelFactory(appConfig,imageModel) {
 
         /**
         *   Domain model of an share used for Creating new share
@@ -17,6 +17,7 @@
             
             this.objId = (share && share.objId) ? share.objId : 0;
             this.isActive = (share && share.isActive != null) ? share.isActive : false;
+            this.images = (share && share.images) ? share.images.map(function(image){ return new imageModel(image)})  : [];;
             this.barcode = (share && share.barcode) ? share.barcode : '';
             this.type = (share && share.type) ? share.type : '';
             this.objDescription = (share && share.objDescription) ? share.objDescription : '';

@@ -58,14 +58,14 @@
            
             return API.http({
                 method: appConfig.methods.GET,
-                url: appConfig.API_ORGANIZATION_ROUTE,
+                url: appConfig.API_ORGANIZATION_SIMPLE_ROUTE,
                 params: {}
             })
             .then(function(response) {
 
                 if (response.data) {
 
-                    return  response.data.organizations.map(function(organization) {
+                    return  response.data.map(function(organization) {
                         return new organizationModel(organization);
                     });
                 }
@@ -240,7 +240,7 @@
 
             return API.http({
                 method: appConfig.methods.GET,
-                url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_ATTACH_IMAGE_FROM_ORGANIZATION_ROUTE + imageId,
+                url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_DEATTACH_IMAGE_FROM_ORGANIZATION_ROUTE + imageId,
                 params: {}
             })
             .then(function(response) {
