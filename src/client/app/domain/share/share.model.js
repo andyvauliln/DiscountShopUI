@@ -22,6 +22,7 @@
             this.type = (share && share.type) ? share.type : '';
             this.objDescription = (share && share.objDescription) ? share.objDescription : '';
             this.percentage = (share && share.percentage) ? share.percentage : '';
+            this.dateInNew = (share && share.dateInNew) ? share.dateInNew : null;
            
         }
 

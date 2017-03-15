@@ -14,6 +14,7 @@
     vm.editOrganization = editOrganization;
     vm.currentOrganization = null;
     vm.appConfig = appConfig;
+    vm.statuses = [{value:true, text: 'Активный'},{value:false, text: 'Не активный'}];
     //Shops
 
 
@@ -65,6 +66,12 @@
           this.showCategories = vm.showCategories;
           this.attachCategory = vm.attachCategory;
           this.saveOrganization = vm.saveOrganization;
+          this.opened = {};
+          this.open = function ($event, elementOpened) {
+           $event.preventDefault();
+           $event.stopPropagation();
+          this.opened[elementOpened] = this.opened[elementOpened];
+    };
         },
         controllerAs: 'vm'
       }).then(function (modal) {
@@ -76,6 +83,11 @@
       });
 
     };
+
+    vm.showStatuses = function(item){
+      var selected = vm.statuses.filter(function(status){return item.isActive == status.value});
+      return (item.isActive != null && selected.length) ? selected[0].text : 'Not set';
+    }
 
     vm.attachOrganizationImage = function (files) {
       angular.forEach(files, function (flowFile, i) {
@@ -210,12 +222,24 @@
             dataservice.shareService.setImage(newShare.objId, newImage.objId)
           })
         })
-      } else {
+      } else if(share.images.length > 0) {
 
+         vm.getImageContent(files[0]).then(function (content) {
+         var image = share.images[0];  
+         image.content = content;
+         var share1 = share;
+         dataservice.imageService.addOrUpdate(image).then(function(res){
+          share1.images[0] = res;      
+         })
+        })
+      }
+      else{
         vm.addImage(files[0]).then(function (newImage) {
 
-          dataservice.shareService.setImage(share.objId, newImage.objId)
-        })
+            dataservice.shareService.setImage(share.objId, newImage.objId).then(function(res){
+              share.images.push(newImage)
+            })
+          })
       }
     }
     vm.deattachShare = function(share){
@@ -226,7 +250,7 @@
 
     }
 
-    vm.addImage = function (flowFile) {
+    vm.addImage = function(flowFile) {
 
       var deferred = $q.defer();
       var fileReader = new FileReader();
@@ -236,14 +260,26 @@
         dataservice.imageService.addOrUpdate(image).then(function(res){
            deferred.resolve(res)
         });
+      };
+      fileReader.readAsDataURL(flowFile.file);
+      return deferred.promise;
+    }
+    vm.getImageContent = function(flowFile) {
+
+      var deferred = $q.defer();
+      var fileReader = new FileReader();
+      fileReader.onload = function (event) {
+        var image = new imageModel(null);
+        image.content = event.target.result.substr(event.target.result.indexOf('base64') + 7);
        
+        deferred.resolve(image.content)
+     
       };
       fileReader.readAsDataURL(flowFile.file);
       return deferred.promise;
     }
 
     vm.deleteOrganization = function (organization) {
-
 
       var index = vm.organizations.indexOf(organization);
       vm.organizations.splice(index, 1); 
@@ -281,7 +317,9 @@
       } else {
 
         dataservice.shopService.addOrUpdate(shop).then(function (result) {
-          dataservice.organizationService.attachShop(vm.currentOrganization.objId, result.objId);
+          dataservice.organizationService.attachShop(vm.currentOrganization.objId, result.objId).then(function(res){
+              shop = result;
+          });
 
         })
       }
