@@ -19,10 +19,14 @@
             this.isActive = (share && share.isActive != null) ? share.isActive : false;
             this.images = (share && share.images) ? share.images.map(function(image){ return new imageModel(image)})  : [];;
             this.barcode = (share && share.barcode) ? share.barcode : '';
-            this.type = (share && share.type) ? share.type : '';
+            this.type = (share && share.type != null) ? share.type : '';
             this.objDescription = (share && share.objDescription) ? share.objDescription : '';
             this.percentage = (share && share.percentage) ? share.percentage : '';
             this.dateInNew = (share && share.dateInNew) ? share.dateInNew : null;
+            this.countLimit = (share && share.countLimit) ? share.countLimit : '';
+            this.detailsUrl = (share && share.detailsUrl) ? share.detailsUrl : '';
+            this.timeLimit = (share && share.timeLimit) ? share.timeLimit : '';
+            this.uniqueCode = (share && share.uniqueCode) ? share.uniqueCode : '';
            
         }
 

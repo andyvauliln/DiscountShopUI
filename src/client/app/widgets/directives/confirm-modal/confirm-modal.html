@@ -1,0 +1,21 @@
+<div id="confirm-action">
+    <div class="modal-header cf-main-bg cf-text-light">
+        <h4 class="modal-title">{{vm.modalTitle}}</h4>
+    </div>
+    <div class="modal-body clearfix">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 >{{vm.modalMessage}}</h4>
+                <p>(<small >Окно закроется автоматически через пару секунд</small>)</p>        
+            </div>
+        </div>
+    </div>
+    <div class="progress progress-striped active">
+            <div class="progress-bar cf-main-bg" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{vm.progress}}%;height: 10px;">
+            </div>
+        </div>
+    <div class="modal-footer form-actions">
+        <button ng-click="vm.doAction()" class="btn btn-main">{{vm.confirmButtonLabel}}</button>
+        <button ng-click="vm.cancel()" class="btn btn-main-inverse">{{vm.cancelButtonLabel}}</button>
+    </div>
+</div>

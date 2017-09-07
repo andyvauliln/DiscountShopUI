@@ -20,6 +20,8 @@
             this.content = (image && image.content) ? image.content : '';
             this.prefix = (image && image.prefix) ? image.prefix : '';
             this.contentType = (image && image.contentType) ? image.contentType : '';
+            this.width = (image && image.width) ? image.width : '';
+            this.height = (image && image.height) ? image.height : '';
         }
 
         return imageModel;

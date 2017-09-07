@@ -3,18 +3,20 @@
     <!--Mange Panel-->
     <div class="jumbotron well">
       Organizations Table 
-      <button type="button" ng-click="vm.manageCategories();"  class="btn btn-md btn-info">Manage Categories</button>
-      <button type="button" ng-click="vm.filterByCategory();"  class="btn btn-md btn-info">Filter by Category</button>
-      <button type="button" ng-click="vm.addOrganization();"  class="btn btn-md btn-info">Add Organization</button>
+      <button type="button" ng-click="vm.IsShowCategoryFilter = !vm.IsShowCategoryFilter;"  class="btn btn-md btn-info">Фильтр по категориям</button>
+      <button type="button" ng-click="vm.addOrganization();"  class="btn btn-md btn-info">Добавить огранизацию</button>
+    </div>
+    <div ng-show="vm.IsShowCategoryFilter" ng-repeat="category in vm.categories">
+       <input type="checkbox" ng-click="vm.filterCategory(category)" value="category.objId">{{category.name}}
     </div>
     <div class="container" ng-include="'app/domain/organization/organization.list.html'"> </div>
     <ul class="nav nav-tabs"  ng-show="vm.currentOrganization">
-      <li class="active"><a name="shop" ng-click="vm.toggleTab(vm.appConfig.SHOP_STR)" data-toggle="tab" href="#">Shops</a></li>
-      <li>               <a name="dcard" ng-click="vm.toggleTab(vm.appConfig.DCARD_STR)" data-toggle="tab"  href="#">Discount Cards</a></li>
-      <li>               <a name="coupon" ng-click="vm.toggleTab(vm.appConfig.COUPON_STR)" data-toggle="tab" href="#">Coupons</a></li>
-      <li>               <a name="certificate" ng-click="vm.toggleTab(vm.appConfig.CERTIFICATE_STR)" data-toggle="tab" href="#">Certificats</a></li>
-      <li>               <a name="specialOffer" ng-click="vm.toggleTab(vm.appConfig.SPECIALOFFER_STR)" data-toggle="tab" href="#">Special Offers</a></li>
-      <li>               <a name="image" ng-click="vm.toggleTab(vm.appConfig.IMAGE_STR)" data-toggle="tab" href="#">Images</a></li>
+      <li class="active"><a name="shop" ng-click="vm.toggleTab(vm.appConfig.SHOP_STR)" data-toggle="tab" href="#">Магазины</a></li>
+      <li>               <a name="dcard" ng-click="vm.toggleTab(vm.appConfig.DCARD_STR)" data-toggle="tab"  href="#">Дис. карты</a></li>
+      <li>               <a name="coupon" ng-click="vm.toggleTab(vm.appConfig.COUPON_STR)" data-toggle="tab" href="#">Купоны</a></li>
+      <li>               <a name="certificate" ng-click="vm.toggleTab(vm.appConfig.CERTIFICATE_STR)" data-toggle="tab" href="#">Сертификаты</a></li>
+      <li>               <a name="specialOffer" ng-click="vm.toggleTab(vm.appConfig.SPECIALOFFER_STR)" data-toggle="tab" href="#">Акции</a></li>
+      <li>               <a name="image" ng-click="vm.toggleTab(vm.appConfig.IMAGE_STR)" data-toggle="tab" href="#">Картинки</a></li>
     </ul>
     <div class="tab-content">
       <div id="shop" ng-include="'app/domain/shop/shop.list.html'" class="tab-pane fade in active"></div>
@@ -24,7 +26,17 @@
       <div id="specialOffer" ng-include="'app/domain/share/specialOffer.list.html'" class="tab-pane fade"></div>
       <div id="image" ng-include="'app/domain/image/image.list.html'" class="tab-pane fade"></div>
     </div>
-    <style> 
+    <cf-confirm-modal 
+      show-modal="vm.showConfirmModal" 
+      time-to-live="4000" 
+      modal-title="'Shop'" 
+      modal-message="'Вы действительно хотите удалить?'" 
+      modal-size="'m'" confirm-action="vm.deleteOrganization()" 
+      confirm-button-label="'Да'" 
+      cancel-button-label="'Нет'" >
+     </cf-confirm-modal>
+     
+<style> 
 .editable-checklist label {
   display: block;
 }

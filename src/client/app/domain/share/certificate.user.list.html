@@ -1,0 +1,39 @@
+<div ng-repeat="share in vm.getShares() | filter:{ type: 2 } " class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+ <div class="jumbotron well">
+<form editable-form name="dcardForm" onaftersave="vm.saveShare(share)">
+
+<div>
+    <span class="title">Активный: </span>
+    <span e-required editable-select="share.isActive" e-ng-options="s.value as s.text for s in vm.statuses">{{ vm.showStatuses(share) }}</span>
+</div>
+<div>
+    <span class="title"> Баркод : </span>
+    <span e-required editable-text="share.barcode">{{ share.barcode|| "empty" }}</span>
+</div>
+<div>
+    <span class="title">Описание: </span>
+    <span e-required editable-text="share.objDescription">{{ share.objDescription|| "empty" }}</span>
+</div>
+<div>
+    <span class="title">Сумма: </span>
+    <span e-required editable-text="share.percentage">{{ share.percentage|| "empty" }}</span>
+</div>
+<div>
+    <span class="title">Дата в новых </span>
+    <a href="#" editable-bsdate="share.dateInNew" e-is-open="opened.$data" e-ng-click="open($event,'$data')" e-datepicker-popup="dd-MMMM-yyyy">
+             {{ (share.dateInNew | date:"dd/MM/yyyy") || 'empty' }}
+    </a>
+</div>
+<span class="title">Лицевая сторона </span>
+<img ng-src="{{vm.getImageUrlByPrefix(share, 'Front')}}" height="180px" width="300px"></img>
+<span class="title">Задняя сторона </span>
+<img ng-src="{{vm.getImageUrlByPrefix(share, 'Back')}}" height="180px" width="300px"></img>
+
+    <div class="buttons margin-0-20">
+      <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)">
+        Удалить
+      </button>
+    </div>
+</form>
+</div>
+</div>

@@ -1,15 +1,18 @@
  <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachOrganizationImage($files)">
-    <button flow-btn  class="btn btn-md btn-info">Add Image</button>
+    <button flow-btn  class="btn btn-md btn-info">Добавить картинку</button>
  </div>
 <div ng-repeat="image in vm.currentOrganization.images " class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 
-
-    <img  ng-src="data:image/JPEG;base64,{{image.content}}" height="180px" width="300px"></img>
+    <span ng-show="image.prefix == 'Main'">Главная картинка</span>
+    <img  ng-src="{{vm.getImageUrlFromImage(image)}}" height="180px" width="300px"></img>
 
     <div class="buttons margin-0-20">
-
+       
+      <button type="button" ng-show="image.prefix != 'Main'" class="btn btn-default" ng-click="vm.makeImageMain(image)">
+        Сделать главной
+      </button>
       <button type="button" class="btn btn-default" ng-click="vm.deattachImage(image)">
-        Delete
+        Удалить
       </button>
     </div>
 </div>

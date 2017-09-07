@@ -17,15 +17,15 @@
             
             this.objId = (user && user.objId) ? user.objId : 0;
             this.email = (user && user.email) ? user.email : '';
-            this.password = (user && user.password) ? user.password : '';
+            this.password = (user && user.password) ? user.password : 'asdQWE123';
             this.firstName = (user && user.firstName) ? user.firstName : '';
             this.lastName = (user && user.lastName) ? user.lastName : '';
-            this.discountCardsMaxCount = (user && user.discountCardsMaxCount) ? user.discountCardsMaxCount : null;
-            this.couponsMaxCount = (user && user.couponsMaxCount) ? user.couponsMaxCount : null;
             this.points = (user && user.points) ? user.points : null;
-            
-            //this.discountCards = (user && user.discountCards) ? user.discountCards.map(function(discountCard){ return new shareModel(discountCard)})  : [];
-            //this.coupons = (user && user.coupons) ? user.coupons.map(function(coupon){ return new shareModel(coupon)})  : [];
+            this.shares = (user && user.shareItems) ? user.shareItems.map(function(share){ return new shareModel(share)})  : [];
+            this.dateOfBirth = (user && user.dateOfBirth) ? user.dateOfBirth : null;
+            this.male = (user && user.male) ? user.male : null;
+            this.city = (user && user.city) ? user.city : null;
+            this.phone = (user && user.phone) ? user.phone : null;
         }
 
         return userModel;

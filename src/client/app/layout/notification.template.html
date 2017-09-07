@@ -1,0 +1,23 @@
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Послать пуш сообщение</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label">Имя:              </label>
+                    <input ng-model="vm.message"></input>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="vm.sendPushNotification(vm.message, vm.tags)">
+                   Сохранить
+                </button>
+                <button type="button" class="btn btn-default" ng-click="close(false)" data-dismiss="modal">
+                    Отмена
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,63 +4,63 @@
 
       <div class="modal-header">
         <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Edit Organization</h4>
+        <h4 class="modal-title">Редактирование организации</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" role="form" data-editable-form name="editOrganizationForm">
-<div class="form-group">
-  <label class="control-label">Name:              </label>
-  <span e-name="name" e-required editable-text="vm.currentOrganization.name">{{ vm.currentOrganization.name || "empty" }}</span>
-</div>
-<div class="form-group">
-  <label class="control-label">Site Url:              </label>
-  <span e-name="name" e-required editable-text="vm.currentOrganization.siteUrl">{{ vm.currentOrganization.siteUrl || "empty" }}</span>
-</div>
-<div class="form-group">
-  <label class="control-label">Description:              </label>
-  <span e-name="name" e-required editable-text="vm.currentOrganization.objDescription">{{ vm.currentOrganization.objDescription || "empty" }}</span>
-</div>
-<div class="form-group">
-  <label class="control-label">Key Words:              </label>
-  <span e-name="name" e-required editable-text="vm.currentOrganization.keyWords">{{ vm.currentOrganization.keyWords || "empty" }}</span>
-</div>
-<div class="form-group">
-  <label class="control-label">Download Count:              </label>
-  <span e-name="name" e-required editable-text="vm.currentOrganization.downloadCount">{{ vm.currentOrganization.downloadCount || "empty" }}</span>
-</div>
-<div class="form-group">
-  <label class="control-label">Date in New:              </label>
-  <a href="#" editable-bsdate="vm.currentOrganization.dateInNew" e-is-open="vm.opened.$data" e-ng-click="vm.open($event,'$data')"
-    e-datepicker-popup="dd-MMMM-yyyy">
+          <div class="form-group">
+            <label class="control-label">Имя:              </label>
+            <span e-name="name" e-required editable-text="vm.currentOrganization.name">{{ vm.currentOrganization.name || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Ссылка на сайт:              </label>
+            <span e-name="name" e-required editable-text="vm.currentOrganization.siteUrl">{{ vm.currentOrganization.siteUrl || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Описание:              </label>
+            <span ckeditor="vm.options" ng-model="vm.currentOrganization.objDescription" onbeforesave="vm.setDescription($data)" e-rows="7" e-cols="40" editable-textarea="vm.currentOrganization.objDescription">{{ vm.currentOrganization.objDescription || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Ключивые слова:              </label>
+            <span e-name="name" e-required editable-text="vm.currentOrganization.keyWords">{{ vm.currentOrganization.keyWords || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Количество закачек:              </label>
+            <span>{{ vm.currentOrganization.downloadCount || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Дата в новых:              </label>
+            <a href="#" editable-bsdate="vm.currentOrganization.dateInNew" e-is-open="vm.opened.$data" e-ng-click="vm.open($event,'$data')"
+              e-datepicker-popup="dd-MMMM-yyyy">
              {{ (vm.currentOrganization.dateInNew | date:"dd/MM/yyyy") || 'empty' }}
             </a>
-</div>
-<div class="form-group">
-  <label class="control-label">Categories:              </label>
-  <a href="#" onaftersave="vm.attachCategory($data)" editable-checklist="vm.currentOrganization.categoryIds" e-ng-options="category.objId as category.name for category in vm.categories">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Категории:              </label>
+            <a href="#" onaftersave="vm.attachCategory($data)" editable-checklist="vm.currentOrganization.categoryIds" e-ng-options="category.objId as category.name for category in vm.categories">
 {{ vm.showCategories() }}
 </a>
-</div>
+          </div>
 
 
-<div class="buttons">
-  <!-- button to show form -->
-  <button type="button" class="btn btn-default" ng-click="editOrganizationForm.$show()" ng-show="!editOrganizationForm.$visible">
-        Edit
+          <div class="buttons">
+            <!-- button to show form -->
+            <button type="button" class="btn btn-default" ng-click="editOrganizationForm.$show()" ng-show="!editOrganizationForm.$visible">
+        Редактировать
       </button>
-  <!-- buttons to submit / cancel form -->
-  <span ng-show="editOrganizationForm.$visible">
+            <!-- buttons to submit / cancel form -->
+            <span ng-show="editOrganizationForm.$visible">
         <br/>
         <button type="submit" class="btn btn-primary"  ng-disabled="editOrganizationForm.$waiting">
-          Save
+          Сохранить
         </button>
         <button type="button" class="btn btn-default" ng-disabled="editOrganizationForm.$waiting" ng-click="editOrganizationForm.$cancel()">
-          Cancel
+          Отмена
         </button>
       </span>
-</div>
-</form>
-</div>
-</div>
-</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

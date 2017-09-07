@@ -7,16 +7,17 @@
     .constant('toastr', toastr)
     .constant('moment', moment)
     .constant('appConfig', {
-       API_HOST: 'http://dshopapi.azurewebsites.net/api',
+      API_HOST: 'http://dshopapi.azurewebsites.net/api',
       IMAGE_URL: 'http://dshopapi.azurewebsites.net/Resources/Images/',
       SHOP_STR: 'shop',
       IMAGE_STR: 'image',
-      DCARD_STR: 'dCard',
+      DCARD_STR: 'dcard',
       COUPON_STR: 'coupon',
-      SERTIFICATE_STR: 'sertificate',
+      CERTIFICATE_STR : 'certificate',
       SHARE_STR: 'share',
       SPECIALOFFER_STR: 'specialOffer',
-      API_ORGANIZATION_ROUTE: '/organization/',
+      API_NOTIFICATION_ROUTE: '/notification/',
+      API_ORGANIZATION_ROUTE: '/organization-simple/',
       API_ORGANIZATION_SIMPLE_ROUTE : '/organization/simple',
       API_IMAGE_ROUTE: '/images/',
       API_IMAGE_ROUTE2: '/image/',
@@ -34,7 +35,8 @@
       API_DEATTACH_SHARE_FROM_ORGANIZATION_ROUTE: '/deattach-share/',
       API_ATTACH_SHARE_TO_USER_ROUTE: '/attach-share/',
       API_DEATTACH_SHARE_FROM_USER_ROUTE: '/remove-share/',
-      API_USER_ROUTE: '/user/',
+      API_USER_ROUTE: '/user-simple/',
+      API_CITES_ROUTE: '/cities/',
        methods: {
         GET: 'GET',
         POST: 'POST',

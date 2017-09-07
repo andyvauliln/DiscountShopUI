@@ -4,7 +4,7 @@
         .module('app.core')
         .service('categoryService', categoryService);
 
-    categoryService.$inject = ['$http', '$q',  'categoryModel',  'API', 'appConfig'];
+    categoryService.$inject = ['$http', '$q',  'categoryModel',  'API', 'appConfig','logger'];
 
     /**
     *   Service responsible for all actions on categorys (API calls, caching, events)
@@ -14,13 +14,15 @@
     *   @param {API} API - cFactory API wrapper service
     *   @param {Object} 'config' - Application configuration
     */
-    function categoryService($http, $q, categoryModel, API, appConfig) {
+    function categoryService($http, $q, categoryModel, API, appConfig,logger) {
 
         var service = this;
 
         // public methods
         service.getAll = getAll;
-        
+        service.getById = getById;
+        service.remove = remove;
+        service.addOrUpdate = addOrUpdate;
 
         activate();
 

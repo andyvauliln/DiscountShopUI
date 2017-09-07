@@ -1,0 +1,48 @@
+ <section class="mainbar">
+  <section class="matter">
+ <table st-table="categories"  class="table table-striped">
+   <thead>
+    <tr style="font-weight: bold">
+      <td>Id</td>
+      <td>Имя</td>
+      <td>Описание</td>
+      <td>Управление</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="category in vm.categories">
+      <td>
+          {{ category.objId || 'empty' }}
+      </td>
+      <td>
+         <span editable-text="category.name" e-name="name" e-form="rowform">
+          {{ category.name || 'empty' }}
+        </span>
+      </td>
+      <td>
+        <span editable-text="category.objDescription" e-name="name" e-form="rowform">
+          {{ category.objDescription || 'empty' }}
+        </span>
+      </td>
+      <td style="white-space: nowrap">
+        <!-- form -->
+        <form editable-form name="rowform" onaftersave="vm.saveCategory(category)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == category">
+          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+            Сохранить
+          </button>
+          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+            Отмена
+          </button>
+        </form>
+        <div class="buttons" ng-show="!rowform.$visible">
+          <button type="button" class="btn btn-primary" ng-click="rowform.$show()">Редактировать</button>
+          <button type="button" class="btn btn-danger" ng-click="vm.removeCategory(category)">Удалить</button>
+        </div>  
+      </td>
+    </tr>
+    <tbody>
+  </table>
+
+  <button type="button" class="btn btn-default" ng-click="vm.addCategory()">Добавить категорию</button>
+</section>
+</section>

@@ -5,9 +5,10 @@
     .module('app.core')
     .factory('dataservice', dataservice);
 
-  dataservice.$inject = ['$http', '$q', 'exception', 'logger','organizationService', 'categoryService', 'userService', 'shopService', 'imageService','shareService'];
+  dataservice.$inject = ['$http', '$q', 'exception', 'logger','organizationService', 'categoryService', 
+                        'userService', 'shopService', 'imageService','shareService', 'manageService'];
   /* @ngInject */
-  function dataservice($http, $q, exception, logger, organizationService, categoryService, userService, shopService, imageService,shareService) {
+  function dataservice($http, $q, exception, logger, organizationService, categoryService, userService, shopService, imageService,shareService, manageService) {
     var service = {
       //Organization Api
       organizationService: organizationService,
@@ -15,7 +16,8 @@
       userService : userService,
       shopService : shopService,
       imageService : imageService,
-      shareService : shareService
+      shareService : shareService,
+      manageService : manageService
       
     };
  

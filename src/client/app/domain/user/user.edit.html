@@ -1,0 +1,66 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Редактирование Пользователя</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" data-editable-form name="editUserForm" onaftersave="vm.saveUser(vm.currentUser)">
+<div class="form-group">
+  <label class="control-label">Имя:              </label>
+  <span e-name="name" e-required editable-text="vm.currentUser.firstName">{{ vm.currentUser.firstName || "empty" }}</span>
+</div>
+<div class="form-group">
+  <label class="control-label">Фамилия:              </label>
+  <span e-name="name" e-required editable-text="vm.currentUser.lastName">{{ vm.currentUser.lastName || "empty" }}</span>
+</div>
+<div class="form-group">
+  <label class="control-label">Емэйл:              </label>
+  <span e-name="name" e-required editable-text="vm.currentUser.email">{{ vm.currentUser.email || "empty" }}</span>
+</div>
+<div class="form-group">
+  <label class="control-label">Телефон:              </label>
+  <span e-name="name" e-required editable-text="vm.currentUser.phone">{{ vm.currentUser.phone || "empty" }}</span>
+</div>
+<div class="form-group">
+  <label class="control-label">Очки:              </label>
+  <span e-name="name" e-required editable-text="vm.currentUser.points">{{ vm.currentUser.points || "empty" }}</span>
+</div>
+<div class="form-group">
+  <label class="control-label">Дата Рождения:</label>
+  <a href="#" editable-bsdate="vm.currentUser.dateOfBirth" e-is-open="vm.opened.$data" e-ng-click="vm.open($event,'$data')"
+    e-datepicker-popup="dd-MMMM-yyyy">
+             {{ (vm.currentUser.dateOfBirth | date:"dd/MM/yyyy") || 'empty' }}
+            </a>
+</div>
+<div class="form-group">
+  <label class="control-label">Пол:              </label>
+  <a href="#" editable-radiolist="vm.currentUser.male" e-ng-options="s.value as s.text for s in ::vm.males track by s.value">
+    {{ vm.showMale() }}
+  </a>
+</div>
+
+
+<div class="buttons">
+  <!-- button to show form -->
+  <button type="button" class="btn btn-default" ng-click="editUserForm.$show()" ng-show="!editUserForm.$visible">
+        Edit
+      </button>
+  <!-- buttons to submit / cancel form -->
+  <span ng-show="editUserForm.$visible">
+        <br/>
+        <button type="submit" class="btn btn-primary"  ng-disabled="editUserForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editUserForm.$waiting" ng-click="editUserForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>

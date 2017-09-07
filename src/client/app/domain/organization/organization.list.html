@@ -1,26 +1,20 @@
-<div >
-    {{organization.id}}   
-</div>
-
 <table st-table="organizations"  class="table table-striped">
 	<thead>
 	<tr>
-		<th>Name</th>
-		<th>Description</th>
+		<th>Имя</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr ng-repeat="organization in vm.organizations">
 		<td>{{organization.name || 'empty'}}</td>
-		<td>{{organization.objDescription || 'empty'}}</td>
-        <td><button type="button" ng-click="vm.editOrgaziation(organization);"  class="btn btn-md btn-info">Edit</button></td>
-        <td><button type="button" ng-click="vm.deleteOrganization(organization);"  class="btn btn-md btn-info">Delete</button></td>
-        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.SHOP_STR)" class="btn btn-md btn-primary">Shops</button></td>
-		<td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.DCARD_STR)" class="btn btn-md btn-primary">Discount Cards</button></td>
-        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.COUPON_STR)" class="btn btn-md btn-primary">Coupons</button></td>
-        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.CERTIFICATE_STR)" class="btn btn-md btn-primary">Certificates</button></td>
-        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.SPECIALOFFER_STR)" class="btn btn-md btn-primary">Special Offers</button></td>
-        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.IMAGE_STR)" class="btn btn-md btn-primary">Images</button></td>
+        <td><button type="button" ng-click="vm.editOrgaziation(organization);"  class="btn btn-md btn-info">Редактировать</button></td>
+        <td><button type="button" ng-click="vm.confirmDelete(organization);"  class="btn btn-md btn-info">Удалить</button></td>
+        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.SHOP_STR)" class="btn btn-md btn-primary">Магазин</button></td>
+		<td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.DCARD_STR)" class="btn btn-md btn-primary">Дисконтные карты</button></td>
+        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.COUPON_STR)" class="btn btn-md btn-primary">Купоны</button></td>
+        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.CERTIFICATE_STR)" class="btn btn-md btn-primary">Сертификаты</button></td>
+        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.SPECIALOFFER_STR)" class="btn btn-md btn-primary">Акции</button></td>
+        <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.IMAGE_STR)" class="btn btn-md btn-primary">Картнки</button></td>
 	</tr>
 	</tbody>
 </table>

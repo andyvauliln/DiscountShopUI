@@ -4,7 +4,7 @@
         .module('app.core')
         .service('userService', userService);
 
-    userService.$inject = ['$http', '$q',  'userModel',  'API', 'appConfig'];
+    userService.$inject = ['$http', '$q',  'userModel',  'API', 'appConfig', 'logger'];
 
     /**
     *   Service responsible for all actions on users (API calls, caching, events)
@@ -14,13 +14,17 @@
     *   @param {API} API - cFactory API wrapper service
     *   @param {Object} 'config' - Application configuration
     */
-    function userService($http, $q, userModel, API, appConfig) {
+    function userService($http, $q, userModel, API, appConfig, logger) {
 
         var service = this;
 
         // public methods
         service.getAll = getAll;
-        
+        service.getById = getById;
+        service.remove = remove;
+        service.addOrUpdate = addOrUpdate;
+        service.attachShare = attachShare;
+        service.deattachShare = deattachShare;
 
         activate();
 
@@ -55,6 +59,27 @@
                     return  response.data.users.map(function(user) {
                         return new userModel(user);
                     });
+                }
+            });
+        }
+
+         /**
+        *   Calls API to get all users 
+        *   @returns {Promise|userModel[]} - When promise is resolved returns an array of users
+        */
+        function getCities() {
+
+           
+            return API.http({
+                method: appConfig.methods.GET,
+                url: appConfig.API_CITIES_ROUTE,
+                params: {}
+            })
+            .then(function(response) {
+
+                if (response.data) {
+
+                    return  response.data.cities;
                 }
             });
         }
@@ -98,7 +123,7 @@
             return API.http({
                 method: appConfig.methods.POST,
                 url: appConfig.API_USER_ROUTE,
-                params: item
+                data: item
             })
             .then(function(response) {
 

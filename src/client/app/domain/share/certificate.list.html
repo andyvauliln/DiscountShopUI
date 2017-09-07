@@ -1,0 +1,77 @@
+<button type="button" ng-click="vm.addShare(2);" class="btn btn-md btn-info">Добавить Сертификат</button>
+<div ng-repeat="share in vm.getShares() | filter:{ type: 2 } " class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+ <div class="jumbotron well">
+<form editable-form name="dcardForm" onaftersave="vm.saveShare(share)">
+
+<div>
+    <span class="title">Активный: </span>
+    <span e-required editable-select="share.isActive" e-ng-options="s.value as s.text for s in vm.statuses">{{ vm.showStatuses(share) }}</span>
+</div>
+<div>
+    <span class="title"> Баркод : </span>
+    <span  editable-text="share.barcode">{{ share.barcode || "empty" }}</span>
+</div>
+<div>
+    <span class="title">Описание: </span>
+    <span editable-text="share.objDescription">{{ share.objDescription || "empty" }}</span>
+</div>
+<div>
+    <span class="title">Сумма: </span>
+    <span editable-text="share.percentage">{{ share.percentage || "empty" }}</span>
+</div>
+<div>
+    <span class="title">Дата окончания</span>
+    <a href="#" editable-bsdate="share.timeLimit" e-is-open="opened.$data" e-ng-click="open($event,'$data')" e-datepicker-popup="dd-MMMM-yyyy">
+             {{ (share.timeLimit | date:"dd/MM/yyyy") || 'empty' }}
+    </a>
+</div>
+<div>
+    <span class="title">Лимит по колличеству: </span>
+    <span editable-text="share.countLimit">{{ share.countLimit || "empty" }}</span>
+</div>
+<div>
+    <span class="title">Ссылка на сайт: </span>
+    <span  editable-text="share.detailsUrl">{{ share.detailsUrl || "empty" }}</span>
+</div>
+<span class="title">Лицевая сторона </span>
+<img ng-src="{{vm.getImageUrlByPrefix(share, 'Front')}}" height="180px" width="300px"></img>
+<span class="title">Задняя сторона </span>
+<img ng-src="{{vm.getImageUrlByPrefix(share, 'Back')}}" height="180px" width="300px"></img>
+
+
+
+<div class="buttons margin-0-20">
+
+    <!-- button to show form -->
+    <button type="button" class="btn btn-default" ng-click="dcardForm.$show()" ng-show="!dcardForm.$visible">
+        Редактировать
+      </button>
+
+      
+
+    <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)" ng-show="!dcardForm.$visible">
+        Удалить
+      </button>
+    <!-- buttons to submit / cancel form -->
+    <span ng-show="dcardForm.$visible">
+        <button type="submit" class="btn btn-primary"  ng-disabled="dcardForm.$waiting">
+          Сохранить
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="dcardForm.$waiting" ng-click="dcardForm.$cancel()">
+          Отмена
+        </button>
+      </span>
+</div>
+
+</form>
+<div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToDcard($files, share, 'Front')">
+    <button flow-btn class="btn btn-md btn-info">{{'Добавить лицевую картинку'}}</button>
+</div>
+ <button type="button" class="btn btn-default" ng-click="vm.showMessageWindow(['shareId:' + share.objId])" ng-show="!dcardForm.$visible">
+        Послать сообщение
+      </button>
+<div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToDcard($files, share, 'Back')">
+    <button flow-btn class="btn btn-md btn-info">{{'Добавить заднию картинку'}}</button>
+</div>
+</div>
+</div>

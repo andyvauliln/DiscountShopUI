@@ -1,0 +1,26 @@
+<section class="mainbar">
+  <section class="matter">
+    <!--Mange Panel-->
+    <div class="jumbotron well">
+      Таблица пользователей
+      <button type="button" ng-click="vm.addUser();"  class="btn btn-md btn-info">Добавить пользователя</button>
+    </div>
+    <div class="container" ng-include="'app/domain/user/user.list.html'"> </div>
+    <ul class="nav nav-tabs"  ng-show="vm.currentUser">
+      <li class="active"> <a  name="dcard" ng-click="vm.toggleTab(vm.appConfig.DCARD_STR)" data-toggle="tab"  href="#">Дискаунтные карты</a></li>
+      <li>               <a name="coupon" ng-click="vm.toggleTab(vm.appConfig.COUPON_STR)" data-toggle="tab" href="#">Купоны</a></li>
+      <li>               <a name="certificate" ng-click="vm.toggleTab(vm.appConfig.CERTIFICATE_STR)" data-toggle="tab" href="#">Сертифика</a></li>
+      <li>               <a name="specialOffer" ng-click="vm.toggleTab(vm.appConfig.SPECIALOFFER_STR)" data-toggle="tab" href="#">Акции</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="dcard" ng-include="'app/domain/share/dcard.user.list.html'" class="tab-pane fade"></div>
+      <div id="coupon" ng-include="'app/domain/share/coupon.user.list.html'" class="tab-pane fade"></div>
+      <div id="certificate" ng-include="'app/domain/share/certificate.user.list.html'" class="tab-pane fade"></div>
+      <div id="specialOffer" ng-include="'app/domain/share/specialOffer.user.list.html'" class="tab-pane fade"></div>
+    </div>
+    <style> 
+.editable-checklist label {
+  display: block;
+}
+</style>
+

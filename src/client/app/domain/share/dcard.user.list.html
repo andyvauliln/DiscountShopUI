@@ -19,20 +19,12 @@
       <span class="title">Проценты: </span>
       <span e-required editable-text="share.percentage">{{ share.percentage|| "empty" }}</span>
     </div>
-   <div>
-    <span class="title">Дата окончания</span>
-    <a href="#" editable-bsdate="share.timeLimit" e-is-open="opened.$data" e-ng-click="open($event,'$data')" e-datepicker-popup="dd-MMMM-yyyy">
-             {{ (share.timeLimit | date:"dd/MM/yyyy") || 'empty' }}
-    </a>
-</div>
-<div>
-    <span class="title">Лимит по колличеству: </span>
-    <span editable-text="share.countLimit">{{ share.countLimit || "empty" }}</span>
-</div>
-<div>
-    <span class="title">Ссылка на сайт: </span>
-    <span  editable-text="share.detailsUrl">{{ share.detailsUrl || "empty" }}</span>
-</div>
+    <div>
+      <span class="title">Дата в новых </span>
+      <a href="#" editable-bsdate="share.dateInNew" e-is-open="opened.$data" e-ng-click="open($event,'$data')" e-datepicker-popup="dd-MMMM-yyyy">
+             {{ (share.dateInNew | date:"dd/MM/yyyy") || 'empty' }}
+  </a>
+    </div>
      <span class="title">Лицевая сторона </span>
      <img ng-src="{{vm.getImageUrlByPrefix(share, 'Front')}}" height="180px" width="300px"></img>
      <span class="title">Задняя сторона </span>
@@ -40,25 +32,11 @@
      
 
 
+   
     <div class="buttons margin-0-20">
-      
-      <!-- button to show form -->
-      <button type="button" class="btn btn-default" ng-click="dcardForm.$show()" ng-show="!dcardForm.$visible">
-        Редактировать
-      </button>
-
-      <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)" ng-show="!dcardForm.$visible">
+      <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)">
         Удалить
       </button>
-      <!-- buttons to submit / cancel form -->
-      <span ng-show="dcardForm.$visible">
-        <button type="submit" class="btn btn-primary"  ng-disabled="dcardForm.$waiting">
-          Сохранить
-        </button>
-        <button type="button" class="btn btn-default" ng-disabled="dcardForm.$waiting" ng-click="dcardForm.$cancel()">
-          Отмена
-        </button>
-      </span>
     </div>
 
   </form>
