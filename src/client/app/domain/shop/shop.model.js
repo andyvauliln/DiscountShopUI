@@ -19,6 +19,7 @@
             this.name = (shop && shop.name) ? shop.name : '';
             this.address = (shop && shop.address) ? shop.address : '';
             this.city = (shop && shop.city) ? shop.city : '';
+            this.password = (shop && shop.password) ? shop.password : '';
             this.phone = (shop && shop.phone) ? shop.phone : '';
             this.shedule = (shop && shop.shedule) ? shop.shedule : '';
             this.latitude = (shop && shop.latitude) ? shop.latitude : '';

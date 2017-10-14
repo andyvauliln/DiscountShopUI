@@ -4,7 +4,8 @@
   angular.module('app.user', [
     'app.core',
     'app.widgets',
-    'xeditable'
+    'xeditable',
+    'angucomplete'
   ]);
 
 })();

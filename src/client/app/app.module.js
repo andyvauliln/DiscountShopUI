@@ -11,6 +11,7 @@
     'app.layout', 
     'angularModalService',
     'checklist-model',
+    'ngFileSaver'
 
   ]);
 })();

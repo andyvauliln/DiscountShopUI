@@ -37,6 +37,7 @@
       API_DEATTACH_SHARE_FROM_USER_ROUTE: '/remove-share/',
       API_USER_ROUTE: '/user-simple/',
       API_CITES_ROUTE: '/cities/',
+      API_EXPORT_ROUTE: '/organization/export/',
        methods: {
         GET: 'GET',
         POST: 'POST',

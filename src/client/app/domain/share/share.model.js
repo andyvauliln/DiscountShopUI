@@ -27,6 +27,7 @@
             this.detailsUrl = (share && share.detailsUrl) ? share.detailsUrl : '';
             this.timeLimit = (share && share.timeLimit) ? share.timeLimit : '';
             this.uniqueCode = (share && share.uniqueCode) ? share.uniqueCode : '';
+            this.customBarcode = (share && share.customBarcode) ? share.customBarcode : '';
            
         }
 

@@ -70,6 +70,14 @@
           this.attachCategory = vm.attachCategory;
           this.saveUser = vm.saveUser;
           this.opened = {};
+          this.setCity = function(){
+            var cityStr = $('#city_value').val();
+            if(cityStr && cityStr.length > 0){
+              var cityId = cityStr.split(' ')[0]
+              this.currentUser.cityId = cityId;
+            }
+            
+          };
           this.open = function ($event, elementOpened) {
             $event.preventDefault();
             $event.stopPropagation();

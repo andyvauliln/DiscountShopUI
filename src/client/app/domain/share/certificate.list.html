@@ -5,11 +5,15 @@
 
 <div>
     <span class="title">Активный: </span>
-    <span e-required editable-select="share.isActive" e-ng-options="s.value as s.text for s in vm.statuses">{{ vm.showStatuses(share) }}</span>
+    <span>{{ vm.showStatuses(share) }}</span>
 </div>
 <div>
     <span class="title"> Баркод : </span>
-    <span  editable-text="share.barcode">{{ share.barcode || "empty" }}</span>
+    <span>{{ share.barcode || "empty" }}</span>
+</div>
+<div>
+    <span class="title">Специальный Баркод : </span>
+    <span e-placeholder="обязательно 9 знаков"  editable-text="share.customBarcode">{{ share.customBarcode || "empty" }}</span>
 </div>
 <div>
     <span class="title">Описание: </span>

@@ -1,53 +1,57 @@
 <button type="button" ng-click="vm.addShare(1);" class="btn btn-md btn-info">Добавить Купон</button>
 <div ng-repeat="share in vm.getShares() | filter:{ type: 1 } " class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-   <div class="jumbotron well">
-  <form  editable-form name="couponForm" onaftersave="vm.saveShare(share)">
+  <div class="jumbotron well">
+    <form editable-form name="couponForm" onaftersave="vm.saveShare(share)">
 
-    <div>
-      <span class="title">Активный: </span>
-      <span e-required editable-select="share.isActive" e-ng-options="s.value as s.text for s in vm.statuses">{{ vm.showStatuses(share) }}</span>
-    </div>
-    <div>
-      <span class="title"> Баркод : </span>
-      <span e-required editable-text="share.barcode">{{ share.barcode|| "empty" }}</span>
-    </div>
-    <div>
-      <span class="title">Описание: </span>
-      <span e-required editable-text="share.objDescription">{{ share.objDescription|| "empty" }}</span>
-    </div>
-    <div>
-      <span class="title">Проценты: </span>
-      <span e-required editable-text="share.percentage">{{ share.percentage|| "empty" }}</span>
-    </div>
-   <div>
-    <span class="title">Дата окончания</span>
-    <a href="#" editable-bsdate="share.timeLimit" e-is-open="opened.$data" e-ng-click="open($event,'$data')" e-datepicker-popup="dd-MMMM-yyyy">
+      <div>
+        <span class="title">Активный: </span>
+        <span>{{ vm.showStatuses(share) }}</span>
+      </div>
+      <div>
+        <span class="title"> Баркод : </span>
+        <span>{{ share.barcode|| "empty" }}</span>
+      </div>
+      <div>
+        <span class="title">Специальный Баркод : </span>
+        <span e-placeholder="обязательно 9 знаков" editable-text="share.customBarcode">{{ share.customBarcode || "empty" }}</span>
+      </div>
+      <div>
+        <span class="title">Описание: </span>
+        <span e-required editable-text="share.objDescription">{{ share.objDescription|| "empty" }}</span>
+      </div>
+      <div>
+        <span class="title">Проценты: </span>
+        <span e-required editable-text="share.percentage">{{ share.percentage|| "empty" }}</span>
+      </div>
+      <div>
+        <span class="title">Дата окончания</span>
+        <a href="#" editable-bsdate="share.timeLimit" e-is-open="opened.$data" e-ng-click="open($event,'$data')" e-datepicker-popup="dd-MMMM-yyyy">
              {{ (share.timeLimit | date:"dd/MM/yyyy") || 'empty' }}
     </a>
-</div>
-<div>
-    <span class="title">Лимит по колличеству: </span>
-    <span editable-text="share.countLimit">{{ share.countLimit || "empty" }}</span>
-</div>
-<div>
-    <span class="title">Ссылка на сайт: </span>
-    <span  editable-text="share.detailsUrl">{{ share.detailsUrl || "empty" }}</span>
-</div>
-    <img ng-src="{{vm.getImageUrl(share)}}" height="180px" width="300px"></img>
+      </div>
+      <div>
+        <span class="title">Лимит по колличеству: </span>
+        <span editable-text="share.countLimit">{{ share.countLimit || "empty" }}</span>
+      </div>
+      <div>
+        <span class="title">Ссылка на сайт: </span>
+        <span editable-text="share.detailsUrl">{{ share.detailsUrl || "empty" }}</span>
+      </div>
+      <img ng-src="{{vm.getImageUrl(share)}}" height="180px" width="300px"></img>
 
 
-    <div class="buttons margin-0-20">
-      
-      <!-- button to show form -->
-      <button type="button" class="btn btn-default" ng-click="couponForm.$show()" ng-show="!couponForm.$visible">
+      <div class="buttons margin-0-20">
+
+        <!-- button to show form -->
+        <button type="button" class="btn btn-default" ng-click="couponForm.$show()" ng-show="!couponForm.$visible">
         Редактировать
       </button>
 
-      <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)" ng-show="!couponForm.$visible">
+        <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)" ng-show="!couponForm.$visible">
         Удалить
       </button>
-      <!-- buttons to submit / cancel form -->
-      <span ng-show="couponForm.$visible">
+        <!-- buttons to submit / cancel form -->
+        <span ng-show="couponForm.$visible">
         <button type="submit" class="btn btn-primary" ng-disabled="couponForm.$waiting">
           Сохранить
         </button>
@@ -55,11 +59,11 @@
           Отмена
         </button>
       </span>
-    </div>
-
-  </form>
-  <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToCoupon($files, share)">
-        <button flow-btn class="btn btn-md btn-info">{{share.images.length > 0 ? 'Обновить Картинку': 'Добавить Картинку'}}</button>
       </div>
-</div>
+
+    </form>
+    <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToCoupon($files, share)">
+      <button flow-btn class="btn btn-md btn-info">{{share.images.length > 0 ? 'Обновить Картинку': 'Добавить Картинку'}}</button>
+    </div>
+  </div>
 </div>

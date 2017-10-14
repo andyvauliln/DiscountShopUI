@@ -24,8 +24,9 @@
             this.shares = (user && user.shareItems) ? user.shareItems.map(function(share){ return new shareModel(share)})  : [];
             this.dateOfBirth = (user && user.dateOfBirth) ? user.dateOfBirth : null;
             this.male = (user && user.male) ? user.male : null;
-            this.city = (user && user.city) ? user.city : null;
+            this.city = (user && user.cityModel) ? user.cityModel : null;
             this.phone = (user && user.phone) ? user.phone : null;
+            this.cityId = (user && user.cityId) ? user.cityId : null;
         }
 
         return userModel;

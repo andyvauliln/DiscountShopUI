@@ -17,8 +17,14 @@
     vm.IsShowCategoryFilter = false;
     vm.isShowCategoryFilter = false;
     vm.statuses = [{value:true, text: 'Активный'},{value:false, text: 'Не активный'}];
+    vm.exportUrl = appConfig.API_HOST + appConfig.API_EXPORT_ROUTE;
     //Shops
-
+    $scope.opened = {};
+    $scope.open = function ($event, elementOpened) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.opened[elementOpened] = !$scope.opened[elementOpened];
+  }
 
     //DiscountCards
 
@@ -92,7 +98,7 @@
           this.saveOrganization = vm.saveOrganization;
           this.opened = {};
           this.setDescription = function(org){
-            console.log(org);
+            this.currentOrganization.objDescription = org;
           };
           this.options = {
             language: 'en',
@@ -102,7 +108,7 @@
           this.open = function ($event, elementOpened) {
             $event.preventDefault();
             $event.stopPropagation();
-            this.opened[elementOpened] = this.opened[elementOpened];
+            this.opened[elementOpened] = !this.opened[elementOpened];
           };
         },
         controllerAs: 'vm'
