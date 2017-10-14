@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     angular
         .module('app.core')
@@ -19,6 +19,8 @@
 
         // public methods
         service.sendPushNotification = sendPushNotification;
+        service.sendPushNotificationToOrganization = sendPushNotificationToOrganization;
+        service.sendPushNotificationToShare = sendPushNotificationToShare;
 
 
         activate();
@@ -41,16 +43,42 @@
         */
         function sendPushNotification(message, tags) {
 
-           
+
             return API.http({
                 method: appConfig.methods.POST,
                 url: appConfig.API_NOTIFICATION_ROUTE,
-                data:{"message":message,tags:tags}
+                data: { "message": message, "tags": tags }
             })
-            .then(function(response) {
+                .then(function (response) {
 
-               
+
+            });
+        }
+        function sendPushNotificationToOrganization(message, organizationId) {
+
+
+            return API.http({
+                method: appConfig.methods.POST,
+                url: appConfig.API_NOTIFICATION_ORGANIZATION_ROUTE,
+                data: { "message": message, "Id": organizationId }
+            })
+                .then(function (response) {
+
+
+            });
+        }
+        function sendPushNotificationToShare(message, shareId) {
+
+
+            return API.http({
+                method: appConfig.methods.POST,
+                url: appConfig.API_NOTIFICATION_SHARE_ROUTE,
+                data: { "message": message, "Id": shareId }
+            })
+                .then(function (response) {
+
+
             });
         }
     }
-}());
+} ());

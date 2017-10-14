@@ -50,7 +50,9 @@
     <button type="button" class="btn btn-default" ng-click="dcardForm.$show()" ng-show="!dcardForm.$visible">
         Редактировать
       </button>
-
+ <button type="button" class="btn btn-default" ng-click="vm.showMessageWindowForShare(share.objId)" ng-show="!couponForm.$visible">
+        Послать Push
+      </button>
       
 
     <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)" ng-show="!dcardForm.$visible">

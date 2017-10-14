@@ -46,7 +46,9 @@
         <button type="button" class="btn btn-default" ng-click="specialOferForm.$show()" ng-show="!specialOferForm.$visible">
         Редактировать
       </button>
-
+      <button type="button" class="btn btn-default" ng-click="vm.showMessageWindowForShare(share.objId)" ng-show="!couponForm.$visible">
+        Послать Push
+      </button>
         <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)" ng-show="!specialOferForm.$visible">
         Удалить
       </button>

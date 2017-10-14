@@ -17,6 +17,8 @@
       SHARE_STR: 'share',
       SPECIALOFFER_STR: 'specialOffer',
       API_NOTIFICATION_ROUTE: '/notification/',
+      API_NOTIFICATION_ORGANIZATION_ROUTE: '/notification/organization',
+      API_NOTIFICATION_SHARE_ROUTE: '/notification/share',
       API_ORGANIZATION_ROUTE: '/organization-simple/',
       API_ORGANIZATION_SIMPLE_ROUTE : '/organization/simple',
       API_IMAGE_ROUTE: '/images/',

@@ -8,11 +8,11 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label class="control-label">Имя:              </label>
-                    <input ng-model="vm.message"></input>
+                    <label class="control-label">Сообщение:              </label>
+                    <textarea cols="65" lang="140" ng-model="vm.message"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" ng-click="vm.sendPushNotification(vm.message, vm.tags)">
-                   Сохранить
+                <button type="submit" class="btn btn-primary" ng-click="vm.sendPushNotification(vm.message, vm.targetId)">
+                   Послать
                 </button>
                 <button type="button" class="btn btn-default" ng-click="close(false)" data-dismiss="modal">
                     Отмена

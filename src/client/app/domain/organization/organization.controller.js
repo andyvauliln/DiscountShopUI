@@ -21,10 +21,10 @@
     //Shops
     $scope.opened = {};
     $scope.open = function ($event, elementOpened) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.opened[elementOpened] = !$scope.opened[elementOpened];
-  }
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened[elementOpened] = !$scope.opened[elementOpened];
+    };
 
     //DiscountCards
 
@@ -52,8 +52,8 @@
         logger.info('Activated Organization View');
       });
     }
-    //  $('#textEdit').editable();
-    vm.showMessageWindow = function (tags) {
+
+    vm.showMessageWindowForOrganization = function (orgniazationId) {
 
       // Just provide a template url, a controller and call 'showModal'.
       ModalService.showModal({
@@ -61,9 +61,38 @@
         controller:
         function (close) {
           this.message = "";
-          this.tags = tags;
+          this.targetId = orgniazationId;
           this.close = result => close(result, 500);
-          this.sendPushNotification = dataservice.manageService.sendPushNotification;
+          this.sendPushNotification = dataservice.manageService.sendPushNotificationToOrganization;
+          this.opened = {};
+         
+          this.open = function ($event, elementOpened) {
+           $event.preventDefault();
+           $event.stopPropagation();
+          this.opened[elementOpened] = !this.opened[elementOpened];
+    };
+        },
+        controllerAs: 'vm'
+      }).then(function (modal) {
+
+        modal.element.modal();
+        modal.close.then(function (result) {
+          $scope.message = result ? "You said Yes" : "You said No";
+        });
+      });
+    };
+    
+    vm.showMessageWindowForShare = function (shareId) {
+
+      // Just provide a template url, a controller and call 'showModal'.
+      ModalService.showModal({
+        templateUrl: "app/layout/notification.template.html",
+        controller:
+        function (close) {
+          this.message = "";
+          this.targetId = shareId;
+          this.close = result => close(result, 500);
+          this.sendPushNotification = dataservice.manageService.sendPushNotificationToShare;
           this.opened = {};
          
           this.open = function ($event, elementOpened) {
@@ -438,6 +467,7 @@
       vm.currentOrganization = org;
       vm.showConfirmModal = true;
     };
+    
 
 
 

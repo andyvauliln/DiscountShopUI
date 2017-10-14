@@ -28,6 +28,8 @@
             this.images = (organization && organization.images) ? organization.images.map(function(image){ return new imageModel(image)})  : [];
             this.shares = (organization && organization.shareItems) ? organization.shareItems.map(function(image){ return new shareModel(image)})  : [];
             this.categoryIds = (organization && organization.categories) ?  organization.categories.map(function(category){ return category.objId}) : [];
+            //this.discountCards = (organization && organization.discountCards) ? organization.discountCards.map(function(discountCard){ return new shareModel(discountCard)})  : [];
+           // this.coupons = (organization && organization.coupons) ? organization.coupons.map(function(coupon){ return new shareModel(coupon)})  : [];
         }
 
         return organizationModel;
