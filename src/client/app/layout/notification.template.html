@@ -11,7 +11,14 @@
                     <label class="control-label">Сообщение:              </label>
                     <textarea cols="65" lang="140" ng-model="vm.message"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" ng-click="vm.sendPushNotification(vm.message, vm.targetId)">
+                <div class="form-group">
+                    <label class="control-label">OC:              </label>
+                    <input type="radio" name="OS"  ng-model="vm.OS.name" value="Android">Android</input>
+                    <input type="radio" name="OS"  ng-model="vm.OS.name" value="iOS">iOS</input>
+                    <input type="radio" name="OS"  ng-model="vm.OS.name" value="All">All</input>
+                    
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="vm.sendPushNotification(vm.message, vm.targetId, vm.OS.name)">
                    Послать
                 </button>
                 <button type="button" class="btn btn-default" ng-click="close(false)" data-dismiss="modal">

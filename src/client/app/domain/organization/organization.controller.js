@@ -18,7 +18,7 @@
     vm.isShowCategoryFilter = false;
     vm.statuses = [{value:true, text: 'Активный'},{value:false, text: 'Не активный'}];
     vm.exportUrl = appConfig.API_HOST + appConfig.API_EXPORT_ROUTE;
-    //Shops
+    
     $scope.opened = {};
     $scope.open = function ($event, elementOpened) {
       $event.preventDefault();
@@ -46,7 +46,6 @@
 
     activate();
     function activate() {
-      logger.info(ckeditor);
       var promises = [getOrganizations(), getCategories()];
       return $q.all(promises).then(function () {
         logger.info('Activated Organization View');
@@ -63,7 +62,7 @@
           this.message = "";
           this.targetId = orgniazationId;
           this.close = result => close(result, 500);
-          this.sendPushNotification = dataservice.manageService.sendPushNotificationToOrganization;
+          this.sendPushNotification = dataservice.notificationService.sendPushNotificationToOrganization;
           this.opened = {};
          
           this.open = function ($event, elementOpened) {
@@ -92,9 +91,9 @@
           this.message = "";
           this.targetId = shareId;
           this.close = result => close(result, 500);
-          this.sendPushNotification = dataservice.manageService.sendPushNotificationToShare;
+          this.sendPushNotification = dataservice.notificationService.sendPushNotificationToShare;
           this.opened = {};
-         
+          this.OS = { name : 'All'}
           this.open = function ($event, elementOpened) {
            $event.preventDefault();
            $event.stopPropagation();
@@ -150,36 +149,49 @@
       });
 
     };
+
+    vm.filterValue = {};
+    vm.filterByCategory = function(item) {
+      var res = false;
+    if (vm.filteredCategories.length > 0) {
+
+     
+       for (var i = 0; i < vm.filteredCategories.length; i++){
+
+          if(item.categories.filter(function(elem){return elem.name === vm.filteredCategories[i]}).length > 0){
+
+            res = true;
+          }
+          
+        }
+      return res;
+    }
+    else { 
+      return item;
+    }
+  };
     vm.filteredCategories = []
     vm.filterCategory = function(category){
 
-    var index = -1;
-    //Вынести в объект
-    for(var i = 0, len = myArray.length; i < len; i++) {
-        if (filteredCategories[i].objId === category.objId) {
-            index = i;
-            break;
-        }
-     }
-     if(index > 0){
-       
-     }
+      var indexOfelem = vm.filteredCategories.indexOf(category.name);
 
-      filteredCategories.forEach(function(element) {
+      if(indexOfelem >= 0){
 
-        if(filteredCategories.filter(function(elm){ return elm.objId == category.objId}).length > 0){
+        vm.filteredCategories.splice(indexOfelem, 1);
 
-          filterCategory
-        }
-        
-      }, this);
-    }
+      }
+      else{
+         vm.filteredCategories.push(category.name);
+      }
+    };
 
 
     vm.showStatuses = function(item){
       var selected = vm.statuses.filter(function(status){return item.isActive == status.value});
       return (item.isActive != null && selected.length) ? selected[0].text : 'Not set';
     }
+
+    
 
     vm.attachOrganizationImage = function (files) {
       angular.forEach(files, function (flowFile, i) {

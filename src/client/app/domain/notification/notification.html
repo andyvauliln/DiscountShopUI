@@ -1,0 +1,19 @@
+<section class="mainbar">
+  <section class="matter">
+     <div class="jumbotron well">
+       Пуш Шаблоны
+       
+      <button type="button" ng-click="vm.addTemplate();"  class="btn btn-md btn-info">Добавить Шаблон</button>
+    </div>
+    <div class="container" ng-include="'app/domain/notification/notification.list.html'"> </div>
+    <cf-confirm-modal 
+      show-modal="vm.showConfirmModal" 
+      time-to-live="4000" 
+      modal-title="'Notification Template'" 
+      modal-message="'Вы действительно хотите удалить шаблон?'" 
+      modal-size="'m'" confirm-action="vm.deleteTemplate()" 
+      confirm-button-label="'Да'" 
+      cancel-button-label="'Нет'" >
+     </cf-confirm-modal>
+  </section>
+  </section>

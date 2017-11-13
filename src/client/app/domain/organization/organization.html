@@ -11,7 +11,7 @@
        <input type="checkbox" ng-click="vm.filterCategory(category)" value="category.objId">{{category.name}}
     </div>
     <div class="container" ng-include="'app/domain/organization/organization.list.html'"> </div>
-    <ul class="nav nav-tabs"  ng-show="vm.currentOrganization">
+    <ul class="nav nav-tabs"  ng-show="vm.currentOrganization ">
       <li class="active"><a name="shop" ng-click="vm.toggleTab(vm.appConfig.SHOP_STR)" data-toggle="tab" href="#">Магазины</a></li>
       <li>               <a name="dcard" ng-click="vm.toggleTab(vm.appConfig.DCARD_STR)" data-toggle="tab"  href="#">Дис. карты</a></li>
       <li>               <a name="coupon" ng-click="vm.toggleTab(vm.appConfig.COUPON_STR)" data-toggle="tab" href="#">Купоны</a></li>
@@ -42,5 +42,7 @@
 .editable-checklist label {
   display: block;
 }
+textarea.editable-input{
+    display: none;
+  }
 </style>
-

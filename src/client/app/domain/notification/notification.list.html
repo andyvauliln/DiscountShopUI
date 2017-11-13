@@ -1,0 +1,20 @@
+<table st-table="notifications"  class="table table-striped">
+	<thead>
+	<tr>
+		<th>Имя</th>
+		<th>Дата Активации</th>
+		<th>Дата Окончания</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="notification in vm.notificationTemplates">
+		<td>{{notification.name || 'empty'}}</td>
+		<td>{{notification.activationDate || 'empty'}}</td>
+		<td>{{notification.diactivationDate || 'empty'}}</td>
+        <td><button type="button" ng-click="vm.editTemplate(notification);"  class="btn btn-md btn-info">Редактировать</button></td>
+        <td><button type="button" ng-click="vm.confirmDelete(notification);"  class="btn btn-md btn-info">Удалить</button></td>
+
+	</tr>
+	</tbody>
+</table>
+

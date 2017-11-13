@@ -7,6 +7,7 @@
     'app.dashboard',
     'app.user',
     'app.organization',
+    'app.notification',
     'app.category',
     'app.layout', 
     'angularModalService',

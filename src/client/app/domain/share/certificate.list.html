@@ -1,7 +1,7 @@
 <button type="button" ng-click="vm.addShare(2);" class="btn btn-md btn-info">Добавить Сертификат</button>
-<div ng-repeat="share in vm.getShares() | filter:{ type: 2 } " class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+<div ng-repeat="share in vm.getShares() | filter:{ type: 2 } "  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
  <div class="jumbotron well">
-<form editable-form name="dcardForm" onaftersave="vm.saveShare(share)">
+<form editable-form name="certificateForm" onaftersave="vm.saveShare(share)">
 
 <div>
     <span class="title">Активный: </span>
@@ -15,10 +15,14 @@
     <span class="title">Специальный Баркод : </span>
     <span e-placeholder="обязательно 9 знаков"  editable-text="share.customBarcode">{{ share.customBarcode || "empty" }}</span>
 </div>
-<div>
-    <span class="title">Описание: </span>
-    <span editable-text="share.objDescription">{{ share.objDescription || "empty" }}</span>
-</div>
+<div class="form-group" ng-show="certificateForm.$visible">
+            <label class="control-label">Описание:              </label>
+            <span ckeditor="vm.options" ng-model="share.objDescription" e-rows="7" e-cols="40" editable-textarea="share.objDescription">{{ share.objDescription || "empty" }}</span>
+      </div>
+    <div class="form-group" ng-show="!certificateForm.$visible">
+      <span class="title">Описание: </span>
+      <span>{{ share.objDescription|| "empty" }}</span>
+    </div>
 <div>
     <span class="title">Сумма: </span>
     <span editable-text="share.percentage">{{ share.percentage || "empty" }}</span>
@@ -37,17 +41,20 @@
     <span class="title">Ссылка на сайт: </span>
     <span  editable-text="share.detailsUrl">{{ share.detailsUrl || "empty" }}</span>
 </div>
+<div class="form-group">
 <span class="title">Лицевая сторона </span>
 <img ng-src="{{vm.getImageUrlByPrefix(share, 'Front')}}" height="180px" width="300px"></img>
+</div>
+<div class="form-group">
 <span class="title">Задняя сторона </span>
 <img ng-src="{{vm.getImageUrlByPrefix(share, 'Back')}}" height="180px" width="300px"></img>
-
+</div>
 
 
 <div class="buttons margin-0-20">
 
     <!-- button to show form -->
-    <button type="button" class="btn btn-default" ng-click="dcardForm.$show()" ng-show="!dcardForm.$visible">
+    <button type="button" class="btn btn-default" ng-click="certificateForm.$show()" ng-show="!certificateForm.$visible">
         Редактировать
       </button>
  <button type="button" class="btn btn-default" ng-click="vm.showMessageWindowForShare(share.objId)" ng-show="!couponForm.$visible">
@@ -55,15 +62,15 @@
       </button>
       
 
-    <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)" ng-show="!dcardForm.$visible">
+    <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)" ng-show="!certificateForm.$visible">
         Удалить
       </button>
     <!-- buttons to submit / cancel form -->
-    <span ng-show="dcardForm.$visible">
-        <button type="submit" class="btn btn-primary"  ng-disabled="dcardForm.$waiting">
+    <span ng-show="certificateForm.$visible">
+        <button type="submit" class="btn btn-primary"  ng-disabled="certificateForm.$waiting">
           Сохранить
         </button>
-        <button type="button" class="btn btn-default" ng-disabled="dcardForm.$waiting" ng-click="dcardForm.$cancel()">
+        <button type="button" class="btn btn-default" ng-disabled="certificateForm.$waiting" ng-click="certificateForm.$cancel()">
           Отмена
         </button>
       </span>
@@ -73,7 +80,7 @@
 <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToDcard($files, share, 'Front')">
     <button flow-btn class="btn btn-md btn-info">{{'Добавить лицевую картинку'}}</button>
 </div>
- <button type="button" class="btn btn-default" ng-click="vm.showMessageWindow(['shareId:' + share.objId])" ng-show="!dcardForm.$visible">
+ <button type="button" class="btn btn-default" ng-click="vm.showMessageWindow(['shareId:' + share.objId])" ng-show="!certificateForm.$visible">
         Послать сообщение
       </button>
 <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToDcard($files, share, 'Back')">

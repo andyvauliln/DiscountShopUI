@@ -1,5 +1,5 @@
 <button type="button" ng-click="vm.addShare(0);" class="btn btn-md btn-info">Добавить Дисконтную Картру</button>
-<div ng-repeat="share in vm.getShares() | filter:{ type: 0 } " class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+<div ng-repeat="share in vm.getShares() | filter:{ type: 0 } " class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
    <div class="jumbotron well">
   <form  editable-form name="dcardForm" onaftersave="vm.saveShare(share)">
 
@@ -15,9 +15,13 @@
         <span class="title">Специальный Баркод : </span>
         <span e-placeholder="обязательно 9 знаков" editable-text="share.customBarcode">{{ share.customBarcode || "empty" }}</span>
       </div>
-    <div>
+       <div class="form-group" ng-show="dcardForm.$visible">
+            <label class="control-label">Описание:              </label>
+            <span ckeditor="vm.options" ng-model="share.objDescription" e-rows="7" e-cols="40" editable-textarea="share.objDescription">{{ share.objDescription || "empty" }}</span>
+      </div>
+    <div class="form-group" ng-show="!dcardForm.$visible">
       <span class="title">Описание: </span>
-      <span e-required editable-text="share.objDescription">{{ share.objDescription|| "empty" }}</span>
+      <span>{{ share.objDescription|| "empty" }}</span>
     </div>
     <div>
       <span class="title">Проценты: </span>
@@ -37,11 +41,14 @@
     <span class="title">Ссылка на сайт: </span>
     <span  editable-text="share.detailsUrl">{{ share.detailsUrl || "empty" }}</span>
 </div>
+<div class="form-group">
      <span class="title">Лицевая сторона </span>
      <img ng-src="{{vm.getImageUrlByPrefix(share, 'Front')}}" height="180px" width="300px"></img>
+ <div>  
+   <div class="form-group">
      <span class="title">Задняя сторона </span>
      <img ng-src="{{vm.getImageUrlByPrefix(share, 'Back')}}" height="180px" width="300px"></img>
-     
+   </div> 
 
 
     <div class="buttons margin-0-20">

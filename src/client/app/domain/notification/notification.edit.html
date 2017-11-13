@@ -1,0 +1,66 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Редактирование Шаблона</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" data-editable-form name="editTemplateForm"  onaftersave="vm.saveTemplate(vm.currentTemplate)">
+          <div class="form-group">
+            <label class="control-label">Имя:              </label>
+            <span e-name="name" e-required editable-text="vm.currentTemplate.name">{{ vm.currentTemplate.name || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Текст:              </label>
+            <span  e-rows="7" e-cols="40" editable-textarea="vm.currentTemplate.text">{{ vm.currentTemplate.text || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Долгота:              </label>
+            <span e-name="name" e-required editable-text="vm.currentTemplate.radius">{{ vm.currentTemplate.radius || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Широта:              </label>
+            <span e-name="name" e-required editable-text="vm.currentTemplate.longitude">{{ vm.currentTemplate.longitude || "empty" }}</span>
+          </div>
+           <div class="form-group">
+            <label class="control-label">Радиус:              </label>
+            <span e-name="name" e-required editable-text="vm.currentTemplate.latitude">{{ vm.currentTemplate.latitude || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Дата Активации:              </label>
+            <a href="#" editable-bsdate="vm.currentTemplate.activationDate" e-is-open="vm.opened.$data" e-ng-click="vm.open($event,'$data')"
+              e-datepicker-popup="dd-MMMM-yyyy">
+             {{ (vm.currentTemplate.activationDate | date:"dd/MM/yyyy") || 'empty' }}
+            </a>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Дата Окончания:              </label>
+            <a href="#" editable-bsdate="vm.currentTemplate.diactivationDate" e-is-open="vm.opened.$data" e-ng-click="vm.open($event,'$data')"
+              e-datepicker-popup="dd-MMMM-yyyy">
+             {{ (vm.currentTemplate.diactivationDate | date:"dd/MM/yyyy") || 'empty' }}
+            </a>
+          </div>
+          <div class="buttons">
+            <!-- button to show form -->
+            <button type="button" class="btn btn-default" ng-click="editTemplateForm.$show()" ng-show="!editTemplateForm.$visible">
+        Редактировать
+      </button>
+            <!-- buttons to submit / cancel form -->
+            <span ng-show="editTemplateForm.$visible">
+        <br/>
+        <button type="submit" class="btn btn-primary"  ng-disabled="editTemplateForm.$waiting">
+          Сохранить
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editTemplateForm.$waiting" ng-click="editTemplateForm.$cancel()">
+          Отмена
+        </button>
+      </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

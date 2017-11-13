@@ -5,7 +5,7 @@
 	</tr>
 	</thead>
 	<tbody>
-	<tr ng-repeat="organization in vm.organizations">
+	<tr ng-repeat="organization in vm.organizations | filter:vm.filterByCategory">
 		<td>{{organization.name || 'empty'}}</td>
         <td><button type="button" ng-click="vm.editOrgaziation(organization);"  class="btn btn-md btn-info">Редактировать</button></td>
         <td><button type="button" ng-click="vm.confirmDelete(organization);"  class="btn btn-md btn-info">Удалить</button></td>
