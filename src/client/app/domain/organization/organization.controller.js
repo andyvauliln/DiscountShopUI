@@ -18,7 +18,7 @@
     vm.isShowCategoryFilter = false;
     vm.statuses = [{value:true, text: 'Активный'},{value:false, text: 'Не активный'}];
     vm.exportUrl = appConfig.API_HOST + appConfig.API_EXPORT_ROUTE;
-    
+
     $scope.opened = {};
     $scope.open = function ($event, elementOpened) {
       $event.preventDefault();
@@ -30,7 +30,7 @@
 
     //Coupons
 
-
+    
     //Images
     vm.showOrgDiteils = showOrgDiteils;
     //Categories 
@@ -191,8 +191,6 @@
       return (item.isActive != null && selected.length) ? selected[0].text : 'Not set';
     }
 
-    
-
     vm.attachOrganizationImage = function (files) {
       angular.forEach(files, function (flowFile, i) {
         var fileReader = new FileReader();
@@ -229,8 +227,10 @@
     vm.saveOrganization = function (organization) {
 
       return dataservice.organizationService.addOrUpdate(organization).then(function (result) {
-
+        var index = vm.organizations.indexOf(organization);
+        vm.organizations[index] = result;
         vm.currentOrganization = result;
+        organization = result;
         return result;
       });
 
@@ -354,44 +354,51 @@
       }
       return '#'
     } 
-    vm.attachImageToDcard = function (files, share, prefix) {
-      if (share.objId == 0) {
+     vm.attachImageToDcard = function (files, share, prefix) {
+       if (share.objId == 0) {
 
-        vm.saveShare(share).then(function (newShare) {
+         vm.saveShare(share).then(function (newShare) {
 
-          vm.addImage(files[0], prefix).then(function (newImage) {
+           vm.addImage(files[0], prefix).then(function (newImage) {
 
-            dataservice.shareService.setImage(newShare.objId, newImage.objId).then(function(res){
-              share = res;
-            });
-          })
-        })
-      } else if(share.images.filter(function(image){return image.prefix == prefix;}).length > 0) {
-         
-        var images = share.images.filter(function(image){
-            return image.prefix == prefix;
-        });
+             dataservice.shareService.setImage(newShare.objId, newImage.objId).then(function (res) {
+
+               angular.forEach(vm.currentOrganization.shares, function (item) {
+                 if (item.objId = res.objId) {
+                   vm.currentOrganization.shares[item] = res;
+                 }
+               });
+
+
+             });
+           })
+         })
+       } else if (share.images.filter(function (image) { return image.prefix == prefix; }).length > 0) {
+
+         var images = share.images.filter(function (image) {
+           return image.prefix == prefix;
+         });
 
          vm.getImageContent(files[0]).then(function (content) {
-         var image = images[0];  
-         image.content = content;
-         var share1 = share;
-         dataservice.imageService.addOrUpdate(image).then(function(res){
-          
-            var index = share1.images.indexOf(image);
-            share1.images[index] = res;      
-         })
-        })
-      }
-      else{
-        vm.addImage(files[0], prefix).then(function (newImage) {
+           var image = images[0];
+           image.content = content;
+           var share1 = share;
+           dataservice.imageService.addOrUpdate(image).then(function (res) {
 
-            dataservice.shareService.setImage(share.objId, newImage.objId).then(function(res){
-              share.images.push(newImage)
-            })
-          })
-      }
-    }
+             var index = share1.images.indexOf(image);
+             share1.images[index] = res;
+           })
+         })
+       }
+       else {
+         vm.addImage(files[0], prefix).then(function (newImage) {
+
+           dataservice.shareService.setImage(share.objId, newImage.objId).then(function (res) {
+             share.images.push(newImage)
+           })
+         })
+       }
+     }
 
     vm.attachImageToCoupon = function (files, share) {
       if (share.objId == 0) {

@@ -5,23 +5,34 @@
     .module('app.notification')
     .controller('notificationController', notificationController);
 
- notificationController.$inject = ['$scope', '$q',  'logger', 'dataservice', 'appConfig', 'ModalService', 'organizationModel', 'notificationModel', 'imageModel', 'shareModel'];
+  notificationController.$inject = ['$scope', '$q', 'logger', 'dataservice', 'appConfig', 'ModalService', 'organizationModel', 'notificationModel', 'NgMap'];
   /* @ngInject */
-  function notificationController($scope, $q, logger, dataservice,  appConfig, ModalService, organizationModel, notificationModel, imageModel, shareModel,ckeditor) {
+  function notificationController($scope, $q, logger, dataservice, appConfig, ModalService, organizationModel, notificationModel, NgMap) {
     var vm = this;
     vm.organizations = [];
     vm.notificationTemplates = [];
     vm.currentTemplate = null
+    vm.isShowActive = false;
+    
 
-   activate();
+    vm.filterByActive = function (item) {
+      if (vm.isShowActive) {
+        return item.isActive;
+      } else 
+      {
+        return item;
+      }
+    };
+
+    activate();
     function activate() {
       var promises = [getOrganizations(), getNotifications()];
       return $q.all(promises).then(function () {
         logger.info('Activated Notification View');
       });
     }
-    
-    
+
+
     function getOrganizations() {
 
       dataservice.organizationService.getAll().then(function (data) {
@@ -34,7 +45,7 @@
 
       dataservice.notificationService.getAll().then(function (data) {
 
-           vm.notificationTemplates = data;
+        vm.notificationTemplates = data;
 
       })
     }
@@ -51,6 +62,19 @@
           this.close = result => close(result, 500);
           this.saveTemplate = vm.saveTemplate;
           this.opened = {};
+          this.opened2 = {};
+          this.map = null;
+          NgMap.getMap().then(function (map) {
+            this.map = map;
+   
+          });
+          this.rectShapeResized = function (template) {
+            if (this.map && template) {
+              template.latitude = this.map.shapes.circle.getCenter().lat();
+              template.longitude = this.map.shapes.circle.getCenter().lng();
+              template.radius = Math.round(this.map.shapes.circle.getRadius());
+            }
+          };
           this.options = {
             language: 'en',
             allowedContent: true,
@@ -60,6 +84,11 @@
             $event.preventDefault();
             $event.stopPropagation();
             this.opened[elementOpened] = !this.opened[elementOpened];
+          };
+           this.open2 = function ($event, elementOpened) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            this.opened2[elementOpened] = !this.opened2[elementOpened];
           };
         },
         controllerAs: 'vm'
@@ -74,7 +103,7 @@
     };
 
 
-     vm.saveTemplate = function (notification) {
+    vm.saveTemplate = function (notification) {
       notification.type = 0;
       return dataservice.notificationService.addOrUpdate(notification).then(function (result) {
 
@@ -88,16 +117,16 @@
       vm.notificationTemplates.unshift(new notificationModel(null));
     }
 
-     vm.deleteTemplate = function () {
-      
-      if(vm.currentTemplate.objId == 0){return;}
+    vm.deleteTemplate = function () {
+
+      if (vm.currentTemplate.objId == 0) { return; }
       var index = vm.notificationTemplates.indexOf(vm.currentTemplate);
-      vm.notificationTemplates.splice(index, 1); 
+      vm.notificationTemplates.splice(index, 1);
       dataservice.notificationService.remove(vm.currentTemplate.objId).then(function () {
       });
     };
-    
-    vm.confirmDelete = function(template){
+
+    vm.confirmDelete = function (template) {
       vm.currentTemplate = template;
       vm.showConfirmModal = true;
     };

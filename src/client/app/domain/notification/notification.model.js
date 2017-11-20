@@ -24,6 +24,7 @@
             this.longitude = (notification && notification.longitude) ? notification.longitude : 0;
             this.latitude = (notification && notification.latitude) ? notification.latitude : 0;
             this.radius = (notification && notification.radius) ? notification.radius : 0;
+            this.isActive = (notification && notification.isActive) ? notification.isActive : '';
 
         }
 

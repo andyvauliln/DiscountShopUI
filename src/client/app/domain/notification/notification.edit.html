@@ -7,26 +7,33 @@
         <h4 class="modal-title">Редактирование Шаблона</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" role="form" data-editable-form name="editTemplateForm"  onaftersave="vm.saveTemplate(vm.currentTemplate)">
+        <form class="form-horizontal" role="form" data-editable-form name="editTemplateForm" onaftersave="vm.saveTemplate(vm.currentTemplate)">
           <div class="form-group">
             <label class="control-label">Имя:              </label>
             <span e-name="name" e-required editable-text="vm.currentTemplate.name">{{ vm.currentTemplate.name || "empty" }}</span>
           </div>
           <div class="form-group">
             <label class="control-label">Текст:              </label>
-            <span  e-rows="7" e-cols="40" editable-textarea="vm.currentTemplate.text">{{ vm.currentTemplate.text || "empty" }}</span>
+            <span e-rows="7" e-cols="40" editable-textarea="vm.currentTemplate.text">{{ vm.currentTemplate.text || "empty" }}</span>
           </div>
           <div class="form-group">
             <label class="control-label">Долгота:              </label>
-            <span e-name="name" e-required editable-text="vm.currentTemplate.radius">{{ vm.currentTemplate.radius || "empty" }}</span>
+            <span e-name="name" e-required editable-text="vm.currentTemplate.longitude">{{ vm.currentTemplate.longitude || "empty" }}</span>
           </div>
           <div class="form-group">
             <label class="control-label">Широта:              </label>
-            <span e-name="name" e-required editable-text="vm.currentTemplate.longitude">{{ vm.currentTemplate.longitude || "empty" }}</span>
-          </div>
-           <div class="form-group">
-            <label class="control-label">Радиус:              </label>
             <span e-name="name" e-required editable-text="vm.currentTemplate.latitude">{{ vm.currentTemplate.latitude || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Радиус:              </label>
+            <span e-name="name" e-required editable-text="vm.currentTemplate.radius">{{ vm.currentTemplate.radius || "empty" }}</span>
+          </div>
+          <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="https://maps.google.com/maps/api/js">
+            <ng-map default-style="true" center="53.9347787, 27.60863829999994" zoom="10">
+
+              <shape id="circle" name="circle" centered="true" stroke-color='#FF0000' on-bounds_changed="vm.rectShapeResized($event, vm.currentTemplate)" stroke-opacity="0.8"
+                stroke-weight="2" center="{{vm.currentTemplate.latitude + ',' + vm.currentTemplate.longitude}}" radius="{{vm.currentTemplate.radius}}" editable="true"></shape>
+            </ng-map>
           </div>
           <div class="form-group">
             <label class="control-label">Дата Активации:              </label>
@@ -38,7 +45,7 @@
 
           <div class="form-group">
             <label class="control-label">Дата Окончания:              </label>
-            <a href="#" editable-bsdate="vm.currentTemplate.diactivationDate" e-is-open="vm.opened.$data" e-ng-click="vm.open($event,'$data')"
+            <a href="#" editable-bsdate="vm.currentTemplate.diactivationDate" e-is-open="vm.opened2.$data" e-ng-click="vm.open2($event,'$data')"
               e-datepicker-popup="dd-MMMM-yyyy">
              {{ (vm.currentTemplate.diactivationDate | date:"dd/MM/yyyy") || 'empty' }}
             </a>

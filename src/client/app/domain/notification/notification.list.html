@@ -7,7 +7,7 @@
 	</tr>
 	</thead>
 	<tbody>
-	<tr ng-repeat="notification in vm.notificationTemplates">
+	<tr ng-repeat="notification in vm.notificationTemplates | filter:filterNameValue | filter:vm.filterByActive">
 		<td>{{notification.name || 'empty'}}</td>
 		<td>{{notification.activationDate || 'empty'}}</td>
 		<td>{{notification.diactivationDate || 'empty'}}</td>

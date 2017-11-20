@@ -1,7 +1,7 @@
 <button type="button" ng-click="vm.addShare(0);" class="btn btn-md btn-info">Добавить Дисконтную Картру</button>
-<div ng-repeat="share in vm.getShares() | filter:{ type: 0 } " class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+<div ng-repeat="share in vm.currentOrganization.shares | filter:{ type: 0 } " class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
    <div class="jumbotron well">
-  <form  editable-form name="dcardForm" onaftersave="vm.saveShare(share)">
+  <form  editable-form name="dcardForm">
 
     <div>
       <span class="title">Активный: </span>
@@ -57,7 +57,7 @@
       <button type="button" class="btn btn-default" ng-click="dcardForm.$show()" ng-show="!dcardForm.$visible">
         Редактировать
       </button>
-      <button type="button" class="btn btn-default" ng-click="vm.showMessageWindowForShare(share.objId)" ng-show="!couponForm.$visible">
+      <button type="button" class="btn btn-default" ng-click="vm.showMessageWindowForShare(share.objId)" ng-show="!dcardForm.$visible">
         Послать Push
       </button>
       <button type="button" class="btn btn-default" ng-click="vm.deattachShare(share)" ng-show="!dcardForm.$visible">
@@ -65,7 +65,7 @@
       </button>
       <!-- buttons to submit / cancel form -->
       <span ng-show="dcardForm.$visible">
-        <button type="submit" class="btn btn-primary"  ng-disabled="dcardForm.$waiting">
+        <button type="submit" class="btn btn-primary" ng-ckick="vm.saveShare(share)" ng-disabled="dcardForm.$waiting">
           Сохранить
         </button>
         <button type="button" class="btn btn-default" ng-disabled="dcardForm.$waiting" ng-click="dcardForm.$cancel()">
