@@ -68,7 +68,7 @@
       </div>
 
     </form>
-    <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToCoupon($files, share)">
+    <div  ng-show="share.objId > 1"  flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToCoupon($files, share)">
       <button flow-btn class="btn btn-md btn-info">{{share.images.length > 0 ? 'Обновить Картинку': 'Добавить Картинку'}}</button>
     </div>
   </div>

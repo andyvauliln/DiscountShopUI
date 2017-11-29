@@ -10,6 +10,7 @@
     'app.notification',
     'app.category',
     'app.layout', 
+    'app.login',
     'angularModalService',
     'checklist-model',
     'ngFileSaver',

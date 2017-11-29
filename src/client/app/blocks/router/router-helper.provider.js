@@ -26,15 +26,22 @@
     };
 
     this.$get = RouterHelper;
-    RouterHelper.$inject = ['$location', '$rootScope', '$state', 'logger'];
+    RouterHelper.$inject = ['$location', '$rootScope', '$state', '$transitions', 'logger', 'dataservice'];
     /* @ngInject */
-    function RouterHelper($location, $rootScope, $state, logger) {
+    function RouterHelper($location, $rootScope, $state, $transitions, logger, dataservice) {
       var handlingStateChangeError = false;
       var hasOtherwise = false;
       var stateCounts = {
         errors: 0,
         changes: 0
       };
+
+      $transitions.onStart({}, function (trans) {
+        if (!dataservice.userService.isUserLoggedIn()) {
+          //event.preventDefault();
+          $state.go('login');
+        }
+      });
 
       var service = {
         configureStates: configureStates,
@@ -45,9 +52,8 @@
       init();
 
       return service;
-
-      ///////////////
-
+      
+    
       function configureStates(states, otherwisePath) {
         states.forEach(function(state) {
           state.config.resolve =
@@ -58,6 +64,7 @@
           hasOtherwise = true;
           $urlRouterProvider.otherwise(otherwisePath);
         }
+        $state.go('app.dashboard');
       }
 
       function handleRoutingErrors() {
@@ -83,10 +90,13 @@
         );
       }
 
+
       function init() {
         handleRoutingErrors();
         updateDocTitle();
       }
+
+     
 
       function getStates() { return $state.get(); }
 

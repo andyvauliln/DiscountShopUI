@@ -16,7 +16,7 @@
       {
         state: 'categories',
         config: {
-          url: '/',
+          url: '/category',
           templateUrl: 'app/domain/category/category.list.html',
           controller: 'categoryController',
           controllerAs: 'vm',

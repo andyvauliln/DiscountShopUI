@@ -5,7 +5,7 @@
         .module('app.core')
         .service('API', API);
 
-    API.$inject = ['$q', '$http', 'appConfig'];
+    API.$inject = ['$q', '$http', 'appConfig', 'ipCookie'];
 
     /**
     *   Service to route http requests based on the URL
@@ -13,7 +13,7 @@
     *   @param {$http} $http - Angular's $http service
     *   @param {Object} config - Application configuration
     */
-    function API($q, $http, appConfig) {
+    function API($q, $http, appConfig, ipCookie) {
 
         var service = this;
 
@@ -33,6 +33,7 @@
         function http(obj) {
 
           obj.url = appConfig.API_HOST + obj.url;
+          obj.headers = { 'Authorization' : ipCookie(appConfig.AUTH_COOKIE)}
 
           return $http(obj);
         }

@@ -20,7 +20,15 @@
           templateUrl: 'app/core/404.html',
           title: '404'
         }
-      }
+      },
+      // {
+      //   state: 'login',
+      //   config: {
+      //     url: '/login',
+      //     templateUrl: 'app/core/login.html',
+      //     title: 'login'
+      //   }
+      // }
      
 
     ];

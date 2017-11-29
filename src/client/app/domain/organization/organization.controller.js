@@ -302,9 +302,10 @@
       } else {
 
         return dataservice.shareService.addOrUpdate(share).then(function (result) {
-          return dataservice.organizationService.attachShare(vm.currentOrganization.objId, result.objId).then(function (res) {
+          share = result;
+          return dataservice.organizationService.attachShare(vm.currentOrganization.objId, share.objId).then(function (res) {
             vm.currentOrganization = res;
-            return result;
+            return share;
           });
 
         })
@@ -358,18 +359,11 @@
        if (share.objId == 0) {
 
          vm.saveShare(share).then(function (newShare) {
-
+           share = newShare
            vm.addImage(files[0], prefix).then(function (newImage) {
-
-             dataservice.shareService.setImage(newShare.objId, newImage.objId).then(function (res) {
-
-               angular.forEach(vm.currentOrganization.shares, function (item) {
-                 if (item.objId = res.objId) {
-                   vm.currentOrganization.shares[item] = res;
-                 }
-               });
-
-
+              share.images.push(newImage)
+              dataservice.shareService.setImage(newShare.objId, newImage.objId).then(function (res) {
+              vm.currentOrganization = vm.currentOrganization;
              });
            })
          })

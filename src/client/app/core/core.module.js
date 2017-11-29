@@ -9,6 +9,7 @@
       'blocks.logger',
       'blocks.router',
       'ui.router', 
-      'ngplus'
+      'ngplus',
+      'ipCookie'
     ]);
 })();

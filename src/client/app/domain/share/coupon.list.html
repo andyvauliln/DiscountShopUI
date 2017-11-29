@@ -1,5 +1,5 @@
 <button type="button" ng-click="vm.addShare(1);" class="btn btn-md btn-info">Добавить Купон</button>
-<div ng-repeat="share in vm.getShares() | filter:{ type: 1 } "  class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+<div ng-repeat="share in vm.getShares() | filter:{ type: 1 } " class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
   <div class="jumbotron well">
     <form editable-form name="couponForm" onaftersave="vm.saveShare(share)">
 
@@ -16,13 +16,13 @@
         <span e-placeholder="обязательно 9 знаков" editable-text="share.customBarcode">{{ share.customBarcode || "empty" }}</span>
       </div>
       <div class="form-group" ng-show="couponForm.$visible">
-            <label class="control-label">Описание:              </label>
-            <span ckeditor="vm.options" ng-model="share.objDescription" e-rows="7" e-cols="40" editable-textarea="share.objDescription">{{ share.objDescription || "empty" }}</span>
+        <label class="control-label">Описание:              </label>
+        <span ckeditor="vm.options" ng-model="share.objDescription" e-rows="7" e-cols="40" editable-textarea="share.objDescription">{{ share.objDescription || "empty" }}</span>
       </div>
-    <div class="form-group" ng-show="!couponForm.$visible">
-      <span class="title">Описание: </span>
-      <span>{{ share.objDescription|| "empty" }}</span>
-    </div>
+      <div class="form-group" ng-show="!couponForm.$visible">
+        <span class="title">Описание: </span>
+        <span>{{ share.objDescription|| "empty" }}</span>
+      </div>
       <div>
         <span class="title">Проценты: </span>
         <span e-required editable-text="share.percentage">{{ share.percentage|| "empty" }}</span>
@@ -41,7 +41,7 @@
         <span class="title">Ссылка на сайт: </span>
         <span editable-text="share.detailsUrl">{{ share.detailsUrl || "empty" }}</span>
       </div>
-      <img ng-src="{{vm.getImageUrl(share)}}" height="180px" width="300px"></img>
+      <img ng-src="{{vm.getImageUrl(share)}}" height="180px" width="300px">
 
 
       <div class="buttons margin-0-20">
@@ -50,8 +50,8 @@
         <button type="button" class="btn btn-default" ng-click="couponForm.$show()" ng-show="!couponForm.$visible">
         Редактировать
       </button>
-      
-       <button type="button" class="btn btn-default" ng-click="vm.showMessageWindowForShare(share.objId)" ng-show="!couponForm.$visible">
+
+        <button type="button" class="btn btn-default" ng-click="vm.showMessageWindowForShare(share.objId)" ng-show="!couponForm.$visible">
         Послать Push
       </button>
 
@@ -70,7 +70,7 @@
       </div>
 
     </form>
-    <div flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToCoupon($files, share)">
+    <div ng-show="share.objId > 1" flow-init="vm.flowConfig" flow-single-file="true" flow-files-submitted="$flow.upload()" flow-files-added="vm.attachImageToCoupon($files, share)">
       <button flow-btn class="btn btn-md btn-info">{{share.images.length > 0 ? 'Обновить Картинку': 'Добавить Картинку'}}</button>
     </div>
   </div>

@@ -16,7 +16,7 @@
       {
         state: 'notifications',
         config: {
-          url: '/',
+          url: '/notifications',
           templateUrl: 'app/domain/notification/notification.html',
           controller: 'notificationController',
           controllerAs: 'vm',

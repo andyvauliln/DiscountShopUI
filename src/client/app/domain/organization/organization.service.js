@@ -58,7 +58,7 @@
            
             return API.http({
                 method: appConfig.methods.GET,
-                url: appConfig.API_ORGANIZATION_SIMPLE_ROUTE,
+                url: appConfig.API_ORGANIZATION_ROUTE,
                 params: {}
             })
             .then(function(response) {

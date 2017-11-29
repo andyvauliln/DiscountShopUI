@@ -16,7 +16,7 @@
       {
         state: 'organizations',
         config: {
-          url: '/',
+          url: '/organization',
           templateUrl: 'app/domain/organization/organization.html',
           controller: 'organizationController',
           controllerAs: 'vm',
