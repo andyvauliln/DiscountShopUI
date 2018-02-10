@@ -50,6 +50,35 @@
       })
     }
 
+     vm.showMessageWindow = function () {
+
+      // Just provide a template url, a controller and call 'showModal'.
+      ModalService.showModal({
+        templateUrl: "app/layout/notification.template.html",
+        controller:
+        function (close) {
+          this.message = "";
+          this.close = result => close(result, 500);
+          this.sendPushNotification = dataservice.notificationService.sendPushNotification;
+          this.opened = {};
+          this.tags = [];
+          this.OS = { name : 'All'}
+          this.open = function ($event, elementOpened) {
+           $event.preventDefault();
+           $event.stopPropagation();
+          this.opened[elementOpened] = !this.opened[elementOpened];
+    };
+        },
+        controllerAs: 'vm'
+      }).then(function (modal) {
+
+        modal.element.modal();
+        modal.close.then(function (result) {
+          $scope.message = result ? "You said Yes" : "You said No";
+        });
+      });
+    };
+
     vm.editTemplate = function (template) {
 
       vm.currentTemplate = template;
@@ -59,17 +88,13 @@
         controller:
         function (close) {
           this.currentTemplate = vm.currentTemplate;
+          this.currentTemplate.radius = parseFloat(this.currentTemplate.radius)
           this.close = result => close(result, 500);
           this.saveTemplate = vm.saveTemplate;
           this.opened = {};
           this.opened2 = {};
-          this.map = null;
-          NgMap.getMap().then(function (map) {
-            this.map = map;
-   
-          });
-          this.rectShapeResized = function (template) {
-            if (this.map && template) {
+          this.rectShapeResized = function () {
+            if (this.map && Math.round(this.map.shapes.circle.getRadius())) {
               template.latitude = this.map.shapes.circle.getCenter().lat();
               template.longitude = this.map.shapes.circle.getCenter().lng();
               template.radius = Math.round(this.map.shapes.circle.getRadius());
@@ -80,7 +105,7 @@
             allowedContent: true,
             entities: false
           };
-          this.open = function ($event, elementOpened) {
+            this.open = function ($event, elementOpened) {
             $event.preventDefault();
             $event.stopPropagation();
             this.opened[elementOpened] = !this.opened[elementOpened];
@@ -90,6 +115,7 @@
             $event.stopPropagation();
             this.opened2[elementOpened] = !this.opened2[elementOpened];
           };
+
         },
         controllerAs: 'vm'
       }).then(function (modal) {

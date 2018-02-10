@@ -1,0 +1,67 @@
+
+ <button type="button" ng-click="vm.addIBeacon();"  class="btn btn-md btn-info">Добавить Маячок</button>
+<div ng-repeat="iBeacon in vm.currentOrganization.iBeacons " class="col-lg-3 col-md-4 col-sm-6 col-xs-12">      
+ <form class="jumbotron well" editable-form name="editableForm" onaftersave="vm.saveIBeacon(iBeacon)">
+
+                      <div> 
+                          <span class="title">UniqueId: </span>
+                         <span e-required editable-text="iBeacon.uniqueId">{{ iBeacon.uniqueId|| "empty" }}</span>
+                      </div>
+                      <div> 
+                          <span class="title">Major: </span>
+                         <span editable-text="iBeacon.major">{{ iBeacon.major|| "empty" }}</span>
+                      </div>
+                      
+                      <div> 
+                          <span class="title"> Minor : </span>
+                          <span editable-text="iBeacon.minor">{{ iBeacon.minor|| "empty" }}</span>
+                      </div>
+                      <div> 
+                          <span class="title"> Type : </span>
+                          <a href="#" editable-radiolist="iBeacon.type" e-ng-options="s.text for s in ::vm.ibeaconTypes track by s.value">
+                             {{ vm.showIbeaconTypes(iBeacon) }}
+                         </a>
+                      </div>
+                     
+                      <div ng-show="iBeacon.type == 'eddyson'"> 
+                          <span class="title"> InstanceId : </span>
+                         <span  editable-text="iBeacon.instanceId">{{ iBeacon.instanceId || "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Закголовк: </span>
+                         <span  e-required editable-text="iBeacon.title">{{ iBeacon.title|| "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Текст: </span>
+                         <span e-required editable-text="iBeacon.text">{{ iBeacon.text|| "empty" }}</span>
+                      </div>
+                        <div> 
+                          <span class="title">Ссылка: </span>
+                         <span  e-required editable-text="iBeacon.url">{{ iBeacon.url|| "empty" }}</span>
+                      </div>
+                        
+                   
+
+<div class="buttons margin-0-20">
+    <!-- button to show form -->
+    <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        Редактироваь
+      </button>
+
+      <button type="button" class="btn btn-default" ng-click="vm.deleteBeacon(iBeacon)" ng-show="!editableForm.$visible">
+        Удалить
+      </button>
+    <!-- buttons to submit / cancel form -->
+    <span ng-show="editableForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          Сохранить
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          Отмена
+        </button>
+      </span>
+</div>
+
+</form>
+</div>
+

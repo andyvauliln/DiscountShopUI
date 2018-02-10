@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('organizationModel', organizationModelFactory);
 
-    organizationModelFactory.$inject = ['appConfig','categoryModel', 'shopModel', 'imageModel', 'shareModel'];
+    organizationModelFactory.$inject = ['appConfig','categoryModel', 'shopModel', 'imageModel', 'shareModel', 'iBeaconModel'];
 
-    function organizationModelFactory(appConfig, categoryModel, shopModel, imageModel, shareModel) {
+    function organizationModelFactory(appConfig, categoryModel, shopModel, imageModel, shareModel, iBeaconModel) {
 
         /**
         *   Domain model of an organization used for Creating new organizations
@@ -25,6 +25,7 @@
 
             this.categories = (organization && organization.categories) ?  organization.categories.map(function(category){ return new categoryModel(category)}) : [];
             this.shops = (organization && organization.shops) ? organization.shops.map(function(shop){ return new shopModel(shop)})  : [];
+            this.iBeacons = (organization && organization.iBeacons) ? organization.iBeacons.map(function(iBeacon){ return new iBeaconModel(iBeacon)})  : [];
             this.images = (organization && organization.images) ? organization.images.map(function(image){ return new imageModel(image)})  : [];
             this.shares = (organization && organization.shareItems) ? organization.shareItems.map(function(image){ return new shareModel(image)})  : [];
             this.categoryIds = (organization && organization.categories) ?  organization.categories.map(function(category){ return category.objId}) : [];

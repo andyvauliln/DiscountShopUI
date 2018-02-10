@@ -18,6 +18,7 @@
       <li>               <a name="certificate" ng-click="vm.toggleTab(vm.appConfig.CERTIFICATE_STR)" data-toggle="tab" href="#">Сертификаты</a></li>
       <li>               <a name="specialOffer" ng-click="vm.toggleTab(vm.appConfig.SPECIALOFFER_STR)" data-toggle="tab" href="#">Акции</a></li>
       <li>               <a name="image" ng-click="vm.toggleTab(vm.appConfig.IMAGE_STR)" data-toggle="tab" href="#">Картинки</a></li>
+      <li>               <a name="iBeacon" ng-click="vm.toggleTab(vm.appConfig.IBEACON_STR)" data-toggle="tab" href="#">Маячки</a></li>
     </ul>
     <div class="tab-content">
       <div id="shop" ng-include="'app/domain/shop/shop.list.html'" class="tab-pane fade in active"></div>
@@ -26,6 +27,7 @@
       <div id="certificate" ng-include="'app/domain/share/certificate.list.html'" class="tab-pane fade"></div>
       <div id="specialOffer" ng-include="'app/domain/share/specialOffer.list.html'" class="tab-pane fade"></div>
       <div id="image" ng-include="'app/domain/image/image.list.html'" class="tab-pane fade"></div>
+      <div id="iBeacon" ng-include="'app/domain/iBeacon/iBeacon.list.html'" class="tab-pane fade"></div>
     </div>
     <cf-confirm-modal 
       show-modal="vm.showConfirmModal" 

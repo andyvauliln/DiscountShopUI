@@ -13,6 +13,18 @@
             <span e-name="name" e-required editable-text="vm.currentTemplate.name">{{ vm.currentTemplate.name || "empty" }}</span>
           </div>
           <div class="form-group">
+            <label class="control-label">Заголовок:              </label>
+            <span e-name="name" e-required editable-text="vm.currentTemplate.title">{{ vm.currentTemplate.title || "empty" }}</span>
+          </div>
+           <div class="form-group">
+            <label class="control-label">Ссылка:              </label>
+            <span e-name="name" e-required editable-text="vm.currentTemplate.url">{{ vm.currentTemplate.url || "empty" }}</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Имя:              </label>
+            <span e-name="name" e-required editable-text="vm.currentTemplate.name">{{ vm.currentTemplate.name || "empty" }}</span>
+          </div>
+          <div class="form-group">
             <label class="control-label">Текст:              </label>
             <span e-rows="7" e-cols="40" editable-textarea="vm.currentTemplate.text">{{ vm.currentTemplate.text || "empty" }}</span>
           </div>
@@ -28,10 +40,10 @@
             <label class="control-label">Радиус:              </label>
             <span e-name="name" e-required editable-text="vm.currentTemplate.radius">{{ vm.currentTemplate.radius || "empty" }}</span>
           </div>
-          <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="https://maps.google.com/maps/api/js">
+          <div>
             <ng-map default-style="true" center="53.9347787, 27.60863829999994" zoom="10">
 
-              <shape id="circle" name="circle" centered="true" stroke-color='#FF0000' on-bounds_changed="vm.rectShapeResized($event, vm.currentTemplate)" stroke-opacity="0.8"
+              <shape id="circle" name="circle" centered="true" stroke-color='#FF0000' on-bounds_changed="vm.rectShapeResized(vm.currentTemplate)" stroke-opacity="0.8"
                 stroke-weight="2" center="{{vm.currentTemplate.latitude + ',' + vm.currentTemplate.longitude}}" radius="{{vm.currentTemplate.radius}}" editable="true"></shape>
             </ng-map>
           </div>

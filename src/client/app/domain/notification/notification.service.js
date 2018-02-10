@@ -44,36 +44,36 @@
         *   Calls API to get all shops 
         *   @returns {Promise|shopModel[]} - When promise is resolved returns an array of shops
         */
-        function sendPushNotification(message, tags, os) {
+        function sendPushNotification(message, tags, os, title, url) {
 
 
              API.http({
                 method: appConfig.methods.POST,
                 url: appConfig.API_NOTIFICATION_ROUTE,
-                data: { "message": message, "tags": tags, "OS":os }
+                data: { "message": message, "tags": tags ? tags:[], "OS":os, "title":title, "url":url }
             })
                 .then(function (response) {
 
 
             });
         }
-        function sendPushNotificationToOrganization(message, organizationId, os) {
+        function sendPushNotificationToOrganization(message, organizationId, os, title, url) {
 
 
              API.http({
                 method: appConfig.methods.POST,
                 url: appConfig.API_NOTIFICATION_ORGANIZATION_ROUTE,
-                data: { "message": message, "Id": organizationId, "OS":os }
+                data: { "message": message, "Id": organizationId, "OS":os , "title":title, "url":url}
             })
              
         }
-        function sendPushNotificationToShare(message, shareId, os) {
+        function sendPushNotificationToShare(message, shareId, os, title, url) {
 
 
              API.http({
                 method: appConfig.methods.POST,
                 url: appConfig.API_NOTIFICATION_SHARE_ROUTE,
-                data: { "message": message, "Id": shareId, "OS":os }
+                data: { "message": message, "Id": shareId, "OS":os , "title":title, "url":url}
             })
               
         }

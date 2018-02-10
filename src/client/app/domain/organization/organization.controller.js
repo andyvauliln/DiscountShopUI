@@ -5,9 +5,9 @@
     .module('app.organization')
     .controller('organizationController', organizationController);
 
-  organizationController.$inject = ['$scope', '$q',  'logger', 'dataservice', 'appConfig', 'ModalService', 'organizationModel', 'shopModel', 'imageModel', 'shareModel'];
+  organizationController.$inject = ['$scope', '$q',  'logger', 'dataservice', 'appConfig', 'ModalService', 'organizationModel', 'shopModel', 'imageModel', 'shareModel', 'iBeaconModel'];
   /* @ngInject */
-  function organizationController($scope, $q, logger, dataservice,  appConfig, ModalService, organizationModel, shopModel, imageModel, shareModel,ckeditor) {
+  function organizationController($scope, $q, logger, dataservice,  appConfig, ModalService, organizationModel, shopModel, imageModel, shareModel,iBeaconModel) {
     var vm = this;
     //Organization
     vm.organizations = [];
@@ -502,6 +502,9 @@
         toggleTab(tab)
       }
     }
+
+   
+
     vm.saveShop = function (shop) {
 
       if (shop.objId > 0) {
@@ -531,6 +534,51 @@
       if(shop.objId == 0){return;}
       dataservice.organizationService.deattachShop(vm.currentOrganization.objId, shop.objId)
     }
+
+
+    vm.saveIBeacon = function (iBeacon) {
+      iBeacon.organizationId = vm.currentOrganization.objId;
+      iBeacon.type = iBeacon.type.text;
+      if (iBeacon.objId > 0) {
+
+        dataservice.iBeaconService.addOrUpdate(iBeacon);
+
+      }
+      else {
+
+        dataservice.iBeaconService.addOrUpdate(iBeacon).then(function (result) {
+          dataservice.organizationService.attachIBeacon(vm.currentOrganization.objId, result.objId).then(function (res) {
+            iBeacon = result;
+          });
+
+        })
+      }
+    }
+    vm.ibeaconTypes = [ 
+      {value: 1, text: "ibeacon"},
+      {value: 2, text: "eddysonx"}
+    ] 
+    vm.showIbeaconTypes = function(ibeacon){
+     var selected = vm.ibeaconTypes.filter(function(type){return ibeacon.type == type.text});
+     return (ibeacon && selected.length) ? selected[0].text : 'Not set';
+   }
+    vm.addIBeacon = function () {
+
+      vm.currentOrganization.iBeacons.unshift(new iBeaconModel(null));
+    }
+
+    vm.deleteBeacon = function (iBeacon) {
+
+      
+      var index = vm.currentOrganization.iBeacons.indexOf(iBeacon);
+      vm.currentOrganization.iBeacons.splice(index, 1); 
+      if(iBeacon.objId == 0){return;}
+      dataservice.iBeaconService.remove(iBeacon.objId)
+
+    }
+
+
+
 
     vm.deattachImage = function (image) {
 

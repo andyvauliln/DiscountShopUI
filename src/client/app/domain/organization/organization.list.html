@@ -11,6 +11,7 @@
         <td><button type="button" ng-click="vm.confirmDelete(organization);"  class="btn btn-md btn-info">Удалить</button></td>
 		<td><a class="btn btn-md btn-info" target="_self" ht-download-document download="{{vm.exportUrl  + organization.objId}}" ng-href="{{vm.exportUrl + organization.objId }}">Экспорт</a></td>
         <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.SHOP_STR)" class="btn btn-md btn-primary">Магазин</button></td>
+		<td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.IBEACON_STR)" class="btn btn-md btn-primary">Маячки</button></td>
 		<td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.DCARD_STR)" class="btn btn-md btn-primary">Дисконтные карты</button></td>
         <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.COUPON_STR)" class="btn btn-md btn-primary">Купоны</button></td>
         <td><button type="button" ng-click="vm.showOrgDiteils(organization, vm.appConfig.CERTIFICATE_STR)" class="btn btn-md btn-primary">Сертификаты</button></td>

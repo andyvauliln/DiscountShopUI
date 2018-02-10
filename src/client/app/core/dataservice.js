@@ -6,9 +6,12 @@
     .factory('dataservice', dataservice);
 
   dataservice.$inject = ['$http', '$q', 'exception', 'logger','organizationService', 'categoryService', 
-                        'userService', 'shopService', 'imageService','shareService', 'notificationService'];
+                        'userService', 'shopService', 'imageService','shareService', 'notificationService', 
+                        'iBeaconService'];
   /* @ngInject */
-  function dataservice($http, $q, exception, logger, organizationService, categoryService, userService, shopService, imageService,shareService, notificationService) {
+  function dataservice($http, $q, exception, logger, organizationService, categoryService, 
+                      userService, shopService, imageService,shareService, notificationService, 
+                      iBeaconService) {
     var service = {
       //Organization Api
       organizationService: organizationService,
@@ -17,7 +20,8 @@
       shopService : shopService,
       imageService : imageService,
       shareService : shareService,
-      notificationService : notificationService
+      notificationService : notificationService,
+      iBeaconService : iBeaconService,
       
     };
  

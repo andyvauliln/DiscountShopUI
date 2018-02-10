@@ -28,6 +28,8 @@
         service.attachImage = attachImage;
         service.attachShare = attachShare;
         service.attachShop = attachShop;
+        service.attachIBeacon  = attachIBeacon;
+        //service.deattachIBeacon = deattachIBeacon;
         service.deattachShop = deattachShop;
         service.deattachCategory = deattachCategory;
         service.deattachShare = deattachShare;
@@ -45,6 +47,22 @@
         function activate() {
 
 
+        }
+
+        function attachIBeacon(orgId,iBeaconId) {
+
+            return API.http({
+                method: appConfig.methods.GET,
+                url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_ATTACH_IBEACON_TO_ORGANIZATION_ROUTE + iBeaconId,
+                params: {}
+            })
+            .then(function(response) {
+
+                if (response.data) {
+                      logger.info('Item was attach successful');
+                  return new organizationModel(response.data);
+                }
+            });
         }
 
         /////////////////////////////
@@ -157,6 +175,7 @@
                 }
             });
         }
+        
          function attachCategory(orgId,categoryId) {
 
             return API.http({
