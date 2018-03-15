@@ -23,8 +23,8 @@
             this.type = (notification && notification.type) ? notification.type : null;
             this.activationDate = (notification && notification.activationDate) ? notification.activationDate : null;
             this.diactivationDate = (notification && notification.diactivationDate) ? notification.diactivationDate : null;
-            this.longitude = (notification && notification.longitude) ? notification.longitude : 27.60863829999994;
-            this.latitude = (notification && notification.latitude) ? notification.latitude : 53.9347787;
+            this.longitude = (notification && notification.longitude) ? notification.longitude :  27.60863829999994;
+            this.latitude = (notification && notification.latitude) ? notification.latitude :53.9347787;
             this.radius = (notification && notification.radius) ? notification.radius : 2500;
             this.isActive = (notification && notification.isActive) ? notification.isActive : '';
 

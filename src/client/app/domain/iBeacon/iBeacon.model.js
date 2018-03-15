@@ -23,7 +23,7 @@
             this.title = (iBbeacon && iBbeacon.title) ? iBbeacon.title : '';
             this.text = (iBbeacon && iBbeacon.text) ? iBbeacon.text : '';
             this.url = (iBbeacon && iBbeacon.url) ? iBbeacon.url : '';
-            this.type = (iBbeacon && iBbeacon.type) ? iBbeacon.type : 'ibeacon';
+            this.type = (iBbeacon && iBbeacon.type) ? iBbeacon.type : 'eddystone';
             this.instanceId = (iBbeacon && iBbeacon.instanceId) ? iBbeacon.instanceId : '';
         }
 

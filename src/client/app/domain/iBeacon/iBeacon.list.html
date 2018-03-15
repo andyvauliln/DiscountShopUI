@@ -8,22 +8,22 @@
                          <span e-required editable-text="iBeacon.uniqueId">{{ iBeacon.uniqueId|| "empty" }}</span>
                       </div>
                       <div> 
-                          <span class="title">Major: </span>
+                          <span class="title">Мажор: </span>
                          <span editable-text="iBeacon.major">{{ iBeacon.major|| "empty" }}</span>
                       </div>
                       
                       <div> 
-                          <span class="title"> Minor : </span>
+                          <span class="title"> Минор : </span>
                           <span editable-text="iBeacon.minor">{{ iBeacon.minor|| "empty" }}</span>
                       </div>
                       <div> 
-                          <span class="title"> Type : </span>
+                          <span class="title"> Тип : </span>
                           <a href="#" editable-radiolist="iBeacon.type" e-ng-options="s.text for s in ::vm.ibeaconTypes track by s.value">
                              {{ vm.showIbeaconTypes(iBeacon) }}
                          </a>
                       </div>
                      
-                      <div ng-show="iBeacon.type == 'eddyson'"> 
+                      <div> 
                           <span class="title"> InstanceId : </span>
                          <span  editable-text="iBeacon.instanceId">{{ iBeacon.instanceId || "empty" }}</span>
                       </div>

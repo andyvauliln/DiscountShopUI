@@ -24,8 +24,8 @@
 
           var contentDispositionHeader = response.headers('Content-Disposition');
           //var filename = contentDispositionHeader.split(';')[1].trim().split('=')[1];
-          var filename = 'organization_export.csv';
-          var blob = new Blob([response.data], { type: "application/octet-binary" });
+           var filename = 'organization_export.xls';
+          var blob = new Blob([response.data], { type: "application/vnd.ms-excel" });
           FileSaver.saveAs(blob, filename);
         });
       });

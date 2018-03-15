@@ -48,7 +48,8 @@
     vm.saveCategory = function(category) {
       
         dataservice.categoryService.addOrUpdate(category).then(function(res) {
-          category = res;
+          var index = vm.categories.indexOf(category);
+          vm.categories[index] = res;
         });
 
     };

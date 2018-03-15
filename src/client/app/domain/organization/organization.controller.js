@@ -536,8 +536,13 @@
     }
 
 
-    vm.saveIBeacon = function (iBeacon) {
+    vm.saveIBeacon = function (iBeacon) { 
       iBeacon.organizationId = vm.currentOrganization.objId;
+      if(iBeacon.type.text == 'ibeacon')
+      {
+        
+        iBeacon.InstanceId == null;
+      }
       iBeacon.type = iBeacon.type.text;
       if (iBeacon.objId > 0) {
 
@@ -556,7 +561,7 @@
     }
     vm.ibeaconTypes = [ 
       {value: 1, text: "ibeacon"},
-      {value: 2, text: "eddysonx"}
+      {value: 2, text: "eddystone"}
     ] 
     vm.showIbeaconTypes = function(ibeacon){
      var selected = vm.ibeaconTypes.filter(function(type){return ibeacon.type == type.text});
