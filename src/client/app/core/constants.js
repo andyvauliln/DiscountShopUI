@@ -7,7 +7,7 @@
     .constant('toastr', toastr)
     .constant('moment', moment)
     .constant('appConfig', {
-      API_HOST: 'http://dshopapidev.azurewebsites.net/api',
+      API_HOST: 'http://localhost:30375/api',
       IMAGE_URL: 'http://dshopapidev.azurewebsites.net/Resources/Images/',
       SHOP_STR: 'shop',
       IBEACON_STR: 'iBeacon',

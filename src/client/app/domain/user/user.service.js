@@ -201,7 +201,7 @@
         function attachShare(orgId, shareId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_USER_ROUTE + orgId + appConfig.API_ATTACH_SHARE_TO_USER_ROUTE + shareId,
                 params: {}
             })
@@ -216,7 +216,7 @@
         function deattachShare(orgId, shareId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_USER_ROUTE + orgId + appConfig.API_DEATTACH_SHARE_FROM_USER_ROUTE + shareId,
                 params: {}
             })

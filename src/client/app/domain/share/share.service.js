@@ -119,7 +119,7 @@
         function setImage(shareId, imageId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_SHARE_ROUTE + shareId + appConfig.API_SETIMEGE_ROUTE + imageId,
                 params: {}
             })

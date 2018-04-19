@@ -52,7 +52,7 @@
         function attachIBeacon(orgId,iBeaconId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_ATTACH_IBEACON_TO_ORGANIZATION_ROUTE + iBeaconId,
                 params: {}
             })
@@ -146,7 +146,7 @@
         function attachShare(orgId,shareId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_ATTACH_SHARE_TO_ORGANIZATION_ROUTE + shareId,
                 params: {}
             })
@@ -163,7 +163,7 @@
         function attachShop(orgId,shopId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_ATTACH_SHOP_TO_ORGANIZATION_ROUTE + shopId,
                 params: {}
             })
@@ -179,7 +179,7 @@
          function attachCategory(orgId,categoryId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_ATTACH_CATEGORY_TO_ORGANIZATION_ROUTE + categoryId,
                 params: {}
             })
@@ -194,7 +194,7 @@
          function attachImage(orgId, imageId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_ATTACH_IMAGE_TO_ORGANIZATION_ROUTE + imageId,
                 params: {}
             })
@@ -211,7 +211,7 @@
         function deattachShare(orgId,shareId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_DEATTACH_SHARE_FROM_ORGANIZATION_ROUTE + shareId,
                 params: {}
             })
@@ -228,7 +228,7 @@
         function deattachShop(orgId,shopId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_DEATTACH_SHOP_FROM_ORGANIZATION_ROUTE + shopId,
                 params: {}
             })
@@ -243,7 +243,7 @@
          function deattachCategory(orgId,categoryId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_DEATTACH_CATEGORY_FROM_ORGANIZATION_ROUTE + categoryId,
                 params: {}
             })
@@ -258,7 +258,7 @@
          function deattachImage(orgId, imageId) {
 
             return API.http({
-                method: appConfig.methods.GET,
+                method: appConfig.methods.PUT,
                 url: appConfig.API_ORGANIZATION_ROUTE + orgId + appConfig.API_DEATTACH_IMAGE_FROM_ORGANIZATION_ROUTE + imageId,
                 params: {}
             })
